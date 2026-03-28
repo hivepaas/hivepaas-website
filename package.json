@@ -1,0 +1,28 @@
+{
+  "name": "localpaas-website",
+  "private": true,
+  "workspaces": [
+    "docs",
+    "landing"
+  ],
+  "scripts": {
+    "dev:docs": "yarn workspace docs start --port 3100",
+    "dev:landing": "yarn workspace landing dev --port 3200",
+    "dev": "yarn dev:docs & yarn dev:landing",
+    "build:docs": "yarn workspace docs build",
+    "build:landing": "yarn workspace landing build",
+    "build": "yarn build:docs && yarn build:landing",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx,.astro && prettier --check .",
+    "format": "prettier --write .",
+    "serve:docs": "yarn workspace docs serve --port 3100 --host 0.0.0.0",
+    "serve:landing": "yarn workspace landing preview --port 3200 --host 0.0.0.0",
+    "serve": "yarn serve:docs & yarn serve:landing"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^8.57.2",
+    "@typescript-eslint/parser": "^8.57.2",
+    "eslint": "^8",
+    "eslint-plugin-astro": "^1.6.0",
+    "prettier": "^3.8.1"
+  }
+}

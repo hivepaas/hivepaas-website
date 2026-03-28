@@ -1,0 +1,6 @@
+node_modules/
+.docusaurus/
+.astro/
+build/
+dist/
+yarn.lock

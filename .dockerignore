@@ -1,0 +1,8 @@
+node_modules/
+docs/node_modules/
+landing/node_modules/
+docs/.docusaurus/
+docs/build/
+landing/dist/
+landing/.astro/
+.git/
