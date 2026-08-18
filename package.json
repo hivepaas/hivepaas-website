@@ -1,5 +1,5 @@
 {
-  "name": "localpaas-website",
+  "name": "hivepaas-website",
   "private": true,
   "workspaces": [
     "docs",

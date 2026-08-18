@@ -1,17 +1,87 @@
 ---
+// index.astro - HivePaaS Landing Page (Linear / Raycast Bento Grid Style)
+import '../styles/global.css';
+import Navbar from '../components/Navbar.astro';
+import Hero from '../components/Hero.astro';
+import LiveDemo from '../components/LiveDemo.astro';
+import BentoGrid from '../components/BentoGrid.astro';
+import Comparison from '../components/Comparison.astro';
+import Audience from '../components/Audience.astro';
+import HowItWorks from '../components/HowItWorks.astro';
+import CTA from '../components/CTA.astro';
+import Footer from '../components/Footer.astro';
 
+const pageTitle = "HivePaaS - The Lightweight, Self-Hosted PaaS Built on Docker Swarm";
+const pageDescription = "Deploy applications, databases, and cron jobs instantly on your own servers with zero vendor lock-in. 100% open source, self-hosted, lightweight Docker Swarm clustering.";
 ---
 
+<!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- SEO Meta Tags -->
+    <title>{pageTitle}</title>
+    <meta name="title" content={pageTitle} />
+    <meta name="description" content={pageDescription} />
+    <meta name="keywords" content="PaaS, Self-Hosted, Docker Swarm, Open Source, Kubernetes Alternative, Heroku Alternative, Cloud Hosting, Ephemeral Previews, VPS Deployments, HivePaaS" />
+    <meta name="author" content="HivePaaS" />
+    <meta name="robots" content="index, follow" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://hivepaas.com/" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={pageDescription} />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://hivepaas.com/" />
+    <meta property="twitter:title" content={pageTitle} />
+    <meta property="twitter:description" content={pageDescription} />
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    
+    <meta name="generator" content={Astro.generator} />
+  </head>
+
+  <body>
+    <!-- Subtle Background Grid Overlay -->
+    <div class="bg-grid-overlay"></div>
+
+    <!-- Main Navigation Bar -->
+    <Navbar />
+
+    <!-- Main Content Flow -->
+    <main>
+      <Hero />
+      <LiveDemo />
+      <BentoGrid />
+      <Comparison />
+      <Audience />
+      <HowItWorks />
+      <CTA />
+    </main>
+
+    <!-- Global Footer -->
+    <Footer />
+
+    <!-- Linear Mouse-Tracking Spotlight Script for Bento Cards -->
+    <script>
+      const cards = document.querySelectorAll<HTMLElement>('.bento-card');
+      
+      document.addEventListener('mousemove', (e) => {
+        cards.forEach((card) => {
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          card.style.setProperty('--mouse-x', `${x}px`);
+          card.style.setProperty('--mouse-y', `${y}px`);
+        });
+      });
+    </script>
+  </body>
 </html>

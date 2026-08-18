@@ -1,0 +1,187 @@
+---
+// Footer.astro
+---
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <!-- Brand & Mission -->
+      <div class="footer-brand">
+        <a href="/" class="brand-logo">
+          <div class="logo-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36" width="28" height="28">
+              <path
+                d="M 19.73,2.5 L 30.57,8.75 Q 32.3,9.75 32.3,11.75 L 32.3,24.25 Q 32.3,26.25 30.57,27.25 L 19.73,33.5 Q 18,34.5 16.27,33.5 L 5.43,27.25 Q 3.7,26.25 3.7,24.25 L 3.7,11.75 Q 3.7,9.75 5.43,8.75 L 16.27,2.5 Q 18,1.5 19.73,2.5 Z"
+                fill="#111827"
+                stroke="#f59e0b"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <g transform="translate(18, 18) scale(0.7) translate(-18, -20.5)">
+                <rect x="7.25" y="21" width="3.5" height="3.5" rx="0.8" ry="0.8" fill="#f5f5f7" />
+                <rect x="11.75" y="16.5" width="3.5" height="3.5" rx="0.8" ry="0.8" fill="#f5f5f7" />
+                <rect x="11.75" y="21" width="3.5" height="3.5" rx="0.8" ry="0.8" fill="#f5f5f7" />
+                <rect x="16.25" y="16.5" width="3.5" height="3.5" rx="0.8" ry="0.8" fill="#f5f5f7" />
+                <rect x="16.25" y="21" width="3.5" height="3.5" rx="0.8" ry="0.8" fill="#f5f5f7" />
+                <rect x="20.75" y="12" width="3.5" height="3.5" rx="0.8" ry="0.8" fill="#f5f5f7" />
+                <rect x="20.75" y="16.5" width="3.5" height="3.5" rx="0.8" ry="0.8" fill="#f5f5f7" />
+                <rect x="20.75" y="21" width="3.5" height="3.5" rx="0.8" ry="0.8" fill="#f5f5f7" />
+                <rect x="25.25" y="21" width="3.5" height="3.5" rx="0.8" ry="0.8" fill="#f5f5f7" />
+                <polygon points="5.5,25.5 30.5,25.5 28.75,29 3.75,29" fill="#f5f5f7" stroke="#f5f5f7" stroke-width="0.6" stroke-linejoin="round" />
+                <polygon points="3.75,29 28.75,29 27.875,30.75" fill="#f5f5f7" stroke="#f5f5f7" stroke-width="0.6" stroke-linejoin="round" />
+              </g>
+            </svg>
+          </div>
+          <span class="brand-name">Hive<span class="brand-highlight">PaaS</span></span>
+        </a>
+        <p class="footer-desc">
+          The lightweight, self-hosted Platform-as-a-Service built on Docker Swarm. 
+          100% open source, zero vendor lock-in, and full data sovereignty.
+        </p>
+        <div class="footer-license">
+          <span>Released under the Open Source License</span>
+        </div>
+      </div>
+
+      <!-- Links: Product -->
+      <div class="footer-col">
+        <h4 class="footer-heading">Product</h4>
+        <ul class="footer-links">
+          <li><a href="#features">Features</a></li>
+          <li><a href="#zero-lockin">Zero Vendor Lock-in</a></li>
+          <li><a href="#comparison">K8s Comparison</a></li>
+          <li><a href="#audience">Who It's For</a></li>
+          <li><a href="#how-it-works">How It Works</a></li>
+        </ul>
+      </div>
+
+      <!-- Links: Resources -->
+      <div class="footer-col">
+        <h4 class="footer-heading">Resources</h4>
+        <ul class="footer-links">
+          <li><a href="https://github.com/hivepaas/hivepaas" target="_blank" rel="noopener noreferrer">Documentation</a></li>
+          <li><a href="https://github.com/hivepaas/hivepaas" target="_blank" rel="noopener noreferrer">GitHub Repository</a></li>
+          <li><a href="https://github.com/hivepaas/hivepaas/releases" target="_blank" rel="noopener noreferrer">Release Notes</a></li>
+          <li><a href="https://github.com/hivepaas/hivepaas/issues" target="_blank" rel="noopener noreferrer">Issue Tracker</a></li>
+        </ul>
+      </div>
+
+      <!-- Links: Community -->
+      <div class="footer-col">
+        <h4 class="footer-heading">Community</h4>
+        <ul class="footer-links">
+          <li><a href="https://github.com/hivepaas/hivepaas/discussions" target="_blank" rel="noopener noreferrer">Discussions</a></li>
+          <li><a href="https://github.com/hivepaas/hivepaas/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer">Contributing</a></li>
+          <li><a href="https://discord.com/invite/2TgD3zDb2e" target="_blank" rel="noopener noreferrer">Discord Community</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="footer-bottom">
+      <p>© {new Date().getFullYear()} HivePaaS. Built for developers who love freedom and simplicity.</p>
+      <div class="footer-bottom-links">
+        <span>No telemetry • 100% Self-Hosted</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background: #05070a;
+    border-top: 1px solid var(--border-subtle);
+    padding-top: 4.5rem;
+    padding-bottom: 2.5rem;
+    position: relative;
+    z-index: 10;
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    margin-bottom: 3.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .footer-grid {
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+    }
+  }
+
+  .brand-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 1.25rem;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+  }
+
+  .brand-highlight {
+    color: var(--accent-amber);
+  }
+
+  .footer-desc {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: var(--text-muted);
+    max-width: 320px;
+    margin-bottom: 1.25rem;
+  }
+
+  .footer-license {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+  }
+
+  .footer-heading {
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-primary);
+    margin-bottom: 1.25rem;
+  }
+
+  .footer-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .footer-links a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.2s ease;
+  }
+
+  .footer-links a:hover {
+    color: var(--accent-amber-light);
+  }
+
+  .footer-bottom {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border-subtle);
+    font-size: 0.82rem;
+    color: var(--text-muted);
+  }
+
+  @media (min-width: 768px) {
+    .footer-bottom {
+      flex-direction: row;
+    }
+  }
+</style>

@@ -1,0 +1,350 @@
+---
+// LiveDemo.astro - Linear / Raycast Style Live Demo Servers
+---
+
+<section class="section demo-section" id="demo">
+  <div class="container">
+    <!-- Section Header -->
+    <div class="section-header">
+      <span class="section-tag">Interactive Preview</span>
+      <h2 class="section-title">Try HivePaaS Live in Your Browser</h2>
+      <p class="section-desc">
+        Experience the dashboard, manage Swarm services, and test deployments on our public live demo clusters — no installation required.
+      </p>
+    </div>
+
+    <!-- Demo Cards Grid -->
+    <div class="demo-grid">
+      <!-- Demo Server 1 -->
+      <div class="bento-card demo-card">
+        <div class="demo-card-top">
+          <div class="demo-server-header">
+            <div class="server-icon icon-amber">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
+                <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
+                <line x1="6" y1="6" x2="6.01" y2="6"></line>
+                <line x1="6" y1="18" x2="6.01" y2="18"></line>
+              </svg>
+            </div>
+            <div>
+              <h3 class="demo-server-name">Demo Server 01</h3>
+              <span class="demo-server-url">demo1.hivepaas.com</span>
+            </div>
+          </div>
+          <span class="live-status-pill">
+            <span class="pulse-dot-green"></span>
+            <span>Online</span>
+          </span>
+        </div>
+
+        <div class="demo-credentials-box">
+          <div class="cred-row">
+            <span class="cred-label">Username</span>
+            <div class="cred-val-copy">
+              <code>hivepaas</code>
+              <button class="mini-copy-btn" data-copy="hivepaas" title="Copy Username" aria-label="Copy Username">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="cred-row">
+            <span class="cred-label">Password</span>
+            <div class="cred-val-copy">
+              <code>hivepaas</code>
+              <button class="mini-copy-btn" data-copy="hivepaas" title="Copy Password" aria-label="Copy Password">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <a 
+          href="https://demo1.hivepaas.com" 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          class="btn btn-primary demo-launch-btn"
+        >
+          <span>Launch Demo 1</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+            <polyline points="15 3 21 3 21 9"></polyline>
+            <line x1="10" y1="14" x2="21" y2="3"></line>
+          </svg>
+        </a>
+      </div>
+
+      <!-- Demo Server 2 -->
+      <div class="bento-card demo-card">
+        <div class="demo-card-top">
+          <div class="demo-server-header">
+            <div class="server-icon icon-purple">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
+                <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
+                <line x1="6" y1="6" x2="6.01" y2="6"></line>
+                <line x1="6" y1="18" x2="6.01" y2="18"></line>
+              </svg>
+            </div>
+            <div>
+              <h3 class="demo-server-name">Demo Server 02</h3>
+              <span class="demo-server-url">demo2.hivepaas.com</span>
+            </div>
+          </div>
+          <span class="live-status-pill">
+            <span class="pulse-dot-green"></span>
+            <span>Online</span>
+          </span>
+        </div>
+
+        <div class="demo-credentials-box">
+          <div class="cred-row">
+            <span class="cred-label">Username</span>
+            <div class="cred-val-copy">
+              <code>hivepaas</code>
+              <button class="mini-copy-btn" data-copy="hivepaas" title="Copy Username" aria-label="Copy Username">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="cred-row">
+            <span class="cred-label">Password</span>
+            <div class="cred-val-copy">
+              <code>hivepaas</code>
+              <button class="mini-copy-btn" data-copy="hivepaas" title="Copy Password" aria-label="Copy Password">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <a 
+          href="https://demo2.hivepaas.com" 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          class="btn btn-secondary demo-launch-btn"
+        >
+          <span>Launch Demo 2</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+            <polyline points="15 3 21 3 21 9"></polyline>
+            <line x1="10" y1="14" x2="21" y2="3"></line>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Demo Reset Notice -->
+    <div class="demo-footer-notice">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="12" cy="12" r="10"></circle>
+        <line x1="12" y1="16" x2="12" y2="12"></line>
+        <line x1="12" y1="8" x2="12.01" y2="8"></line>
+      </svg>
+      <span>Public demo clusters are open for testing and are automatically reset periodically. Feel free to explore all features!</span>
+    </div>
+  </div>
+</section>
+
+<style>
+  .demo-section {
+    padding-top: 2rem;
+    padding-bottom: 5rem;
+    position: relative;
+  }
+
+  .demo-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+    max-width: 980px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  @media (min-width: 768px) {
+    .demo-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .demo-card {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .demo-card-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .demo-server-header {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+  }
+
+  .server-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .icon-amber { background: rgba(245, 158, 11, 0.15); color: var(--accent-amber); border: 1px solid rgba(245, 158, 11, 0.3); }
+  .icon-purple { background: rgba(139, 92, 246, 0.15); color: #c084fc; border: 1px solid rgba(139, 92, 246, 0.3); }
+
+  .demo-server-name {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+  }
+
+  .demo-server-url {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+  }
+
+  .live-status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.25rem 0.6rem;
+    border-radius: 9999px;
+    background: rgba(16, 185, 129, 0.12);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    color: #34d399;
+    font-size: 0.75rem;
+    font-weight: 700;
+  }
+
+  .pulse-dot-green {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #10b981;
+    box-shadow: 0 0 8px #10b981;
+    animation: pulseDot 2s infinite ease-in-out;
+  }
+
+  @keyframes pulseDot {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.8); }
+  }
+
+  .demo-credentials-box {
+    background: #040508;
+    border: 1px solid var(--border-subtle);
+    border-radius: 12px;
+    padding: 1rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .cred-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .cred-label {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .cred-val-copy {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--border-subtle);
+    border-radius: 6px;
+    padding: 0.25rem 0.5rem 0.25rem 0.75rem;
+  }
+
+  .cred-val-copy code {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--accent-amber-light);
+    font-weight: 700;
+  }
+
+  .mini-copy-btn {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    padding: 0.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+  }
+
+  .mini-copy-btn:hover {
+    color: var(--text-primary);
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .demo-launch-btn {
+    width: 100%;
+    margin-top: auto;
+    font-size: 0.92rem;
+  }
+
+  .demo-footer-notice {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 2rem;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    text-align: center;
+  }
+</style>
+
+<script>
+  const copyButtons = document.querySelectorAll('.mini-copy-btn');
+  copyButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const textToCopy = btn.getAttribute('data-copy') || '';
+      navigator.clipboard.writeText(textToCopy).then(() => {
+        btn.classList.add('copied');
+        const originalHTML = btn.innerHTML;
+        btn.innerHTML = '<span style="font-size: 10px; color: #34d399; font-weight: bold;">✓</span>';
+        setTimeout(() => {
+          btn.innerHTML = originalHTML;
+          btn.classList.remove('copied');
+        }, 1500);
+      });
+    });
+  });
+</script>

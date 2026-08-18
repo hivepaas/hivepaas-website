@@ -1,0 +1,550 @@
+---
+// BentoGrid.astro - Linear / Raycast Style Bento Grid
+---
+
+<section class="section bento-section" id="bento">
+  <div class="container">
+    <!-- Section Header -->
+    <div class="section-header">
+      <span class="section-tag">Engineered for Freedom</span>
+      <h2 class="section-title">A Modern Bento Architecture for Cloud Independence</h2>
+      <p class="section-desc">
+        Built from the ground up to give developers the agility of high-end PaaS without sacrificing infrastructure control.
+      </p>
+    </div>
+
+    <!-- Asymmetric Bento Grid -->
+    <div class="bento-grid">
+      <!-- Card 1 (Span 2): Zero Vendor Lock-in & Autonomous Swarm -->
+      <div class="bento-card bento-span-2 card-zero-lockin" id="zero-lockin">
+        <div class="bento-badge-row">
+          <span class="linear-pill pill-glow-amber">✨ Architectural Superpower</span>
+          <span class="badge-accent-tag">Zero Vendor Lock-in</span>
+        </div>
+
+        <div class="bento-content-top">
+          <h3 class="bento-title">Unbreakable Apps: If HivePaaS Stops, Your Services Keep Running.</h3>
+          <p class="bento-text">
+            Unlike proprietary PaaS solutions that hook deep into container runtimes, HivePaaS deploys standard 
+            <strong>native Docker Swarm services</strong>. If you ever uninstall or stop HivePaaS, 
+            <strong>every container, proxy route, and database continues running without a single dropped packet.</strong>
+          </p>
+        </div>
+
+        <!-- Interactive Visualizer -->
+        <div class="lockin-visualizer">
+          <div class="visualizer-header">
+            <span class="vis-dot vis-dot-amber"></span>
+            <span>Docker Swarm Native Service Mesh State</span>
+          </div>
+          <div class="vis-nodes-grid">
+            <div class="vis-item item-hivepaas">
+              <div class="vis-item-top">
+                <span class="vis-name">HivePaaS Engine</span>
+                <span class="vis-badge badge-state-stopped">Uninstalled / Offline</span>
+              </div>
+              <span class="vis-desc">Control plane removed</span>
+            </div>
+            <div class="vis-arrow">➔</div>
+            <div class="vis-item item-running">
+              <div class="vis-item-top">
+                <span class="vis-name">Next.js Web App</span>
+                <span class="vis-badge badge-state-live">100% Running</span>
+              </div>
+              <span class="vis-desc">Serving traffic on :443</span>
+            </div>
+            <div class="vis-item item-running">
+              <div class="vis-item-top">
+                <span class="vis-name">PostgreSQL 16</span>
+                <span class="vis-badge badge-state-live">100% Running</span>
+              </div>
+              <span class="vis-desc">Cluster Volume intact</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2 (Span 1): 100% Data Sovereignty -->
+      <div class="bento-card bento-span-1 card-sovereignty">
+        <div class="bento-badge-row">
+          <span class="linear-pill pill-glow-emerald">🛡️ Privacy First</span>
+        </div>
+        <h3 class="bento-title">100% Data Sovereignty</h3>
+        <p class="bento-text">
+          Zero telemetry, zero external tracking. Your source code, encryption keys, and customer databases 
+          remain strictly inside your own virtual private servers.
+        </p>
+
+        <div class="security-chip">
+          <div class="security-row">
+            <span class="sec-label">GDPR Compliance</span>
+            <span class="sec-val val-green">Native 100%</span>
+          </div>
+          <div class="security-row">
+            <span class="sec-label">Secret Encryption</span>
+            <span class="sec-val">Age / AES-256</span>
+          </div>
+          <div class="security-row">
+            <span class="sec-label">Backup Target</span>
+            <span class="sec-val">Automated S3</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3 (Span 1): Microscopic Resource Overhead -->
+      <div class="bento-card bento-span-1 card-performance">
+        <div class="bento-badge-row">
+          <span class="linear-pill pill-glow-purple">⚡ Pure Go Core</span>
+        </div>
+        <h3 class="bento-title">&lt; 200 MB RAM Overhead</h3>
+        <p class="bento-text">
+          Engineered in Go with pure efficiency. While standard Kubernetes control planes consume 1.2GB–1.5GB of RAM at idle, 
+          the entire HivePaaS stack runs under 200MB — leaving 90%+ of your VPS for your actual workloads.
+        </p>
+
+        <!-- Memory Comparison Meter -->
+        <div class="memory-meter-box">
+          <div class="meter-row">
+            <span class="meter-name">HivePaaS</span>
+            <div class="meter-bar-wrapper">
+              <div class="meter-bar bar-hivepaas" style="width: 14%;"></div>
+            </div>
+            <span class="meter-val">&lt; 200 MB</span>
+          </div>
+          <div class="meter-row">
+            <span class="meter-name">K8s Master</span>
+            <div class="meter-bar-wrapper">
+              <div class="meter-bar bar-k8s" style="width: 80%;"></div>
+            </div>
+            <span class="meter-val">~1.2 GB</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 4 (Span 2): Ephemeral App Previews & Instant Git Deployments -->
+      <div class="bento-card bento-span-2 card-previews">
+        <div class="bento-badge-row">
+          <span class="linear-pill pill-glow-amber">🔍 Git-Ops & Previews</span>
+          <span class="badge-accent-tag">Instant Staging</span>
+        </div>
+
+        <h3 class="bento-title">Ephemeral PR Previews & Instant Git Deployments</h3>
+        <p class="bento-text">
+          Every Pull Request automatically provisions an isolated staging container with its own temporary subdomain. 
+          Preview features with clients and teammates before merging to production.
+        </p>
+
+        <!-- Pipeline Graphic -->
+        <div class="pipeline-flow">
+          <div class="pipe-step">
+            <div class="pipe-icon">Git</div>
+            <span class="pipe-label">Push to PR #42</span>
+          </div>
+          <div class="pipe-line"></div>
+          <div class="pipe-step">
+            <div class="pipe-icon pipe-icon-build">Build</div>
+            <span class="pipe-label">Dockerfile Build</span>
+          </div>
+          <div class="pipe-line"></div>
+          <div class="pipe-step">
+            <div class="pipe-icon pipe-icon-preview">Live</div>
+            <span class="pipe-label">https://pr-42.myapp.net</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 5 (Span 3): Multi-Node Cluster Topology -->
+      <div class="bento-card bento-span-3 card-cluster">
+        <div class="cluster-card-inner">
+          <div class="cluster-info">
+            <div class="bento-badge-row">
+              <span class="linear-pill pill-glow-emerald">🐳 Multi-Node Swarm</span>
+              <span class="badge-accent-tag">1-Click Scale</span>
+            </div>
+            <h3 class="bento-title">Effortless Multi-Server Clustering</h3>
+            <p class="bento-text">
+              Scale your application across multiple worker nodes anywhere in the world. 
+              Add a new worker VPS with a single join token — no networking PhD required.
+            </p>
+            <div class="cluster-token-box">
+              <span class="token-prefix">Worker Join Command:</span>
+              <code>docker swarm join --token SWMTKN-1-49... 192.168.1.10:2377</code>
+            </div>
+          </div>
+
+          <!-- Visual Nodes Map -->
+          <div class="cluster-nodes-visual">
+            <div class="node-box node-manager">
+              <div class="node-head">
+                <span class="node-role">Manager (Leader)</span>
+                <span class="node-ip">10.0.0.1</span>
+              </div>
+              <div class="node-metrics">
+                <span>CPU: 4%</span> • <span>RAM: 280MB</span>
+              </div>
+            </div>
+            <div class="node-connect-line"></div>
+            <div class="node-box node-worker">
+              <div class="node-head">
+                <span class="node-role">Worker Node 01</span>
+                <span class="node-ip">10.0.0.2</span>
+              </div>
+              <div class="node-metrics">
+                <span>4 Containers</span> • <span>RAM: 512MB</span>
+              </div>
+            </div>
+            <div class="node-connect-line"></div>
+            <div class="node-box node-worker">
+              <div class="node-head">
+                <span class="node-role">Worker Node 02</span>
+                <span class="node-ip">10.0.0.3</span>
+              </div>
+              <div class="node-metrics">
+                <span>6 Containers</span> • <span>RAM: 720MB</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .bento-section {
+    position: relative;
+  }
+
+  .bento-badge-row {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .badge-accent-tag {
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.2rem 0.6rem;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.06);
+    color: var(--text-secondary);
+    border: 1px solid var(--border-subtle);
+  }
+
+  .bento-title {
+    font-size: 1.45rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--text-primary);
+    margin-bottom: 0.85rem;
+    line-height: 1.3;
+  }
+
+  .bento-text {
+    font-size: 0.95rem;
+    line-height: 1.65;
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+  }
+
+  .bento-text strong {
+    color: var(--text-primary);
+  }
+
+  /* Card 1: Lock-in Visualizer */
+  .lockin-visualizer {
+    background: rgba(8, 10, 15, 0.85);
+    border: 1px solid var(--border-subtle);
+    border-radius: 12px;
+    padding: 1.25rem;
+    margin-top: auto;
+  }
+
+  .visualizer-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.78rem;
+    font-family: var(--font-mono);
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+  }
+
+  .vis-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+  }
+
+  .vis-dot-amber { background: var(--accent-amber); box-shadow: 0 0 8px var(--accent-amber); }
+
+  .vis-nodes-grid {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .vis-item {
+    flex: 1;
+    min-width: 140px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-subtle);
+    border-radius: 8px;
+    padding: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .item-hivepaas {
+    border-color: rgba(239, 68, 68, 0.3);
+    background: rgba(239, 68, 68, 0.05);
+  }
+
+  .item-running {
+    border-color: rgba(16, 185, 129, 0.3);
+    background: rgba(16, 185, 129, 0.05);
+  }
+
+  .vis-item-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.35rem;
+  }
+
+  .vis-name {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+
+  .vis-badge {
+    font-size: 0.68rem;
+    font-weight: 700;
+    padding: 0.15rem 0.4rem;
+    border-radius: 4px;
+  }
+
+  .badge-state-stopped { background: rgba(239, 68, 68, 0.2); color: #f87171; }
+  .badge-state-live { background: rgba(16, 185, 129, 0.2); color: #34d399; }
+
+  .vis-desc {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+  }
+
+  .vis-arrow {
+    color: var(--text-muted);
+    font-weight: 700;
+  }
+
+  /* Card 2: Security Chip */
+  .security-chip {
+    background: rgba(8, 10, 15, 0.85);
+    border: 1px solid var(--border-subtle);
+    border-radius: 12px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+    margin-top: auto;
+  }
+
+  .security-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.82rem;
+  }
+
+  .sec-label { color: var(--text-muted); }
+  .sec-val { font-weight: 700; font-family: var(--font-mono); color: var(--text-primary); }
+  .val-green { color: #34d399; }
+
+  /* Card 3: Memory Meter */
+  .memory-meter-box {
+    background: rgba(8, 10, 15, 0.85);
+    border: 1px solid var(--border-subtle);
+    border-radius: 12px;
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: auto;
+  }
+
+  .meter-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.82rem;
+  }
+
+  .meter-name {
+    width: 75px;
+    font-weight: 600;
+    color: var(--text-secondary);
+  }
+
+  .meter-bar-wrapper {
+    flex: 1;
+    height: 10px;
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: 9999px;
+    overflow: hidden;
+  }
+
+  .meter-bar {
+    height: 100%;
+    border-radius: 9999px;
+  }
+
+  .bar-hivepaas { background: linear-gradient(90deg, #fbbf24, #f59e0b); }
+  .bar-k8s { background: linear-gradient(90deg, #ef4444, #dc2626); }
+
+  .meter-val {
+    min-width: 75px;
+    white-space: nowrap;
+    text-align: right;
+    font-family: var(--font-mono);
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+
+  /* Card 4: Pipeline Flow */
+  .pipeline-flow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(8, 10, 15, 0.85);
+    border: 1px solid var(--border-subtle);
+    border-radius: 12px;
+    padding: 1.25rem 1.5rem;
+    margin-top: auto;
+    overflow-x: auto;
+  }
+
+  .pipe-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .pipe-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    background: rgba(245, 158, 11, 0.15);
+    border: 1px solid rgba(245, 158, 11, 0.3);
+    color: var(--accent-amber-light);
+    font-weight: 800;
+    font-size: 0.82rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-mono);
+  }
+
+  .pipe-icon-build { background: rgba(59, 130, 246, 0.15); border-color: rgba(59, 130, 246, 0.3); color: #60a5fa; }
+  .pipe-icon-preview { background: rgba(16, 185, 129, 0.15); border-color: rgba(16, 185, 129, 0.3); color: #34d399; }
+
+  .pipe-label {
+    font-size: 0.78rem;
+    color: var(--text-secondary);
+    font-family: var(--font-mono);
+  }
+
+  .pipe-line {
+    flex: 1;
+    height: 2px;
+    background: linear-gradient(90deg, rgba(245, 158, 11, 0.4), rgba(16, 185, 129, 0.4));
+    margin: 0 1rem;
+    min-width: 40px;
+  }
+
+  /* Card 5: Cluster Topology */
+  .cluster-card-inner {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  @media (min-width: 900px) {
+    .cluster-card-inner {
+      grid-template-columns: 1.2fr 1.8fr;
+      align-items: center;
+    }
+  }
+
+  .cluster-token-box {
+    background: rgba(8, 10, 15, 0.85);
+    border: 1px solid var(--border-subtle);
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    font-family: var(--font-mono);
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .token-prefix {
+    font-size: 0.72rem;
+    color: var(--accent-amber-light);
+    font-weight: 700;
+  }
+
+  .cluster-token-box code {
+    font-size: 0.78rem;
+    color: var(--text-primary);
+    overflow-x: auto;
+  }
+
+  .cluster-nodes-visual {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .node-box {
+    background: rgba(8, 10, 15, 0.85);
+    border: 1px solid var(--border-subtle);
+    border-radius: 10px;
+    padding: 0.85rem 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .node-manager {
+    border-color: rgba(245, 158, 11, 0.3);
+    background: rgba(245, 158, 11, 0.04);
+  }
+
+  .node-head {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .node-role {
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: var(--text-primary);
+  }
+
+  .node-ip {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--text-muted);
+  }
+
+  .node-metrics {
+    font-size: 0.75rem;
+    font-family: var(--font-mono);
+    color: var(--text-secondary);
+  }
+</style>

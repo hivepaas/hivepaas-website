@@ -1,0 +1,270 @@
+---
+// Comparison.astro - Linear / Raycast Style
+---
+
+<section class="section comparison-section" id="comparison">
+  <div class="container">
+    <!-- Section Header -->
+    <div class="section-header">
+      <span class="section-tag">Direct Comparison</span>
+      <h2 class="section-title">Why Developers Choose HivePaaS Over K8s & Cloud PaaS</h2>
+      <p class="section-desc">
+        A clear side-by-side comparison of architectural trade-offs, pricing, and vendor lock-in.
+      </p>
+    </div>
+
+    <!-- Linear Table Wrapper -->
+    <div class="table-container bento-card">
+      <table class="linear-table">
+        <thead>
+          <tr>
+            <th class="th-feature">Platform Capability</th>
+            <th class="th-hivepaas">
+              <div class="brand-th">
+                <span class="brand-th-name">HivePaaS</span>
+                <span class="brand-th-tag">Self-Hosted Swarm</span>
+              </div>
+            </th>
+            <th class="th-other">
+              <div class="other-th">
+                <span>Kubernetes (K8s)</span>
+                <span class="other-th-tag">Complex Cluster</span>
+              </div>
+            </th>
+            <th class="th-other">
+              <div class="other-th">
+                <span>Cloud PaaS</span>
+                <span class="other-th-tag">Heroku / Render</span>
+              </div>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="td-feature">
+              <div class="feat-name">100% Data Sovereignty</div>
+              <div class="feat-sub">Customer data & code strictly on your servers</div>
+            </td>
+            <td class="td-hivepaas">
+              <span class="status-pill status-pass">✓ Full Ownership</span>
+            </td>
+            <td class="td-other">
+              <span class="status-pill status-pass">✓ Full Ownership</span>
+            </td>
+            <td class="td-other">
+              <span class="status-pill status-fail">✗ Proprietary Cloud</span>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="td-feature">
+              <div class="feat-name">Zero Vendor Lock-in</div>
+              <div class="feat-sub">Apps continue running if PaaS is uninstalled</div>
+            </td>
+            <td class="td-hivepaas">
+              <span class="status-pill status-pass">✓ Native Swarm</span>
+            </td>
+            <td class="td-other">
+              <span class="status-pill status-warn">⚠ K8s YAMLs</span>
+            </td>
+            <td class="td-other">
+              <span class="status-pill status-fail">✗ 100% Locked</span>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="td-feature">
+              <div class="feat-name">DevOps Overhead</div>
+              <div class="feat-sub">Skill & maintenance required to operate</div>
+            </td>
+            <td class="td-hivepaas">
+              <span class="status-pill status-pass">✓ Zero Specialist</span>
+            </td>
+            <td class="td-other">
+              <span class="status-pill status-fail">✗ Very Steep (K8s Eng)</span>
+            </td>
+            <td class="td-other">
+              <span class="status-pill status-pass">✓ Minimal</span>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="td-feature">
+              <div class="feat-name">Base Memory Overhead</div>
+              <div class="feat-sub">RAM consumed by the control plane itself (Idle)</div>
+            </td>
+            <td class="td-hivepaas">
+              <span class="status-pill status-pass">✓ &lt; 200 MB RAM</span>
+            </td>
+            <td class="td-other">
+              <span class="status-pill status-fail">✗ 1.2 - 1.5 GB RAM</span>
+            </td>
+            <td class="td-other">
+              <span class="status-pill status-warn">⚠ Tier-Dependent</span>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="td-feature">
+              <div class="feat-name">Monthly Server Cost</div>
+              <div class="feat-sub">Typical infrastructure expense</div>
+            </td>
+            <td class="td-hivepaas">
+              <span class="status-pill status-pass">✓ $5 - $20 / mo</span>
+            </td>
+            <td class="td-other">
+              <span class="status-pill status-fail">✗ $70+ (Control Plane)</span>
+            </td>
+            <td class="td-other">
+              <span class="status-pill status-fail">✗ $50 - $500+ / mo</span>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="td-feature">
+              <div class="feat-name">Ephemeral App Previews</div>
+              <div class="feat-sub">Automated preview URLs for every Git PR</div>
+            </td>
+            <td class="td-hivepaas">
+              <span class="status-pill status-pass">✓ Built-In</span>
+            </td>
+            <td class="td-other">
+              <span class="status-pill status-warn">⚠ Custom CI Pipeline</span>
+            </td>
+            <td class="td-other">
+              <span class="status-pill status-pass">✓ Paid Plans Only</span>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="td-feature">
+              <div class="feat-name">Open Source License</div>
+              <div class="feat-sub">Source availability and community freedom</div>
+            </td>
+            <td class="td-hivepaas">
+              <span class="status-pill status-pass">✓ 100% Open Source</span>
+            </td>
+            <td class="td-other">
+              <span class="status-pill status-pass">✓ Open Source</span>
+            </td>
+            <td class="td-other">
+              <span class="status-pill status-fail">✗ Closed / Commercial</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<style>
+  .comparison-section {
+    position: relative;
+  }
+
+  .table-container {
+    padding: 0;
+    overflow-x: auto;
+    border-radius: 16px;
+    border: 1px solid var(--border-card);
+  }
+
+  .linear-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 680px;
+    text-align: left;
+  }
+
+  .linear-table th,
+  .linear-table td {
+    padding: 1.2rem 1.5rem;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .linear-table thead th {
+    background: rgba(12, 16, 24, 0.95);
+  }
+
+  .th-feature { width: 34%; font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700; letter-spacing: 0.05em; }
+  
+  .th-hivepaas {
+    width: 26%;
+    background: rgba(245, 158, 11, 0.08) !important;
+    border-left: 1px solid rgba(245, 158, 11, 0.25);
+    border-right: 1px solid rgba(245, 158, 11, 0.25);
+  }
+
+  .th-other { width: 20%; }
+
+  .brand-th {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .brand-th-name {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: var(--accent-amber-light);
+  }
+
+  .brand-th-tag {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+  }
+
+  .other-th {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+
+  .other-th-tag {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+
+  .td-feature {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .feat-name {
+    font-weight: 700;
+    font-size: 0.92rem;
+    color: var(--text-primary);
+  }
+
+  .feat-sub {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+  }
+
+  .td-hivepaas {
+    background: rgba(245, 158, 11, 0.03);
+    border-left: 1px solid rgba(245, 158, 11, 0.25);
+    border-right: 1px solid rgba(245, 158, 11, 0.25);
+  }
+
+  .status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.3rem 0.65rem;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    font-family: var(--font-mono);
+  }
+
+  .status-pass { background: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3); }
+  .status-warn { background: rgba(245, 158, 11, 0.15); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.3); }
+  .status-fail { background: rgba(239, 68, 68, 0.15); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.3); }
+</style>

@@ -1,0 +1,122 @@
+---
+// HowItWorks.astro - Linear Style
+---
+
+<section class="section how-it-works-section" id="how-it-works">
+  <div class="container">
+    <!-- Section Header -->
+    <div class="section-header">
+      <span class="section-tag">Quickstart Workflow</span>
+      <h2 class="section-title">From Fresh Server to Production in 3 Simple Steps</h2>
+      <p class="section-desc">
+        No complicated infrastructure-as-code or lengthy manual configuration.
+      </p>
+    </div>
+
+    <!-- 3-Step Bento Grid -->
+    <div class="bento-grid">
+      <!-- Step 1 -->
+      <div class="bento-card step-bento">
+        <div class="step-badge">01</div>
+        <h3 class="bento-title">Run 1-Line Installer</h3>
+        <p class="bento-text">
+          SSH into any clean Linux server (Ubuntu/Debian) and run the installer. HivePaaS auto-initializes Docker Swarm, Traefik proxy, and SSL.
+        </p>
+        <div class="step-code">
+          <code>curl -fsSL https://get.hivepaas.com | sh</code>
+        </div>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="bento-card step-bento">
+        <div class="step-badge">02</div>
+        <h3 class="bento-title">Connect Git or Templates</h3>
+        <p class="bento-text">
+          Link your GitHub/GitLab repository or pick 1-click templates for PostgreSQL, Redis, MySQL, Node.js, Go, or Python.
+        </p>
+        <div class="step-pills">
+          <span class="linear-pill">GitHub Webhooks</span>
+          <span class="linear-pill">PostgreSQL</span>
+          <span class="linear-pill">Redis</span>
+          <span class="linear-pill">Node.js</span>
+        </div>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="bento-card step-bento">
+        <div class="step-badge">03</div>
+        <h3 class="bento-title">Deploy, Preview & Scale</h3>
+        <p class="bento-text">
+          Your apps go live with automated SSL certificates. Test pull requests with instant ephemeral previews, and scale nodes with 1-click.
+        </p>
+        <div class="step-status-list">
+          <div class="status-row"><span class="check-green">✓</span><span>Auto Let's Encrypt HTTPS</span></div>
+          <div class="status-row"><span class="check-green">✓</span><span>Zero Downtime Rolling Update</span></div>
+          <div class="status-row"><span class="check-green">✓</span><span>Multi-Node Ready</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .step-bento {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+
+  .step-badge {
+    font-size: 2.75rem;
+    font-weight: 800;
+    font-family: var(--font-mono);
+    color: rgba(245, 158, 11, 0.2);
+    margin-bottom: 0.85rem;
+    line-height: 1;
+    letter-spacing: -0.05em;
+  }
+
+  .step-code {
+    background: #040508;
+    border: 1px solid var(--border-subtle);
+    border-radius: 10px;
+    padding: 0.65rem 0.85rem;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--accent-amber-light);
+    margin-top: auto;
+    overflow-x: auto;
+  }
+
+  .step-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    margin-top: auto;
+  }
+
+  .step-pills .linear-pill {
+    font-size: 0.72rem;
+    padding: 0.2rem 0.55rem;
+  }
+
+  .step-status-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+    margin-top: auto;
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+  }
+
+  .status-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .check-green {
+    color: #34d399;
+    font-weight: 800;
+  }
+</style>

@@ -1,0 +1,107 @@
+---
+// Audience.astro - Linear Style
+---
+
+<section class="section audience-section" id="audience">
+  <div class="container">
+    <!-- Section Header -->
+    <div class="section-header">
+      <span class="section-tag">Target Builders</span>
+      <h2 class="section-title">Engineered for Teams Who Value Speed, Cost & Autonomy</h2>
+      <p class="section-desc">
+        Eliminate DevOps friction whether you are building your first SaaS or scaling a dozen production client services.
+      </p>
+    </div>
+
+    <!-- Audience Bento Grid -->
+    <div class="bento-grid">
+      <!-- Persona 1: Startups & SMBs -->
+      <div class="bento-card persona-bento">
+        <div class="bento-badge-row">
+          <span class="linear-pill pill-glow-purple">🏢 Cut Cloud Bills</span>
+        </div>
+        <h3 class="bento-title">Startups & SMBs</h3>
+        <p class="bento-text">
+          Run your entire backend, databases, and microservices on high-performance $10 - $40 VPS servers. 
+          Save up to <strong>80% on cloud bills</strong> without hiring a full-time DevOps engineer.
+        </p>
+        <div class="persona-perks">
+          <div class="perk-item"><span class="perk-check">✓</span><span>No surprise cloud billing surges</span></div>
+          <div class="perk-item"><span class="perk-check">✓</span><span>100% GDPR & HIPAA compliance ready</span></div>
+          <div class="perk-item"><span class="perk-check">✓</span><span>High availability Docker Swarm clustering</span></div>
+        </div>
+      </div>
+
+      <!-- Persona 2: Solo Devs & Indie Hackers -->
+      <div class="bento-card persona-bento card-highlight-amber">
+        <div class="bento-badge-row">
+          <span class="linear-pill pill-glow-amber">👨‍💻 Most Popular</span>
+          <span class="badge-accent-tag">Solo Builders</span>
+        </div>
+        <h3 class="bento-title">Solo Devs & Indie Hackers</h3>
+        <p class="bento-text">
+          Ship fast, test ideas with instant preview links, and host 20+ side projects on a single $5/month VPS. 
+          Manage databases, cron jobs, and domains from one central dashboard.
+        </p>
+        <div class="persona-perks">
+          <div class="perk-item"><span class="perk-check">✓</span><span>1-Click Postgres, MySQL, Redis, ClickHouse</span></div>
+          <div class="perk-item"><span class="perk-check">✓</span><span>Automatic Let's Encrypt HTTPS / SSL</span></div>
+          <div class="perk-item"><span class="perk-check">✓</span><span>In-browser container file & terminal manager</span></div>
+        </div>
+      </div>
+
+      <!-- Persona 3: Software Agencies & Teams -->
+      <div class="bento-card persona-bento">
+        <div class="bento-badge-row">
+          <span class="linear-pill pill-glow-emerald">👥 Client Delivery</span>
+        </div>
+        <h3 class="bento-title">Software Agencies</h3>
+        <p class="bento-text">
+          Manage isolated client environments with zero hassle. Spin up ephemeral preview environments for client reviews, 
+          and deliver clean Docker Swarm setups without proprietary lock-in.
+        </p>
+        <div class="persona-perks">
+          <div class="perk-item"><span class="perk-check">✓</span><span>Ephemeral PR previews for client sign-offs</span></div>
+          <div class="perk-item"><span class="perk-check">✓</span><span>Isolated dev / staging / prod environments</span></div>
+          <div class="perk-item"><span class="perk-check">✓</span><span>Effortless client handoff with pure Docker</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .persona-bento {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .card-highlight-amber {
+    border-color: rgba(245, 158, 11, 0.35);
+    background: linear-gradient(180deg, rgba(245, 158, 11, 0.06) 0%, rgba(12, 16, 24, 0.8) 100%);
+  }
+
+  .persona-perks {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    border-top: 1px solid var(--border-subtle);
+    padding-top: 1.25rem;
+    margin-top: auto;
+  }
+
+  .perk-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    color: var(--text-secondary);
+  }
+
+  .perk-check {
+    color: var(--accent-amber);
+    font-weight: 800;
+    flex-shrink: 0;
+  }
+</style>

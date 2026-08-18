@@ -1,0 +1,219 @@
+---
+// Features.astro
+---
+
+<section class="section" id="features">
+  <div class="container">
+    <!-- Section Header -->
+    <div class="section-header">
+      <span class="section-tag">Powerful Features</span>
+      <h2 class="section-title">Everything You Need to Run & Scale Apps in Production</h2>
+      <p class="section-desc">
+        A complete PaaS developer experience without the bloated infrastructure costs or vendor lock-in.
+      </p>
+    </div>
+
+    <!-- Features Grid (6 Cards) -->
+    <div class="grid-3">
+      <!-- Feature 1: Zero Vendor Lock-in (Featured / Highlighted) -->
+      <div class="glass-card feature-card highlight-card" id="zero-lockin">
+        <div class="card-badge-top">
+          <span class="badge-lockin">✨ Freedom Guarantee</span>
+        </div>
+        <div class="feature-icon icon-amber">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+            <path d="M7 11V7a5 5 0 0 1 9.9-1"></path>
+          </svg>
+        </div>
+        <h3 class="feature-title">Zero Vendor Lock-in</h3>
+        <p class="feature-text">
+          HivePaaS provisions standard <strong>native Docker Swarm services</strong>. If you ever decide to stop or uninstall HivePaaS, 
+          <strong>every single application, database, and container keeps running uninterrupted.</strong>
+        </p>
+        <ul class="feature-bullets">
+          <li>✓ Standard Docker Compose & Swarm configurations</li>
+          <li>✓ No proprietary runtime hooks or agent dependencies</li>
+          <li>✓ Easily export or migrate anytime</li>
+        </ul>
+      </div>
+
+      <!-- Feature 2: 100% Self-Hosted & Data Sovereignty -->
+      <div class="glass-card feature-card">
+        <div class="feature-icon icon-cyan">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+          </svg>
+        </div>
+        <h3 class="feature-title">100% Self-Hosted & Private</h3>
+        <p class="feature-text">
+          Your code, customer data, environment variables, and databases stay 100% on your own infrastructure. 
+          No third-party data tracking or compliance risks.
+        </p>
+        <ul class="feature-bullets">
+          <li>✓ Full data sovereignty & GDPR compliant</li>
+          <li>✓ Host on any bare-metal, Hetzner, AWS, or home lab</li>
+          <li>✓ Encrypted secrets & automated S3 backup</li>
+        </ul>
+      </div>
+
+      <!-- Feature 3: Docker Swarm Simplicity -->
+      <div class="glass-card feature-card">
+        <div class="feature-icon icon-blue">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+          </svg>
+        </div>
+        <h3 class="feature-title">Docker Swarm, Not K8s Hell</h3>
+        <p class="feature-text">
+          Get multi-node clustering, auto-healing, rolling updates, and internal service discovery without 
+          the crushing complexity or memory footprint of Kubernetes.
+        </p>
+        <ul class="feature-bullets">
+          <li>✓ Zero DevOps engineer required to operate</li>
+          <li>✓ 1-Click node scaling and worker node join</li>
+          <li>✓ Works seamlessly on a single $5 VPS or a 50-node cluster</li>
+        </ul>
+      </div>
+
+      <!-- Feature 4: Instant Deployments & Git Integration -->
+      <div class="glass-card feature-card">
+        <div class="feature-icon icon-emerald">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="18" r="3"></circle>
+            <circle cx="6" cy="6" r="3"></circle>
+            <circle cx="18" cy="6" r="3"></circle>
+            <path d="M18 9v2a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V9"></path>
+            <line x1="12" y1="12" x2="12" y2="15"></line>
+          </svg>
+        </div>
+        <h3 class="feature-title">Instant Git Deployments</h3>
+        <p class="feature-text">
+          Connect your GitHub/GitLab repositories. On every push, HivePaaS builds, generates SSL certificates via Traefik, 
+          and performs zero-downtime rolling deploys.
+        </p>
+        <ul class="feature-bullets">
+          <li>✓ Webhook triggers on push/tag</li>
+          <li>✓ Dockerfile, Nixpacks & Cloud Native Buildpacks</li>
+          <li>✓ Automatic Let's Encrypt HTTPS / SSL</li>
+        </ul>
+      </div>
+
+      <!-- Feature 5: Ephemeral App Previews -->
+      <div class="glass-card feature-card">
+        <div class="feature-icon icon-purple">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+            <polyline points="2 17 12 22 22 17"></polyline>
+            <polyline points="2 12 12 17 22 12"></polyline>
+          </svg>
+        </div>
+        <h3 class="feature-title">Ephemeral App Previews</h3>
+        <p class="feature-text">
+          Test features before merging. HivePaaS automatically spins up isolated preview environments for Pull Requests 
+          with unique URLs and tears them down when closed.
+        </p>
+        <ul class="feature-bullets">
+          <li>✓ Dedicated subdomains for every PR</li>
+          <li>✓ Isolated database clones for staging</li>
+          <li>✓ Perfect for client review and QA testing</li>
+        </ul>
+      </div>
+
+      <!-- Feature 6: Ultra-Low Resource Footprint -->
+      <div class="glass-card feature-card">
+        <div class="feature-icon icon-gold">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path>
+          </svg>
+        </div>
+        <h3 class="feature-title">Blazing Performance in Go</h3>
+        <p class="feature-text">
+          Engineered from scratch in pure Go. HivePaaS consumes less than 100MB of RAM at idle, leaving 99% of your server's 
+          compute resources for your actual workloads.
+        </p>
+        <ul class="feature-bullets">
+          <li>✓ &lt; 100 MB RAM idle footprint</li>
+          <li>✓ High concurrency gRPC agent communication</li>
+          <li>✓ Run dozens of microservices on a modest VPS</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .feature-card {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+
+  .highlight-card {
+    border: 1px solid rgba(245, 158, 11, 0.4);
+    background: linear-gradient(180deg, rgba(245, 158, 11, 0.08) 0%, rgba(15, 23, 42, 0.7) 100%);
+  }
+
+  .card-badge-top {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+  }
+
+  .badge-lockin {
+    background: rgba(245, 158, 11, 0.2);
+    border: 1px solid rgba(245, 158, 11, 0.4);
+    color: var(--accent-amber-light);
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.25rem 0.6rem;
+    border-radius: 9999px;
+  }
+
+  .feature-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+  }
+
+  .icon-amber { background: rgba(245, 158, 11, 0.12); color: var(--accent-amber); border: 1px solid rgba(245, 158, 11, 0.3); }
+  .icon-cyan { background: rgba(6, 182, 212, 0.12); color: var(--accent-cyan); border: 1px solid rgba(6, 182, 212, 0.3); }
+  .icon-blue { background: rgba(59, 130, 246, 0.12); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.3); }
+  .icon-emerald { background: rgba(16, 185, 129, 0.12); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3); }
+  .icon-purple { background: rgba(168, 85, 247, 0.12); color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.3); }
+  .icon-gold { background: rgba(251, 191, 36, 0.12); color: #fbbf24; border: 1px solid rgba(251, 191, 36, 0.3); }
+
+  .feature-title {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.85rem;
+  }
+
+  .feature-text {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    margin-bottom: 1.25rem;
+    flex-grow: 1;
+  }
+
+  .feature-bullets {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+    border-top: 1px solid var(--border-subtle);
+    padding-top: 1rem;
+  }
+
+  .feature-bullets li {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+  }
+</style>
