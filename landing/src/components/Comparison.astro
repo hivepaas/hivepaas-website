@@ -1,5 +1,5 @@
 ---
-// Comparison.astro - Linear / Raycast Style
+// Comparison.astro - Linear / Raycast Style (Honest & Transparent Matrix)
 ---
 
 <section class="section comparison-section" id="comparison">
@@ -7,9 +7,10 @@
     <!-- Section Header -->
     <div class="section-header">
       <span class="section-tag">Direct Comparison</span>
-      <h2 class="section-title">Why Developers Choose HivePaaS Over K8s & Cloud PaaS</h2>
+      <h2 class="section-title">An Honest Architectural Comparison</h2>
       <p class="section-desc">
-        A clear side-by-side comparison of architectural trade-offs, pricing, and vendor lock-in.
+        We believe in engineering transparency. Here is how HivePaaS compares to Kubernetes and Cloud PaaS — 
+        including where each solution excels.
       </p>
     </div>
 
@@ -28,7 +29,7 @@
             <th class="th-other">
               <div class="other-th">
                 <span>Kubernetes (K8s)</span>
-                <span class="other-th-tag">Complex Cluster</span>
+                <span class="other-th-tag">Enterprise Cluster</span>
               </div>
             </th>
             <th class="th-other">
@@ -40,106 +41,164 @@
           </tr>
         </thead>
         <tbody>
+          <!-- Row 1: Target Cluster Scale -->
           <tr>
             <td class="td-feature">
-              <div class="feat-name">100% Data Sovereignty</div>
-              <div class="feat-sub">Customer data & code strictly on your servers</div>
+              <div class="feat-name">Target Cluster Scale</div>
+              <div class="feat-sub">Optimal cluster size without orchestration bloat</div>
             </td>
             <td class="td-hivepaas">
-              <span class="status-pill status-pass">✓ Full Ownership</span>
+              <span class="status-pill status-pass">1 – 50 Nodes (SMB Sweet Spot)</span>
             </td>
             <td class="td-other">
-              <span class="status-pill status-pass">✓ Full Ownership</span>
+              <span class="status-pill status-highlight">🏆 1,000+ Nodes (Hyperscale)</span>
             </td>
             <td class="td-other">
-              <span class="status-pill status-fail">✗ Proprietary Cloud</span>
+              <span class="status-pill status-warn">⚠ Tier-Limited</span>
             </td>
           </tr>
 
+          <!-- Row 2: DevOps Overhead -->
           <tr>
             <td class="td-feature">
-              <div class="feat-name">Zero Vendor Lock-in</div>
-              <div class="feat-sub">Apps continue running if PaaS is uninstalled</div>
+              <div class="feat-name">DevOps Skill Overhead</div>
+              <div class="feat-sub">Specialist expertise required to operate</div>
             </td>
             <td class="td-hivepaas">
-              <span class="status-pill status-pass">✓ Native Swarm</span>
+              <span class="status-pill status-pass">✓ Zero Specialist Required</span>
             </td>
             <td class="td-other">
-              <span class="status-pill status-warn">⚠ K8s YAMLs</span>
+              <span class="status-pill status-fail">✗ Very Steep (K8s / SRE Team)</span>
             </td>
             <td class="td-other">
-              <span class="status-pill status-fail">✗ 100% Locked</span>
+              <span class="status-pill status-pass">✓ Zero DevOps</span>
             </td>
           </tr>
 
+          <!-- Row 3: Base Memory Overhead -->
           <tr>
             <td class="td-feature">
-              <div class="feat-name">DevOps Overhead</div>
-              <div class="feat-sub">Skill & maintenance required to operate</div>
-            </td>
-            <td class="td-hivepaas">
-              <span class="status-pill status-pass">✓ Zero Specialist</span>
-            </td>
-            <td class="td-other">
-              <span class="status-pill status-fail">✗ Very Steep (K8s Eng)</span>
-            </td>
-            <td class="td-other">
-              <span class="status-pill status-pass">✓ Minimal</span>
-            </td>
-          </tr>
-
-          <tr>
-            <td class="td-feature">
-              <div class="feat-name">Base Memory Overhead</div>
-              <div class="feat-sub">RAM consumed by the control plane itself (Idle)</div>
+              <div class="feat-name">Idle Memory Overhead</div>
+              <div class="feat-sub">RAM consumed by control plane at 0 load</div>
             </td>
             <td class="td-hivepaas">
               <span class="status-pill status-pass">✓ &lt; 200 MB RAM</span>
             </td>
             <td class="td-other">
-              <span class="status-pill status-fail">✗ 1.2 - 1.5 GB RAM</span>
+              <span class="status-pill status-fail">✗ 1.2 – 1.5 GB RAM (Master)</span>
             </td>
             <td class="td-other">
               <span class="status-pill status-warn">⚠ Tier-Dependent</span>
             </td>
           </tr>
 
+          <!-- Row 4: Monthly Infrastructure Cost -->
           <tr>
             <td class="td-feature">
-              <div class="feat-name">Monthly Server Cost</div>
-              <div class="feat-sub">Typical infrastructure expense</div>
+              <div class="feat-name">Entry Infrastructure Cost</div>
+              <div class="feat-sub">Minimum monthly server budget</div>
             </td>
             <td class="td-hivepaas">
-              <span class="status-pill status-pass">✓ $5 - $20 / mo</span>
+              <span class="status-pill status-pass">✓ $5 – $20 / mo (Cheap VPS)</span>
             </td>
             <td class="td-other">
-              <span class="status-pill status-fail">✗ $70+ (Control Plane)</span>
+              <span class="status-pill status-fail">✗ $70+ / mo (Control Plane)</span>
             </td>
             <td class="td-other">
-              <span class="status-pill status-fail">✗ $50 - $500+ / mo</span>
+              <span class="status-pill status-fail">✗ $25 – $200+ / mo</span>
             </td>
           </tr>
 
+          <!-- Row 5: Ecosystem & Extensibility -->
+          <tr>
+            <td class="td-feature">
+              <div class="feat-name">Ecosystem &amp; Extensibility</div>
+              <div class="feat-sub">Available plugins, CRDs, and integrations</div>
+            </td>
+            <td class="td-hivepaas">
+              <span class="status-pill status-warn">Docker Compose &amp; Stacks</span>
+            </td>
+            <td class="td-other">
+              <span class="status-pill status-highlight">🏆 Massive (CNCF &amp; CRDs)</span>
+            </td>
+            <td class="td-other">
+              <span class="status-pill status-fail">✗ Proprietary Marketplace</span>
+            </td>
+          </tr>
+
+          <!-- Row 6: Multi-Cloud Auto-scaling -->
+          <tr>
+            <td class="td-feature">
+              <div class="feat-name">Cluster Node Autoscaling</div>
+              <div class="feat-sub">Automated provisioning of new cloud VPS</div>
+            </td>
+            <td class="td-hivepaas">
+              <span class="status-pill status-warn">1-Click / Manual Node Join</span>
+            </td>
+            <td class="td-other">
+              <span class="status-pill status-pass">✓ Native Cluster Autoscaler</span>
+            </td>
+            <td class="td-other">
+              <span class="status-pill status-warn">⚠ Fully Automated ($$$)</span>
+            </td>
+          </tr>
+
+          <!-- Row 7: Data Sovereignty -->
+          <tr>
+            <td class="td-feature">
+              <div class="feat-name">100% Data Sovereignty</div>
+              <div class="feat-sub">Customer databases strictly on your own servers</div>
+            </td>
+            <td class="td-hivepaas">
+              <span class="status-pill status-pass">✓ Full Privacy &amp; Control</span>
+            </td>
+            <td class="td-other">
+              <span class="status-pill status-pass">✓ Full Privacy &amp; Control</span>
+            </td>
+            <td class="td-other">
+              <span class="status-pill status-fail">✗ Proprietary Cloud Vault</span>
+            </td>
+          </tr>
+
+          <!-- Row 8: Zero Vendor Lock-in -->
+          <tr>
+            <td class="td-feature">
+              <div class="feat-name">Zero Vendor Lock-in</div>
+              <div class="feat-sub">Apps continue running if PaaS is uninstalled</div>
+            </td>
+            <td class="td-hivepaas">
+              <span class="status-pill status-pass">✓ Autonomous Swarm Mesh</span>
+            </td>
+            <td class="td-other">
+              <span class="status-pill status-warn">⚠ Requires K8s Runtime</span>
+            </td>
+            <td class="td-other">
+              <span class="status-pill status-fail">✗ 100% Proprietary Lock-in</span>
+            </td>
+          </tr>
+
+          <!-- Row 9: Ephemeral PR Previews -->
           <tr>
             <td class="td-feature">
               <div class="feat-name">Ephemeral App Previews</div>
               <div class="feat-sub">Automated preview URLs for every Git PR</div>
             </td>
             <td class="td-hivepaas">
-              <span class="status-pill status-pass">✓ Built-In</span>
+              <span class="status-pill status-pass">✓ Built-In Free</span>
             </td>
             <td class="td-other">
-              <span class="status-pill status-warn">⚠ Custom CI Pipeline</span>
+              <span class="status-pill status-warn">⚠ Complex CI Setup</span>
             </td>
             <td class="td-other">
               <span class="status-pill status-pass">✓ Paid Plans Only</span>
             </td>
           </tr>
 
+          <!-- Row 10: Open Source Freedom -->
           <tr>
             <td class="td-feature">
-              <div class="feat-name">Open Source License</div>
-              <div class="feat-sub">Source availability and community freedom</div>
+              <div class="feat-name">Open Source Freedom</div>
+              <div class="feat-sub">Source code access &amp; self-hosting rights</div>
             </td>
             <td class="td-hivepaas">
               <span class="status-pill status-pass">✓ 100% Open Source</span>
@@ -148,7 +207,7 @@
               <span class="status-pill status-pass">✓ Open Source</span>
             </td>
             <td class="td-other">
-              <span class="status-pill status-fail">✗ Closed / Commercial</span>
+              <span class="status-pill status-fail">✗ Closed Commercial</span>
             </td>
           </tr>
         </tbody>
@@ -172,13 +231,13 @@
   .linear-table {
     width: 100%;
     border-collapse: collapse;
-    min-width: 680px;
+    min-width: 720px;
     text-align: left;
   }
 
   .linear-table th,
   .linear-table td {
-    padding: 1.2rem 1.5rem;
+    padding: 1.15rem 1.4rem;
     border-bottom: 1px solid var(--border-subtle);
   }
 
@@ -186,10 +245,10 @@
     background: rgba(12, 16, 24, 0.95);
   }
 
-  .th-feature { width: 34%; font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700; letter-spacing: 0.05em; }
+  .th-feature { width: 33%; font-size: 0.82rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700; letter-spacing: 0.05em; }
   
   .th-hivepaas {
-    width: 26%;
+    width: 27%;
     background: rgba(245, 158, 11, 0.08) !important;
     border-left: 1px solid rgba(245, 158, 11, 0.25);
     border-right: 1px solid rgba(245, 158, 11, 0.25);
@@ -267,4 +326,5 @@
   .status-pass { background: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3); }
   .status-warn { background: rgba(245, 158, 11, 0.15); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.3); }
   .status-fail { background: rgba(239, 68, 68, 0.15); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.3); }
+  .status-highlight { background: rgba(139, 92, 246, 0.18); color: #c084fc; border: 1px solid rgba(139, 92, 246, 0.35); }
 </style>
