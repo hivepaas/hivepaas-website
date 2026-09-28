@@ -26,6 +26,9 @@
   --ifm-code-font-size: 90%;
   --ifm-global-radius: 8px;
   --ifm-navbar-height: 64px;
+  /* Sidebar items about 30% taller than Infima's 32px: 20px of text and
+     0.675rem above and below it. */
+  --ifm-menu-link-padding-vertical: 0.675rem;
 
   --hp-bg-deep: #fafaf9;
   --hp-bg-card: #ffffff;
