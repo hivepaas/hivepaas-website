@@ -1,5 +1,5 @@
 ---
-sidebar_position: 3
+sidebar_position: 4
 description: 'The first login, and the settings to make before anything else.'
 ---
 
