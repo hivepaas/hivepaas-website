@@ -1,0 +1,8 @@
+{
+  "label": "Deploying apps",
+  "position": 3,
+  "link": {
+    "type": "generated-index",
+    "description": "Getting your apps running: from images, from Git, from the app store."
+  }
+}

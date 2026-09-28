@@ -1,0 +1,8 @@
+{
+  "label": "Cluster",
+  "position": 8,
+  "link": {
+    "type": "generated-index",
+    "description": "The Docker Swarm under HivePaaS: its nodes, networks and volumes."
+  }
+}

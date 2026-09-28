@@ -1,0 +1,8 @@
+{
+  "label": "Administration",
+  "position": 9,
+  "link": {
+    "type": "generated-index",
+    "description": "Running HivePaaS for a team: users, access, and the system's own settings."
+  }
+}

@@ -72,17 +72,7 @@ const config: Config = {
           editUrl: EDIT_URL,
           showLastUpdateTime: true,
         },
-        blog: {
-          showReadingTime: true,
-          feedOptions: {
-            type: ['rss', 'atom'],
-            xslt: true,
-          },
-          editUrl: EDIT_URL,
-          onInlineTags: 'warn',
-          onInlineAuthors: 'warn',
-          onUntruncatedBlogPosts: 'warn',
-        },
+        blog: false,
         theme: {
           customCss: './src/css/custom.css',
         },
@@ -98,7 +88,7 @@ const config: Config = {
       '@easyops-cn/docusaurus-search-local',
       {
         hashed: true,
-        indexBlog: true,
+        indexBlog: false,
         docsRouteBasePath: ['/docs', '/api'],
         docsDir: ['docs', 'api'],
         highlightSearchTermsOnTargetPage: true,
@@ -162,7 +152,7 @@ const config: Config = {
       items: [
         {
           type: 'docSidebar',
-          sidebarId: 'tutorialSidebar',
+          sidebarId: 'docsSidebar',
           position: 'left',
           label: 'Docs',
         },
@@ -173,7 +163,6 @@ const config: Config = {
           position: 'left',
           label: 'API',
         },
-        { to: '/blog', label: 'Blog', position: 'left' },
         {
           href: DISCORD_URL,
           label: 'Discord',
@@ -192,7 +181,15 @@ const config: Config = {
         {
           title: 'Docs',
           items: [
-            { label: 'Getting started', to: '/docs/intro' },
+            {
+              label: 'Getting started',
+              to: '/docs/getting-started/introduction',
+            },
+            { label: 'Installation', to: '/docs/installation/requirements' },
+            {
+              label: 'Troubleshooting',
+              to: '/docs/troubleshooting/common-issues',
+            },
             { label: 'API reference', to: '/api/hivepaas-api' },
             { label: 'Release notes', href: `${GITHUB_URL}/releases` },
           ],
@@ -209,7 +206,6 @@ const config: Config = {
           title: 'More',
           items: [
             { label: 'Website', href: WEBSITE_URL },
-            { label: 'Blog', to: '/blog' },
             { label: 'GitHub', href: GITHUB_URL },
           ],
         },
