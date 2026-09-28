@@ -3,3 +3,5 @@ node_modules/
 .astro/
 build/
 dist/
+docs/api/
+docs/openapi/

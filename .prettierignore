@@ -4,3 +4,5 @@ node_modules/
 build/
 dist/
 yarn.lock
+docs/api/
+docs/openapi/

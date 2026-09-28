@@ -1,6 +1,7 @@
 import { themes as prismThemes } from 'prism-react-renderer';
 import type { Config } from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
+import type * as OpenApiPlugin from 'docusaurus-plugin-openapi-docs';
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
@@ -8,6 +9,9 @@ const GITHUB_URL = 'https://github.com/hivepaas/hivepaas';
 const DISCORD_URL = 'https://discord.com/invite/2TgD3zDb2e';
 const WEBSITE_URL = 'https://hivepaas.com';
 const EDIT_URL = 'https://github.com/hivepaas/hivepaas-website/tree/main/docs/';
+// The backend's own spec, at the ref the docs' copy was taken from (see
+// scripts/fetch-openapi.mjs).
+const OPENAPI_URL = `${GITHUB_URL}/blob/main/docs/openapi/swagger.json`;
 
 const config: Config = {
   title: 'HivePaaS Docs',
@@ -88,20 +92,57 @@ const config: Config = {
 
   themes: [
     '@docusaurus/theme-mermaid',
+    'docusaurus-theme-openapi-docs',
     [
       // Offline search: the index is built with the site, nothing to host.
       '@easyops-cn/docusaurus-search-local',
       {
         hashed: true,
         indexBlog: true,
-        docsRouteBasePath: '/docs',
+        docsRouteBasePath: ['/docs', '/api'],
+        docsDir: ['docs', 'api'],
         highlightSearchTermsOnTargetPage: true,
         explicitSearchResultPath: true,
       },
     ],
   ],
 
-  plugins: ['docusaurus-plugin-image-zoom'],
+  plugins: [
+    'docusaurus-plugin-image-zoom',
+    [
+      // The API reference: its own docs, at /api, with its own sidebar. Its
+      // pages are generated from openapi/hivepaas.json by `yarn api:gen`.
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'api',
+        path: 'api',
+        routeBasePath: 'api',
+        sidebarPath: './sidebars-api.ts',
+        docItemComponent: '@theme/ApiItem',
+      },
+    ],
+    [
+      'docusaurus-plugin-openapi-docs',
+      {
+        id: 'openapi',
+        docsPluginId: 'api',
+        config: {
+          hivepaas: {
+            specPath: 'openapi/hivepaas.json',
+            outputDir: 'api',
+            downloadUrl: OPENAPI_URL,
+            // The spec's server is relative to a HivePaaS install, not to
+            // this site, so requests could not be sent from here.
+            hideSendButton: true,
+            sidebarOptions: {
+              groupPathsBy: 'tag',
+              categoryLinkSource: 'tag',
+            },
+          } satisfies OpenApiPlugin.Options,
+        },
+      },
+    ],
+  ],
 
   themeConfig: {
     image: 'img/docusaurus-social-card.jpg',
@@ -125,6 +166,13 @@ const config: Config = {
           position: 'left',
           label: 'Docs',
         },
+        {
+          type: 'docSidebar',
+          sidebarId: 'apiSidebar',
+          docsPluginId: 'api',
+          position: 'left',
+          label: 'API',
+        },
         { to: '/blog', label: 'Blog', position: 'left' },
         {
           href: DISCORD_URL,
@@ -145,6 +193,7 @@ const config: Config = {
           title: 'Docs',
           items: [
             { label: 'Getting started', to: '/docs/intro' },
+            { label: 'API reference', to: '/api/hivepaas-app' },
             { label: 'Release notes', href: `${GITHUB_URL}/releases` },
           ],
         },
@@ -172,6 +221,13 @@ const config: Config = {
       darkTheme: prismThemes.oneDark,
       additionalLanguages: ['bash', 'yaml', 'toml', 'docker', 'json', 'go'],
     },
+    // The request samples on each API page.
+    languageTabs: [
+      { highlight: 'bash', language: 'curl', logoClass: 'curl' },
+      { highlight: 'go', language: 'go', logoClass: 'go' },
+      { highlight: 'python', language: 'python', logoClass: 'python' },
+      { highlight: 'javascript', language: 'nodejs', logoClass: 'nodejs' },
+    ],
     mermaid: {
       theme: { light: 'neutral', dark: 'dark' },
     },
