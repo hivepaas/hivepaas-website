@@ -4,9 +4,14 @@ import type * as Preset from '@docusaurus/preset-classic';
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
+const GITHUB_URL = 'https://github.com/hivepaas/hivepaas';
+const DISCORD_URL = 'https://discord.com/invite/2TgD3zDb2e';
+const WEBSITE_URL = 'https://hivepaas.com';
+const EDIT_URL = 'https://github.com/hivepaas/hivepaas-website/tree/main/docs/';
+
 const config: Config = {
-  title: 'My Site',
-  tagline: 'Dinosaurs are cool',
+  title: 'HivePaaS Docs',
+  tagline: 'The lightweight, self-hosted PaaS built on Docker Swarm',
   favicon: 'img/favicon.ico',
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
@@ -14,26 +19,45 @@ const config: Config = {
     v4: true, // Improve compatibility with the upcoming Docusaurus v4
   },
 
-  // Set the production url of your site here
-  url: 'https://your-docusaurus-site.example.com',
-  // Set the /<baseUrl>/ pathname under which your site is served
-  // For GitHub pages deployment, it is often '/<projectName>/'
+  url: 'https://docs.hivepaas.com',
   baseUrl: '/',
 
-  // GitHub pages deployment config.
-  // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'facebook', // Usually your GitHub org/user name.
-  projectName: 'docusaurus', // Usually your repo name.
+  organizationName: 'hivepaas',
+  projectName: 'hivepaas-website',
 
   onBrokenLinks: 'throw',
 
-  // Even if you don't use internationalization, you can use this field to set
-  // useful metadata like html lang. For example, if your site is Chinese, you
-  // may want to replace "en" with "zh-Hans".
   i18n: {
     defaultLocale: 'en',
     locales: ['en'],
   },
+
+  // Mermaid diagrams in Markdown: ```mermaid code blocks.
+  markdown: {
+    mermaid: true,
+  },
+
+  headTags: [
+    {
+      tagName: 'link',
+      attributes: { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
+    },
+    {
+      tagName: 'link',
+      attributes: {
+        rel: 'preconnect',
+        href: 'https://fonts.gstatic.com',
+        crossorigin: 'anonymous',
+      },
+    },
+    {
+      tagName: 'link',
+      attributes: {
+        rel: 'stylesheet',
+        href: 'https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap',
+      },
+    },
+  ],
 
   presets: [
     [
@@ -41,10 +65,8 @@ const config: Config = {
       {
         docs: {
           sidebarPath: './sidebars.ts',
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+          editUrl: EDIT_URL,
+          showLastUpdateTime: true,
         },
         blog: {
           showReadingTime: true,
@@ -52,11 +74,7 @@ const config: Config = {
             type: ['rss', 'atom'],
             xslt: true,
           },
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
-          // Useful options to enforce blogging best practices
+          editUrl: EDIT_URL,
           onInlineTags: 'warn',
           onInlineAuthors: 'warn',
           onUntruncatedBlogPosts: 'warn',
@@ -68,28 +86,53 @@ const config: Config = {
     ],
   ],
 
+  themes: [
+    '@docusaurus/theme-mermaid',
+    [
+      // Offline search: the index is built with the site, nothing to host.
+      '@easyops-cn/docusaurus-search-local',
+      {
+        hashed: true,
+        indexBlog: true,
+        docsRouteBasePath: '/docs',
+        highlightSearchTermsOnTargetPage: true,
+        explicitSearchResultPath: true,
+      },
+    ],
+  ],
+
+  plugins: ['docusaurus-plugin-image-zoom'],
+
   themeConfig: {
-    // Replace with your project's social card
     image: 'img/docusaurus-social-card.jpg',
     colorMode: {
+      // Dark first, as the landing page is; the reader's own preference wins.
+      defaultMode: 'dark',
       respectPrefersColorScheme: true,
     },
     navbar: {
-      title: 'My Site',
+      title: 'HivePaaS',
       logo: {
-        alt: 'My Site Logo',
+        alt: 'HivePaaS',
         src: 'img/logo.svg',
+        href: WEBSITE_URL,
+        target: '_self',
       },
       items: [
         {
           type: 'docSidebar',
           sidebarId: 'tutorialSidebar',
           position: 'left',
-          label: 'Tutorial',
+          label: 'Docs',
         },
         { to: '/blog', label: 'Blog', position: 'left' },
         {
-          href: 'https://github.com/facebook/docusaurus',
+          href: DISCORD_URL,
+          label: 'Discord',
+          position: 'right',
+        },
+        {
+          href: GITHUB_URL,
           label: 'GitHub',
           position: 'right',
         },
@@ -101,48 +144,44 @@ const config: Config = {
         {
           title: 'Docs',
           items: [
-            {
-              label: 'Tutorial',
-              to: '/docs/intro',
-            },
+            { label: 'Getting started', to: '/docs/intro' },
+            { label: 'Release notes', href: `${GITHUB_URL}/releases` },
           ],
         },
         {
           title: 'Community',
           items: [
-            {
-              label: 'Stack Overflow',
-              href: 'https://stackoverflow.com/questions/tagged/docusaurus',
-            },
-            {
-              label: 'Discord',
-              href: 'https://discordapp.com/invite/docusaurus',
-            },
-            {
-              label: 'X',
-              href: 'https://x.com/docusaurus',
-            },
+            { label: 'Discord', href: DISCORD_URL },
+            { label: 'Discussions', href: `${GITHUB_URL}/discussions` },
+            { label: 'Issue tracker', href: `${GITHUB_URL}/issues` },
           ],
         },
         {
           title: 'More',
           items: [
-            {
-              label: 'Blog',
-              to: '/blog',
-            },
-            {
-              label: 'GitHub',
-              href: 'https://github.com/facebook/docusaurus',
-            },
+            { label: 'Website', href: WEBSITE_URL },
+            { label: 'Blog', to: '/blog' },
+            { label: 'GitHub', href: GITHUB_URL },
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} HivePaaS. Built with Docusaurus.`,
     },
     prism: {
       theme: prismThemes.github,
-      darkTheme: prismThemes.dracula,
+      darkTheme: prismThemes.oneDark,
+      additionalLanguages: ['bash', 'yaml', 'toml', 'docker', 'json', 'go'],
+    },
+    mermaid: {
+      theme: { light: 'neutral', dark: 'dark' },
+    },
+    // Screenshots open full size on click; the logo and icons do not.
+    zoom: {
+      selector: '.markdown img:not(.no-zoom)',
+      background: {
+        light: 'rgb(255, 255, 255)',
+        dark: 'rgb(4, 5, 8)',
+      },
     },
   } satisfies Preset.ThemeConfig,
 };

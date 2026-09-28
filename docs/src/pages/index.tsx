@@ -11,18 +11,22 @@ import styles from './index.module.css';
 function HomepageHeader() {
   const { siteConfig } = useDocusaurusContext();
   return (
-    <header className={clsx('hero hero--primary', styles.heroBanner)}>
-      <div className="container">
-        <Heading as="h1" className="hero__title">
-          {siteConfig.title}
+    <header className={clsx('hero', styles.heroBanner)}>
+      <div className={clsx('container', styles.heroInner)}>
+        <span className={styles.eyebrow}>Documentation</span>
+        <Heading as="h1" className={styles.heroTitle}>
+          Run your apps on your own servers
         </Heading>
-        <p className="hero__subtitle">{siteConfig.tagline}</p>
+        <p className={styles.heroSubtitle}>{siteConfig.tagline}</p>
         <div className={styles.buttons}>
+          <Link className="button button--primary button--lg" to="/docs/intro">
+            Get started
+          </Link>
           <Link
-            className="button button--secondary button--lg"
-            to="/docs/intro"
+            className="button button--secondary button--outline button--lg"
+            href="https://github.com/hivepaas/hivepaas"
           >
-            Docusaurus Tutorial - 5min ⏱️
+            GitHub
           </Link>
         </div>
       </div>
@@ -31,11 +35,10 @@ function HomepageHeader() {
 }
 
 export default function Home(): ReactNode {
-  const { siteConfig } = useDocusaurusContext();
   return (
     <Layout
-      title={`Hello from ${siteConfig.title}`}
-      description="Description will go into a meta tag in <head />"
+      title="Documentation"
+      description="How to install HivePaaS, deploy apps and databases, and run a Docker Swarm cluster of your own."
     >
       <HomepageHeader />
       <main>

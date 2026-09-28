@@ -1,30 +1,155 @@
 /**
- * Any CSS included here will be global. The classic template
- * bundles Infima by default. Infima is a CSS framework designed to
- * work well for content-centric websites.
+ * HivePaaS docs theme: the landing page's obsidian and amber, on Infima.
+ *
+ * Only Infima variables and a few class overrides - nothing is swizzled, so a
+ * Docusaurus upgrade keeps working. The --hp-* tokens are ours, used by the
+ * homepage and the overrides below.
  */
 
-/* You can override the default Infima variables here. */
 :root {
-  --ifm-color-primary: #2e8555;
-  --ifm-color-primary-dark: #29784c;
-  --ifm-color-primary-darker: #277148;
-  --ifm-color-primary-darkest: #205d3b;
-  --ifm-color-primary-light: #33925d;
-  --ifm-color-primary-lighter: #359962;
-  --ifm-color-primary-lightest: #3cad6e;
-  --ifm-code-font-size: 95%;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+  /* Amber, dark enough to read as text on white. */
+  --ifm-color-primary: #b45309;
+  --ifm-color-primary-dark: #a24b08;
+  --ifm-color-primary-darker: #994707;
+  --ifm-color-primary-darkest: #7e3a06;
+  --ifm-color-primary-light: #c65b0a;
+  --ifm-color-primary-lighter: #cf5f0a;
+  --ifm-color-primary-lightest: #e56b0c;
+
+  --ifm-font-family-base:
+    'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    sans-serif;
+  --ifm-heading-font-family: var(--ifm-font-family-base);
+  --ifm-font-family-monospace:
+    'JetBrains Mono', SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --ifm-heading-font-weight: 700;
+  --ifm-code-font-size: 90%;
+  --ifm-global-radius: 8px;
+  --ifm-navbar-height: 64px;
+
+  --hp-bg-deep: #fafaf9;
+  --hp-bg-card: #ffffff;
+  --hp-border-subtle: rgba(15, 23, 42, 0.08);
+  --hp-border-card: rgba(15, 23, 42, 0.1);
+  --hp-border-amber: rgba(180, 83, 9, 0.35);
+  --hp-amber-glow: rgba(245, 158, 11, 0.18);
+  --hp-text-secondary: #475569;
+
+  --docusaurus-highlighted-code-line-bg: rgba(245, 158, 11, 0.12);
 }
 
-/* For readability concerns, you should choose a lighter palette in dark mode. */
 [data-theme='dark'] {
-  --ifm-color-primary: #25c2a0;
-  --ifm-color-primary-dark: #21af90;
-  --ifm-color-primary-darker: #1fa588;
-  --ifm-color-primary-darkest: #1a8870;
-  --ifm-color-primary-light: #29d5b0;
-  --ifm-color-primary-lighter: #32d8b4;
-  --ifm-color-primary-lightest: #4fddbf;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+  /* The landing page's amber. */
+  --ifm-color-primary: #f59e0b;
+  --ifm-color-primary-dark: #e08e0a;
+  --ifm-color-primary-darker: #d4860a;
+  --ifm-color-primary-darkest: #af6e08;
+  --ifm-color-primary-light: #f6a826;
+  --ifm-color-primary-lighter: #f7ad33;
+  --ifm-color-primary-lightest: #f8bc5a;
+
+  --ifm-background-color: #040508;
+  --ifm-background-surface-color: #080a0f;
+  --ifm-navbar-background-color: rgba(4, 5, 8, 0.8);
+  --ifm-footer-background-color: #000000;
+  --ifm-color-emphasis-200: rgba(255, 255, 255, 0.07);
+  --ifm-color-emphasis-300: rgba(255, 255, 255, 0.1);
+  --ifm-toc-border-color: rgba(255, 255, 255, 0.07);
+  --ifm-hr-border-color: rgba(255, 255, 255, 0.07);
+  --ifm-font-color-base: #e2e8f0;
+  --ifm-heading-color: #ffffff;
+  --ifm-code-background: rgba(255, 255, 255, 0.06);
+  --ifm-card-background-color: rgba(12, 16, 24, 0.7);
+  --ifm-menu-color-background-active: rgba(245, 158, 11, 0.1);
+  --ifm-menu-color-background-hover: rgba(255, 255, 255, 0.04);
+
+  --hp-bg-deep: #000000;
+  --hp-bg-card: rgba(12, 16, 24, 0.7);
+  --hp-border-subtle: rgba(255, 255, 255, 0.07);
+  --hp-border-card: rgba(255, 255, 255, 0.1);
+  --hp-border-amber: rgba(245, 158, 11, 0.4);
+  --hp-amber-glow: rgba(245, 158, 11, 0.22);
+  --hp-text-secondary: #94a3b8;
+
+  --docusaurus-highlighted-code-line-bg: rgba(245, 158, 11, 0.12);
+}
+
+/* Navbar: translucent over the page, as the landing page's header is. */
+.navbar {
+  border-bottom: 1px solid var(--hp-border-subtle);
+  box-shadow: none;
+  backdrop-filter: blur(12px);
+}
+
+.navbar__title {
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+/* Amber buttons carry dark text: white on amber does not read. */
+.button--primary {
+  --ifm-button-color: #111827;
+  color: #111827;
+  font-weight: 700;
+}
+
+.button--primary:hover {
+  color: #111827;
+}
+
+/* Headings and body. */
+.markdown h1,
+.markdown h2,
+.markdown h3 {
+  letter-spacing: -0.02em;
+}
+
+.markdown a {
+  text-underline-offset: 3px;
+}
+
+/* Sidebar: the active page marked with an amber edge. */
+.menu__link--active:not(.menu__link--sublist) {
+  box-shadow: inset 2px 0 0 var(--ifm-color-primary);
+  font-weight: 600;
+}
+
+/* Code: the landing page's monospace, in a quiet frame. */
+.theme-code-block {
+  border: 1px solid var(--hp-border-card);
+  box-shadow: none;
+}
+
+[data-theme='dark'] .theme-code-block {
+  background-color: #0b0e14;
+}
+
+/* Admonitions: flat cards with a colored edge. */
+.theme-admonition {
+  border: 1px solid var(--hp-border-card);
+  border-left-width: 4px;
+  box-shadow: none;
+}
+
+/* Footer. */
+.footer {
+  border-top: 1px solid var(--hp-border-subtle);
+}
+
+[data-theme='dark'] .footer--dark {
+  --ifm-footer-background-color: #000000;
+}
+
+/* Local search: the result panel as a card of the theme. */
+[data-theme='dark'] {
+  --search-local-modal-background: #080a0f;
+  --search-local-hit-background: rgba(12, 16, 24, 0.9);
+  --search-local-hit-color: #e2e8f0;
+  --search-local-highlight-color: var(--ifm-color-primary);
+}
+
+/* Zoomed images sit above the navbar. */
+.medium-zoom-overlay,
+.medium-zoom-image--opened {
+  z-index: 300;
 }
