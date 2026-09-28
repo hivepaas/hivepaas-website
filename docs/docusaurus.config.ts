@@ -193,7 +193,7 @@ const config: Config = {
           title: 'Docs',
           items: [
             { label: 'Getting started', to: '/docs/intro' },
-            { label: 'API reference', to: '/api/hivepaas-app' },
+            { label: 'API reference', to: '/api/hivepaas-api' },
             { label: 'Release notes', href: `${GITHUB_URL}/releases` },
           ],
         },
