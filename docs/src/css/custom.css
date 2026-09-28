@@ -7,14 +7,16 @@
  */
 
 :root {
-  /* Amber, dark enough to read as text on white. */
-  --ifm-color-primary: #b45309;
-  --ifm-color-primary-dark: #a24b08;
-  --ifm-color-primary-darker: #994707;
-  --ifm-color-primary-darkest: #7e3a06;
-  --ifm-color-primary-light: #c65b0a;
-  --ifm-color-primary-lighter: #cf5f0a;
-  --ifm-color-primary-lightest: #e56b0c;
+  /* A bright amber for the accents. Links in the text take its darkest
+     shade: the amber itself is too light to read as text on white. */
+  --ifm-color-primary: #d97706;
+  --ifm-color-primary-dark: #c36b05;
+  --ifm-color-primary-darker: #b86505;
+  --ifm-color-primary-darkest: #985304;
+  --ifm-color-primary-light: #ef8307;
+  --ifm-color-primary-lighter: #f88908;
+  --ifm-color-primary-lightest: #f99829;
+  --ifm-link-color: var(--ifm-color-primary-darkest);
 
   --ifm-font-family-base:
     'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
@@ -34,7 +36,7 @@
   --hp-bg-card: #ffffff;
   --hp-border-subtle: rgba(15, 23, 42, 0.08);
   --hp-border-card: rgba(15, 23, 42, 0.1);
-  --hp-border-amber: rgba(180, 83, 9, 0.35);
+  --hp-border-amber: rgba(217, 119, 6, 0.35);
   --hp-amber-glow: rgba(245, 158, 11, 0.18);
   --hp-text-secondary: #475569;
 
@@ -42,14 +44,15 @@
 }
 
 [data-theme='dark'] {
-  /* The landing page's amber. */
-  --ifm-color-primary: #f59e0b;
-  --ifm-color-primary-dark: #e08e0a;
-  --ifm-color-primary-darker: #d4860a;
-  --ifm-color-primary-darkest: #af6e08;
-  --ifm-color-primary-light: #f6a826;
-  --ifm-color-primary-lighter: #f7ad33;
-  --ifm-color-primary-lightest: #f8bc5a;
+  /* The landing page's light amber: brighter than its #f59e0b. */
+  --ifm-color-primary: #fbbf24;
+  --ifm-color-primary-dark: #fab708;
+  --ifm-color-primary-darker: #f0ae04;
+  --ifm-color-primary-darkest: #c58f04;
+  --ifm-color-primary-light: #fcc740;
+  --ifm-color-primary-lighter: #fccb4e;
+  --ifm-color-primary-lightest: #fdd879;
+  --ifm-link-color: var(--ifm-color-primary);
 
   --ifm-background-color: #040508;
   --ifm-background-surface-color: #080a0f;
@@ -63,18 +66,18 @@
   --ifm-heading-color: #ffffff;
   --ifm-code-background: rgba(255, 255, 255, 0.06);
   --ifm-card-background-color: rgba(12, 16, 24, 0.7);
-  --ifm-menu-color-background-active: rgba(245, 158, 11, 0.1);
+  --ifm-menu-color-background-active: rgba(251, 191, 36, 0.1);
   --ifm-menu-color-background-hover: rgba(255, 255, 255, 0.04);
 
   --hp-bg-deep: #000000;
   --hp-bg-card: rgba(12, 16, 24, 0.7);
   --hp-border-subtle: rgba(255, 255, 255, 0.07);
   --hp-border-card: rgba(255, 255, 255, 0.1);
-  --hp-border-amber: rgba(245, 158, 11, 0.4);
-  --hp-amber-glow: rgba(245, 158, 11, 0.22);
+  --hp-border-amber: rgba(251, 191, 36, 0.4);
+  --hp-amber-glow: rgba(251, 191, 36, 0.22);
   --hp-text-secondary: #94a3b8;
 
-  --docusaurus-highlighted-code-line-bg: rgba(245, 158, 11, 0.12);
+  --docusaurus-highlighted-code-line-bg: rgba(251, 191, 36, 0.12);
 }
 
 /* Navbar: translucent over the page, as the landing page's header is. */
