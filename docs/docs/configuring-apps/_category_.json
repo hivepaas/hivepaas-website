@@ -4,5 +4,6 @@
   "link": {
     "type": "generated-index",
     "description": "Everything an app can be told: its environment, storage, resources and jobs."
-  }
+  },
+  "className": "hp-icon-sliders-horizontal"
 }

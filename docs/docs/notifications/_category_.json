@@ -4,5 +4,6 @@
   "link": {
     "type": "generated-index",
     "description": "Hearing about deployments, failures and system events."
-  }
+  },
+  "className": "hp-icon-bell"
 }

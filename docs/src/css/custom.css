@@ -28,9 +28,6 @@
   --ifm-code-font-size: 90%;
   --ifm-global-radius: 8px;
   --ifm-navbar-height: 64px;
-  /* Sidebar items about 30% taller than Infima's 32px: 20px of text and
-     0.675rem above and below it. */
-  --ifm-menu-link-padding-vertical: 0.675rem;
 
   --hp-bg-deep: #fafaf9;
   --hp-bg-card: #ffffff;
@@ -66,7 +63,6 @@
   --ifm-heading-color: #ffffff;
   --ifm-code-background: rgba(255, 255, 255, 0.06);
   --ifm-card-background-color: rgba(12, 16, 24, 0.7);
-  --ifm-menu-color-background-active: rgba(251, 191, 36, 0.1);
   --ifm-menu-color-background-hover: rgba(255, 255, 255, 0.04);
 
   --hp-bg-deep: #000000;
@@ -112,12 +108,6 @@
 
 .markdown a {
   text-underline-offset: 3px;
-}
-
-/* Sidebar: the active page marked with an amber edge. */
-.menu__link--active:not(.menu__link--sublist) {
-  box-shadow: inset 2px 0 0 var(--ifm-color-primary);
-  font-weight: 600;
 }
 
 /* Code: the landing page's monospace, in a quiet frame. */

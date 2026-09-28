@@ -4,5 +4,6 @@
   "link": {
     "type": "generated-index",
     "description": "The Docker Swarm under HivePaaS: its nodes, networks and volumes."
-  }
+  },
+  "className": "hp-icon-container"
 }

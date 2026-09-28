@@ -4,5 +4,6 @@
   "link": {
     "type": "generated-index",
     "description": "Installing HivePaaS, growing it into a cluster, and keeping it up to date."
-  }
+  },
+  "className": "hp-icon-download"
 }
