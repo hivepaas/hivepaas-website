@@ -1,9 +1,10 @@
 /**
  * HivePaaS docs theme: the landing page's obsidian and amber, on Infima.
  *
- * Only Infima variables and a few class overrides - nothing is swizzled, so a
- * Docusaurus upgrade keeps working. The --hp-* tokens are ours, used by the
- * homepage and the overrides below.
+ * Infima variables and a few class overrides. Only the navbar's logo is
+ * swizzled (src/theme/Navbar/Logo), to draw the landing page's brand; check it
+ * after a Docusaurus upgrade. The --hp-* tokens are ours, used by the homepage
+ * and the overrides below.
  */
 
 :root {
@@ -19,11 +20,11 @@
   --ifm-link-color: var(--ifm-color-primary-darkest);
 
   --ifm-font-family-base:
-    'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
     sans-serif;
   --ifm-heading-font-family: var(--ifm-font-family-base);
   --ifm-font-family-monospace:
-    'JetBrains Mono', SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    'IBM Plex Mono', SFMono-Regular, Menlo, Monaco, Consolas, monospace;
   --ifm-heading-font-weight: 700;
   --ifm-code-font-size: 90%;
   --ifm-global-radius: 8px;
