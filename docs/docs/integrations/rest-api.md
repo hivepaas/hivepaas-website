@@ -8,10 +8,10 @@ description: 'Calling the API: authentication, and where the reference is.'
 Everything the dashboard does, it does through the HivePaaS REST API, and so can
 your scripts. Every endpoint is described in the [API reference](/api/hivepaas-api).
 
-Every path is under your install's API base path, `/_`:
+Every path is under your install's API base path, `/api`:
 
 ```bash
-curl https://hivepaas.example.com/_/projects \
+curl https://hivepaas.example.com/api/projects \
   -H "HIVEPAAS-API-KEY-ID: $HIVEPAAS_API_KEY_ID" \
   -H "HIVEPAAS-API-SECRET-KEY: $HIVEPAAS_API_SECRET_KEY"
 ```
@@ -26,8 +26,8 @@ acts as you, within the limits it was created with, such as whether it can make
 changes. Scripts and CI use this.
 
 **A session's access token**, in the header `Authorization: Bearer <access token>`.
-A login, such as `POST /_/auth/login-with-password`, gives it. It expires within
-minutes, and `POST /_/sessions/refresh` renews it. The dashboard uses this; for a
+A login, such as `POST /api/auth/login-with-password`, gives it. It expires within
+minutes, and `POST /api/sessions/refresh` renews it. The dashboard uses this; for a
 script, an API key is simpler.
 
 A request with neither is answered `401`. The logins, the sign-up and password
