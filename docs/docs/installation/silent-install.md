@@ -13,8 +13,8 @@ a provisioning tool, or the next server.
 On the server:
 
 ```bash
-curl -fsSLO https://raw.githubusercontent.com/hivepaas/hivepaas/main/deployment/release/install.sh
-curl -fsSLO https://raw.githubusercontent.com/hivepaas/hivepaas/main/deployment/release/install.env
+curl -fsSLO https://raw.githubusercontent.com/hivepaas/hivepaas/release/deployment/release/install.sh
+curl -fsSLO https://raw.githubusercontent.com/hivepaas/hivepaas/release/deployment/release/install.env
 ```
 
 ## 2. Fill in the settings
@@ -67,10 +67,6 @@ The file holds the admin's password. Delete it once HivePaaS is installed.
 | `HIVEPAAS_UPGRADE_DOCKER`    | not upgraded                         | `true` upgrades a Docker that is new enough but not the latest. `--yes` alone does not.                                                                            |
 | `HIVEPAAS_EXISTING_DB`       | none: the install stops              | `keep` or `reset`, for [a database left by an earlier install](./install.md#a-database-from-an-earlier-install). `--yes` does not answer it.                       |
 | `HIVEPAAS_DB_PASSWORD`       | from `credentials.txt`               | With `keep`: the earlier database's password, when `credentials.txt` is gone.                                                                                      |
-| `HIVEPAAS_CERT_WAIT_SECONDS` | `20`                                 | How long to wait, once HivePaaS answers, for the dashboard's certificate from Let's Encrypt.                                                                       |
-| `HIVEPAAS_AGENT_IMAGE`       | the release's                        | The agent's image.                                                                                                                                                 |
-| `HIVEPAAS_RELEASE_BRANCH`    | `release`                            | The branch the release info is read from.                                                                                                                          |
-| `HIVEPAAS_INSTALL_REF`       | `main`                               | The ref the stack files are downloaded from.                                                                                                                       |
 
 ## Settings from the environment
 

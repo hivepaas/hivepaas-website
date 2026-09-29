@@ -16,7 +16,7 @@ questions, such as from a script, see [Silent install](./silent-install.md).
 On the server:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/hivepaas/hivepaas/main/deployment/release/install.sh | sudo bash
+curl -fsSL https://raw.githubusercontent.com/hivepaas/hivepaas/release/deployment/release/install.sh | sudo bash
 ```
 
 ## Answer its questions
@@ -118,7 +118,7 @@ Running the installer again is safe:
   dashboard's routing - go back to the stack file's.
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/hivepaas/hivepaas/main/deployment/release/install.sh | sudo bash -s -- --redeploy
+curl -fsSL https://raw.githubusercontent.com/hivepaas/hivepaas/release/deployment/release/install.sh | sudo bash -s -- --redeploy
 ```
 
 ### A database from an earlier install

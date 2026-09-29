@@ -83,9 +83,28 @@
   backdrop-filter: blur(12px);
 }
 
-.navbar__title {
+/* The brand, as the landing page's header draws it. */
+.hp-brand {
+  gap: 0.65rem;
+  color: var(--ifm-heading-color);
+  font-size: 1.25rem;
   font-weight: 800;
   letter-spacing: -0.02em;
+}
+
+.hp-brand:hover {
+  color: var(--ifm-heading-color);
+  text-decoration: none;
+}
+
+.hp-brand__icon {
+  display: flex;
+  align-items: center;
+  filter: drop-shadow(0 0 10px rgba(245, 158, 11, 0.4));
+}
+
+.hp-brand__highlight {
+  color: #f59e0b;
 }
 
 /* Amber buttons carry dark text: white on amber does not read. */
