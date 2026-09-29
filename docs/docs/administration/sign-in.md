@@ -42,7 +42,7 @@ or Okta.
 
 1. In **Integrations → OAuth**, create one. Choose the **Provider**.
 2. HivePaaS shows its callback URL, such as
-   `https://hivepaas.example.com/_/auth/sso/callback/<id>`. Register an
+   `https://hivepaas.example.com/api/auth/sso/callback/<id>`. Register an
    application with the provider, with that URL.
 3. Copy the application's **Client ID** and **Client Secret** back. For OpenID
    Connect, give the provider's **Auto-Discovery URL** too, such as
