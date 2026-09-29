@@ -103,5 +103,5 @@ To deploy an image of your own instead:
 - [Core concepts](./concepts.md): how projects, environments, apps and settings fit together.
 - [Deploying apps](../category/deploying-apps): from Git, with automatic
   deployments and pull request previews.
-- [First setup](../installation/first-setup.md): the settings to make before
-  your team joins.
+- [Users and access](../administration/users-and-access.md): inviting your
+  team, and what each of them can do.
