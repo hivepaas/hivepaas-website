@@ -32,10 +32,10 @@ PowerDNS.
 Give the credentials no more access than they need. For Cloudflare, an API token
 with **Zone:Read** and **DNS:Edit** on the zone.
 
-For the certificates it gets on its own, HivePaaS uses a DNS provider the
-project can see. Keep to one provider for them: with several, it may pick one
-that does not manage the domain. For the domains of another provider, create
-their certificates yourself, choosing it.
+For the certificates it gets on its own, HivePaaS uses one DNS provider: the
+project's own before the installation's, and among those, the one marked
+**Default**, or else the oldest. For the domains another provider manages,
+create their certificates yourself, choosing it.
 
 A provider made globally, and **Available in Projects**, serves every project.
 
