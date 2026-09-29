@@ -1,18 +1,200 @@
 ---
 sidebar_position: 3
-description: 'Letting AI assistants manage HivePaaS.'
+description: 'Letting AI assistants read and manage HivePaaS, over the Model Context Protocol.'
 ---
 
 # MCP server
 
-Letting AI assistants manage HivePaaS.
+HivePaaS serves the [Model Context Protocol](https://modelcontextprotocol.io),
+so an AI assistant, such as Claude, Codex, Gemini, Cursor or Copilot, can work
+with it: find out why an app is down, read its logs, install an app from the app
+store, redeploy one, schedule a job.
 
-:::info[Being written]
+The assistant acts as an API key's user, within what the key may do. It never
+deletes anything, and it changes nothing without showing you the change first.
 
-This page is being written. It will cover:
+## Turn it on
 
-- Turning the MCP server on
-- Connecting Claude and other clients
-- What the tools can do, and the keys they act as
+In **System → AI**:
 
-:::
+- **Enabled** serves the MCP server. While it is off, its address answers `404`.
+- **Allow changes** lets assistants make changes, for keys that may make them.
+  Off, an assistant only reads, whatever the key may do.
+
+The server's address is the **Endpoint** on the same page:
+`https://hivepaas.example.com/api/mcp`. Clients connect to it over streamable
+HTTP.
+
+## An API key for the assistant
+
+The server takes an API key, and nothing else. Create one in **Your Account → API
+Keys**, and give it what the assistant should do, on the **Project** module:
+
+| The assistant                                              | The key needs |
+| ---------------------------------------------------------- | ------------- |
+| reads apps, logs, deployments, tasks and the app store     | **Read**      |
+| restarts, stops, starts and redeploys apps                 | **Execute**   |
+| installs apps, changes their configuration, schedules jobs | **Write**     |
+
+**System → AI** makes one for you: **Create a read-only key**, or **Create a key
+that can make changes**. The page checks a key you paste, and fills it into the
+setup of each client below.
+
+## Connect a client
+
+The key is sent as `Authorization: Bearer <key ID>:<secret>`, or in the headers
+`HIVEPAAS-API-KEY-ID` and `HIVEPAAS-API-SECRET-KEY`.
+
+### Claude Code
+
+```bash
+claude mcp add --transport http hivepaas https://hivepaas.example.com/api/mcp \
+  --header "HIVEPAAS-API-KEY-ID: <key ID>" \
+  --header "HIVEPAAS-API-SECRET-KEY: <secret>"
+```
+
+Add `--scope user` to have it in every project. `/mcp` in Claude Code shows
+whether it connected.
+
+### Codex CLI
+
+Keep the key in your shell's environment, in `~/.zshrc` or `~/.bashrc`:
+
+```bash
+export HIVEPAAS_MCP_TOKEN="<key ID>:<secret>"
+```
+
+Then add the server:
+
+```bash
+codex mcp add hivepaas --url https://hivepaas.example.com/api/mcp \
+  --bearer-token-env-var HIVEPAAS_MCP_TOKEN
+```
+
+### Gemini CLI
+
+```bash
+gemini mcp add --transport http \
+  --header "Authorization: Bearer <key ID>:<secret>" \
+  hivepaas https://hivepaas.example.com/api/mcp
+```
+
+### Cursor
+
+In `~/.cursor/mcp.json`, or `.cursor/mcp.json` in a project:
+
+```json
+{
+  "mcpServers": {
+    "hivepaas": {
+      "url": "https://hivepaas.example.com/api/mcp",
+      "headers": { "Authorization": "Bearer <key ID>:<secret>" }
+    }
+  }
+}
+```
+
+The key is in the file as it is: keep a project's `.cursor/mcp.json` out of
+version control.
+
+### VS Code (Copilot)
+
+In `.vscode/mcp.json`, or the file **MCP: Open User Configuration** opens:
+
+```json
+{
+  "inputs": [
+    {
+      "type": "promptString",
+      "id": "hivepaas-key",
+      "description": "HivePaaS API key, as <key-id>:<secret>",
+      "password": true
+    }
+  ],
+  "servers": {
+    "hivepaas": {
+      "type": "http",
+      "url": "https://hivepaas.example.com/api/mcp",
+      "headers": { "Authorization": "Bearer ${input:hivepaas-key}" }
+    }
+  }
+}
+```
+
+VS Code asks for the key the first time the server starts, and keeps it out of
+the file.
+
+### Claude Desktop
+
+Claude Desktop connects to a remote server through `mcp-remote`, which needs
+Node.js. In `claude_desktop_config.json` (**Settings → Developer → Edit
+Config**), then restart Claude Desktop:
+
+```json
+{
+  "mcpServers": {
+    "hivepaas": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "mcp-remote",
+        "https://hivepaas.example.com/api/mcp",
+        "--transport",
+        "http-only",
+        "--header",
+        "Authorization:${AUTH_HEADER}"
+      ],
+      "env": { "AUTH_HEADER": "Bearer <key ID>:<secret>" }
+    }
+  }
+}
+```
+
+ChatGPT's and claude.ai's connectors take OAuth only, which HivePaaS does not
+offer yet: use one of the clients above.
+
+## What an assistant can do
+
+**Read**, with a key that may read:
+
+- projects, apps, their status, settings and deployments;
+- an app's logs, and a search through its stored logs;
+- tasks and their logs, what needs attention, the cluster's nodes and volumes;
+- the app store: its catalog, templates, and their image tags.
+
+**Change**, with a key that may, and **Allow changes** on:
+
+- restart, stop, start or redeploy an app, or cancel a deployment;
+- install an app from the app store;
+- change an app's settings;
+- create a scheduled job.
+
+Nothing is ever deleted through the MCP server.
+
+## Changes are planned first
+
+A change takes two steps:
+
+1. The assistant **plans** it: HivePaaS answers what would happen, and changes
+   nothing. The assistant shows you the plan.
+2. Once you agree, the assistant **applies** exactly that plan.
+
+A plan is good for 10 minutes, once, and only for whoever made it. If what it
+saw has changed since, such as an app redeployed in between, applying it is
+refused, and the assistant plans again.
+
+## Guided tasks
+
+Clients that offer prompts get two, to start from:
+
+- **debug_app**: finds out why an app is not working, from its status, logs and
+  deployments, and plans a fix the tools can make, or says what would.
+- **install_app**: installs an app from the app store, asking for what the
+  template needs.
+
+## Keeping an eye on it
+
+**Recent calls**, in **System → AI**, lists the assistants' calls: when, which
+tool, as which user, and whether it was answered or refused. Every change an
+assistant makes is also in the [audit logs](../administration/tasks-and-audit-logs.md),
+with the API key it used.
