@@ -92,8 +92,9 @@ Uptime Kuma asks you to create its own admin account on your first visit.
 To deploy an image of your own instead:
 
 1. In the project, click **New App**, give it a name, and choose its environment.
-2. In the app's **Routing Settings**, set the **Container Port** your image
-   listens on, and add a domain, such as `hello.example.com`.
+2. In the app's **Routing Settings**, turn on **Expose The App To The Internet**,
+   set the **Container Port** your image listens on, and add a domain, such as
+   `hello.example.com`.
 3. In its **Deployment Settings**, choose an image, such as `nginx:alpine`, and
    click **Deploy**.
 

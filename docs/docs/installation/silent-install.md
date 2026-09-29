@@ -51,22 +51,22 @@ The file holds the admin's password. Delete it once HivePaaS is installed.
 
 ## All settings
 
-| Setting                      | Default                              | What it is                                                                                                                                                         |
-| ---------------------------- | ------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `HIVEPAAS_ADMIN_EMAIL`       | required                             | The admin's email.                                                                                                                                                 |
-| `HIVEPAAS_ADMIN_PASSWORD`    | required                             | The admin's password: 10 characters or more.                                                                                                                       |
-| `HIVEPAAS_APP_DOMAIN`        | required                             | The dashboard's domain, such as `hivepaas.example.com`.                                                                                                            |
-| `HIVEPAAS_ROOT_DOMAIN`       | the app domain's last two labels     | The domain apps get subdomains of: the app domain or a domain it is under. `example.com` for `hivepaas.example.com`, and three labels under a suffix like `co.uk`. |
-| `HIVEPAAS_APP_SECRET`        | generated                            | The key every stored secret is encrypted with: 32 characters or more, no spaces, quotes or backslashes.                                                            |
-| `HIVEPAAS_DATA_DIR`          | `/var/lib/hivepaas`                  | Where HivePaaS keeps its data.                                                                                                                                     |
-| `HIVEPAAS_PROJECT_DATA_DIR`  | `project_data` in the data directory | Where projects' data goes.                                                                                                                                         |
-| `HIVEPAAS_CHANNEL`           | `beta`                               | The release channel: `beta` or `stable`.                                                                                                                           |
-| `HIVEPAAS_SWAP`              | `true`                               | `false` adds no swap file to a server without swap.                                                                                                                |
-| `HIVEPAAS_SWAP_SIZE_MB`      | `2048`                               | The swap file's size, in MB.                                                                                                                                       |
-| `HIVEPAAS_EARLYOOM`          | `true`                               | `false` does not install earlyoom.                                                                                                                                 |
-| `HIVEPAAS_UPGRADE_DOCKER`    | not upgraded                         | `true` upgrades a Docker that is new enough but not the latest. `--yes` alone does not.                                                                            |
-| `HIVEPAAS_EXISTING_DB`       | none: the install stops              | `keep` or `reset`, for [a database left by an earlier install](./install.md#a-database-from-an-earlier-install). `--yes` does not answer it.                       |
-| `HIVEPAAS_DB_PASSWORD`       | from `credentials.txt`               | With `keep`: the earlier database's password, when `credentials.txt` is gone.                                                                                      |
+| Setting                     | Default                              | What it is                                                                                                                                                         |
+| --------------------------- | ------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `HIVEPAAS_ADMIN_EMAIL`      | required                             | The admin's email.                                                                                                                                                 |
+| `HIVEPAAS_ADMIN_PASSWORD`   | required                             | The admin's password: 10 characters or more.                                                                                                                       |
+| `HIVEPAAS_APP_DOMAIN`       | required                             | The dashboard's domain, such as `hivepaas.example.com`.                                                                                                            |
+| `HIVEPAAS_ROOT_DOMAIN`      | the app domain's last two labels     | The domain apps get subdomains of: the app domain or a domain it is under. `example.com` for `hivepaas.example.com`, and three labels under a suffix like `co.uk`. |
+| `HIVEPAAS_APP_SECRET`       | generated                            | The key every stored secret is encrypted with: 32 characters or more, no spaces, quotes or backslashes.                                                            |
+| `HIVEPAAS_DATA_DIR`         | `/var/lib/hivepaas`                  | Where HivePaaS keeps its data.                                                                                                                                     |
+| `HIVEPAAS_PROJECT_DATA_DIR` | `project_data` in the data directory | Where projects' data goes.                                                                                                                                         |
+| `HIVEPAAS_CHANNEL`          | `beta`                               | The release channel: `beta` or `stable`.                                                                                                                           |
+| `HIVEPAAS_SWAP`             | `true`                               | `false` adds no swap file to a server without swap.                                                                                                                |
+| `HIVEPAAS_SWAP_SIZE_MB`     | `2048`                               | The swap file's size, in MB.                                                                                                                                       |
+| `HIVEPAAS_EARLYOOM`         | `true`                               | `false` does not install earlyoom.                                                                                                                                 |
+| `HIVEPAAS_UPGRADE_DOCKER`   | not upgraded                         | `true` upgrades a Docker that is new enough but not the latest. `--yes` alone does not.                                                                            |
+| `HIVEPAAS_EXISTING_DB`      | none: the install stops              | `keep` or `reset`, for [a database left by an earlier install](./install.md#a-database-from-an-earlier-install). `--yes` does not answer it.                       |
+| `HIVEPAAS_DB_PASSWORD`      | from `credentials.txt`               | With `keep`: the earlier database's password, when `credentials.txt` is gone.                                                                                      |
 
 ## Settings from the environment
 
