@@ -209,7 +209,7 @@ const config: Config = {
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} HivePaaS. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} HivePaaS.`,
     },
     prism: {
       theme: prismThemes.github,
