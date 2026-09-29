@@ -20,11 +20,10 @@
   --ifm-link-color: var(--ifm-color-primary-darkest);
 
   --ifm-font-family-base:
-    'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-    sans-serif;
+    'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --ifm-heading-font-family: var(--ifm-font-family-base);
   --ifm-font-family-monospace:
-    'IBM Plex Mono', SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    'Geist Mono', SFMono-Regular, Menlo, Monaco, Consolas, monospace;
   --ifm-heading-font-weight: 700;
   --ifm-code-font-size: 90%;
   --ifm-global-radius: 8px;
