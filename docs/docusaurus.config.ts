@@ -70,7 +70,6 @@ const config: Config = {
         docs: {
           sidebarPath: './sidebars.ts',
           editUrl: EDIT_URL,
-          showLastUpdateTime: true,
         },
         blog: false,
         theme: {
