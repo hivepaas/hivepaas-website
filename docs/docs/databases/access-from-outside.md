@@ -72,6 +72,11 @@ mongosh "mongodb://app:<password>@db.example.com:27017/app?tls=true&authSource=a
 redis-cli -h cache.example.com -p 6379 --tls --sni cache.example.com -a '<password>'
 ```
 
+A client that sends no SNI reaches Traefik, but not the database: a Redis client
+then fails with an error such as `Unknown RESP type 72 "H"`, Traefik's HTTP
+answer. `redis-cli` and `valkey-cli` send it with `--sni`, and ioredis with
+`tls: { servername: "cache.example.com" }`, even for a `rediss://` URL.
+
 With Traefik ending TLS, the database itself has no TLS: leave its
 [SSL mode](./ssl-mode.md) at **Disable**, for the apps beside it.
 
