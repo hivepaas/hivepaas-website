@@ -56,8 +56,8 @@ for any app. See [App domains](../domains-and-tls/app-domains.md).
 3. Save.
 4. Open the port in your firewall.
 
-The database's **App Kind** shows the same certificate, and **TLS Passthrough**,
-turned off.
+The database's **App Kind** shows where it can be reached, under **Public
+Access**: its domains are set in its **Routing Settings** alone.
 
 Then connect with TLS, to the domain:
 
@@ -85,8 +85,8 @@ With Traefik ending TLS, the database itself has no TLS: leave its
 The database serves the certificate itself, so it needs it as files, and its
 TLS turned on.
 
-1. Add the domain as above, then turn on **TLS Passthrough** on it, in its
-   **Routing Settings** or in the database's **App Kind**.
+1. Add the domain as above, then turn on **TLS Passthrough** on it, in the
+   database's **Routing Settings**.
 2. Put the certificate and its key into the database's containers with a
    [setting mount](../configuring-apps/config-files.md#setting-mounts): mount
    the domain's SSL certificate, its certificate at `/tls/tls.crt` and its key
