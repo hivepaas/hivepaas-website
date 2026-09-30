@@ -1,6 +1,6 @@
 {
   "label": "Notifications",
-  "position": 7,
+  "position": 8,
   "link": {
     "type": "generated-index",
     "description": "Hearing about deployments, failures and system events."

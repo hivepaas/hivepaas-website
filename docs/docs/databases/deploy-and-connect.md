@@ -1,9 +1,9 @@
 ---
-sidebar_position: 4
+sidebar_position: 1
 description: 'Running PostgreSQL, MySQL, Redis and other databases, and connecting apps to them.'
 ---
 
-# Databases
+# Deploy and connect
 
 Databases run as apps, like any other, in the environment of the apps that use
 them. The app store has templates for them: PostgreSQL and its extensions
@@ -25,20 +25,22 @@ creates one with it.
 
 ## Connect an app to it
 
-A database is not on the internet. The apps of its environment reach it on
+A database is not on the internet unless you
+[expose it](./access-from-outside.md). The apps of its environment reach it on
 their private network, by its key, and on its port: an app named `db` running
 PostgreSQL is `db:5432`.
 
 A database shares its connection details with the apps of its environment as
 variables:
 
-| Variable                 | Holds                |
-| ------------------------ | -------------------- |
-| `HIVEPAAS_HOST`          | its key, a host name |
-| `HIVEPAAS_PORT`          | its port             |
-| `HIVEPAAS_DATABASE_NAME` | the database's name  |
-| `HIVEPAAS_USER`          | the user             |
-| `HIVEPAAS_PASSWORD`      | the password         |
+| Variable                 | Holds                         |
+| ------------------------ | ----------------------------- |
+| `HIVEPAAS_HOST`          | its key, a host name          |
+| `HIVEPAAS_PORT`          | its port                      |
+| `HIVEPAAS_DATABASE_NAME` | the database's name           |
+| `HIVEPAAS_USER`          | the user                      |
+| `HIVEPAAS_PASSWORD`      | the password                  |
+| `HIVEPAAS_SSL_MODE`      | its [SSL mode](./ssl-mode.md) |
 
 An app refers to them in its own env vars as `${<key>.<variable>}`:
 

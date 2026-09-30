@@ -1,6 +1,6 @@
 {
   "label": "Backups",
-  "position": 6,
+  "position": 7,
   "link": {
     "type": "generated-index",
     "description": "Backing up your apps' data and HivePaaS itself, and restoring it."
