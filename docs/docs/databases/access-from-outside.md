@@ -35,19 +35,10 @@ the connection must stay encrypted all the way to the database.
 
 | Database               | Traefik ends TLS                  | TLS passthrough                                                     |
 | ---------------------- | --------------------------------- | ------------------------------------------------------------------- |
-| **PostgreSQL**         | Yes, any version (see below)      | Yes; a client that starts TLS directly needs PostgreSQL 17 or later |
+| **PostgreSQL**         | Yes, any version                  | Yes; a client that starts TLS directly needs PostgreSQL 17 or later |
 | **MongoDB**            | Yes                               | Yes, with TLS turned on in `mongod`                                 |
 | **Redis**, **Valkey**  | Yes, from a client that sends SNI | Yes, with TLS turned on in the server                               |
 | **MySQL**, **MariaDB** | No                                | No: [publish its port](#mysql-and-mariadb) instead                  |
-
-:::caution[PostgreSQL clients from libpq 17 on]
-
-With Traefik ending TLS, PostgreSQL clients built on libpq 17 or later, such as
-`psql` 17 and 18 and the tools that bundle them, are refused with
-`tlsv1 alert no application protocol`. Until HivePaaS handles them, connect
-them through TLS passthrough, or with a client built on an older libpq.
-
-:::
 
 A database with an HTTP interface, such as ClickHouse's on `8123`, CouchDB or
 Elasticsearch, needs none of this: give that port an ordinary HTTP domain, as

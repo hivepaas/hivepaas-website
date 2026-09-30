@@ -37,8 +37,7 @@ does TLS.
 | Has no TLS of its own: as deployed from the app store, and when [Traefik ends TLS](./access-from-outside.md) for clients outside | **Disable** |
 | Has its own TLS turned on, such as for [TLS passthrough](./access-from-outside.md#expose-it-with-tls-passthrough)                | **Require** |
 
-Choose one: left empty, `DATABASE_URL` ends in `sslmode=` with no value, which
-libpq refuses.
+Left unset, it is **Disable**.
 
 **Verify CA** and **Verify Full** rarely fit here. The apps reach the database by
 its key, such as `db`, which is not the name its certificate is for, and they
