@@ -27,7 +27,8 @@ It starts as a copy of the app:
   built from the newest commit, with the app's build settings.
 - **Its container** is a copy of the app's as it is when the preview is made -
   its command, resources and health check - with **one replica**.
-- **Its domains** are the app's, under a subdomain: see [Its domain](#its-domain).
+- **Its domains** are the app's, prefixed with `pr-42-`: see
+  [Its domain](#its-domain).
 - **Its env vars** are the app's. A reference to a database app cloned for the
   preview points at the clone instead: see
   [Give it its own database](#give-it-its-own-database).
@@ -69,7 +70,7 @@ same line:
 
 | Option                  | What it does                                            |
 | ----------------------- | ------------------------------------------------------- |
-| `subdomain=<name>`      | The preview's subdomain, `pr-<number>` by default.      |
+| `subdomain=<name>`      | The preview's prefix, `pr-<number>` by default.         |
 | `clonedb` / `noclonedb` | Clones the database apps set to be cloned, or does not. |
 | `nowait`                | Skips the **Preview Creation Delay**.                   |
 | `nostart`               | Creates the preview without starting it.                |
@@ -107,16 +108,26 @@ This works whatever **Allow PR Comments** says.
 
 ## Its domain
 
-A preview answers at its subdomain of each of the app's domains: the preview of
-pull request 42 of an app at `shop.example.com` is at `pr-42.shop.example.com`.
-A subdomain another app holds already stops the preview from being made.
+A preview answers beside each of the app's domains, its name prefixed: the
+preview of pull request 42 of an app at `shop.example.com` is at
+`pr-42-shop.example.com`. Beside rather than under, the app's own DNS record and
+certificate cover it: a wildcard for `*.example.com` covers both.
 
-A wildcard record for the root domain, `*.example.com`, does not cover these:
-add one for the app's domain, `*.shop.example.com`, pointing at your servers.
+| The app's domain       | Its preview's                |
+| ---------------------- | ---------------------------- |
+| `shop.example.com`     | `pr-42-shop.example.com`     |
+| `api.shop.example.com` | `pr-42-api.shop.example.com` |
+| `example.com`          | `pr-42.example.com`          |
 
-HivePaaS does not yet obtain certificates for a preview's domains. A preview is
-served over HTTPS with a certificate that covers its name if HivePaaS has one,
-such as a wildcard for `*.shop.example.com`; otherwise browsers warn about it.
+A domain at the root of its zone, such as `example.com`, has its previews
+under it. So does a subdomain asked for with a dot in it, such as
+`subdomain=review.pr-42`. The prefixed label is 63 characters at most, as DNS
+allows: a longer one stops the preview from being made, and a shorter
+`subdomain` fixes it. A domain another app holds already stops it too.
+
+Each preview's domain gets its certificate as any app's does: a wildcard
+covering it if HivePaaS has one - the app's own, usually - or one obtained for
+it. See [Certificates](../domains-and-tls/certificates.md).
 
 ## Give it its own database
 
@@ -148,7 +159,7 @@ started yet: the app must be running. Beside the app's env vars, they get:
 | ------------------------------ | ----------------------------------- |
 | `HIVEPAAS_PREVIEW_APP_NAME`    | the preview's name, such as `pr-42` |
 | `HIVEPAAS_PREVIEW_APP_ID`      | the preview's ID                    |
-| `HIVEPAAS_PREVIEW_SUBDOMAIN`   | its subdomain                       |
+| `HIVEPAAS_PREVIEW_SUBDOMAIN`   | its prefix, such as `pr-42`         |
 | `HIVEPAAS_PREVIEW_REPO_REF`    | the ref it deploys, such as pull/42 |
 | `HIVEPAAS_PREVIEW_PULL_NUMBER` | the pull request's number           |
 | `HIVEPAAS_PARENT_APP_NAME`     | the app's name                      |
