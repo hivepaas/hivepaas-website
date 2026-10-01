@@ -34,7 +34,10 @@ It starts as a copy of the app:
   [Give it its own database](#give-it-its-own-database).
 - **Its secrets and config files** are those of the app's that are
   **Inheritable**. One that is not stays with the app, and a reference to it,
-  such as `${secrets.API_KEY}`, comes out empty in the preview.
+  such as `${secrets.API_KEY}`, comes out empty in the preview. HivePaaS names
+  the secrets the app's env vars use that the preview goes without, and the
+  env vars using them: in the **Create a preview** form, and in its answer to
+  `/hivepaas deploy`. Only names are shown, never values.
 
 It does not get the app's scheduled or periodic jobs, nor its setting mounts:
 mounting a secret into a container takes a permission no one is there to give
