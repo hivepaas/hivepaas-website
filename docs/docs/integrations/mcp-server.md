@@ -178,7 +178,8 @@ offer yet: use one of the clients above.
 **Change**, with a key that may, and **Allow changes** on:
 
 - restart, stop, start or redeploy an app, or cancel a deployment;
-- install an app from the app store;
+- install an app from the app store, or create an app to run an image of your
+  own;
 - change an app's settings, or the env vars of a project or an env;
 - create a scheduled job, or run one now.
 
@@ -204,6 +205,8 @@ Clients that offer prompts get these, to start from:
   deployments, and plans a fix the tools can make, or says what would.
 - **install_app**: installs an app from the app store, asking for what the
   template needs.
+- **deploy_image**: runs a Docker image of your own: creates the app, gives it
+  its image, port, domain and variables, and deploys it, a plan at a time.
 - **connect_app_to_database**: adds the env vars that connect an app to a
   database or cache of its env, as references.
 - **run_database_from_image**: sets up an app that runs a database's own image
@@ -211,7 +214,7 @@ Clients that offer prompts get these, to start from:
 - **expose_database**: gives a database a TCP domain, so a client outside the
   cluster can reach it - or says why MySQL and MariaDB need a published port.
 
-The last three follow a guide the server offers as a resource, **Databases on
+The database prompts follow a guide the server offers as a resource, **Databases on
 HivePaaS**.
 
 ## Keeping an eye on it
