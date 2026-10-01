@@ -23,6 +23,38 @@ The database keeps its data on a volume, which outlives its containers.
 An app from the app store that needs a database brings its own: deploying it
 creates one with it.
 
+## Run one from its image
+
+A database from the app store is set up already. One you run from its image
+yourself, such as `postgres:18` or `mysql:8.4`, reads its first user, password
+and database from env vars:
+
+1. In its **App Kind**, set its category to **Database**, its engine, and its
+   credentials: the database's name, its user, its password, and for MySQL and
+   MariaDB its root password.
+2. In its **Env Variables**, click **Suggest Env**. The engine App Kind names is
+   chosen; choose another if the image runs one.
+3. Add the variables it suggests, then save.
+
+For PostgreSQL, they are:
+
+```bash
+POSTGRES_DB=${HIVEPAAS_DATABASE_NAME}
+POSTGRES_USER=${HIVEPAAS_USER}
+POSTGRES_PASSWORD=${HIVEPAAS_PASSWORD}
+```
+
+Each refers to what App Kind publishes, so the credentials are kept there, and
+the apps that link to the database are told the same ones.
+
+Suggest Env knows the official images of PostgreSQL, MySQL, MariaDB, MongoDB,
+ClickHouse and RabbitMQ. They read the variables only when they create their
+data: on a database that has data already, change a password inside it.
+
+Redis and Valkey read no variable for their password. For them, Suggest Env
+gives a command to put in the app's **Deployment Settings**: it starts the
+server with App Kind's password, memory limit, eviction and persistence.
+
 ## Connect an app to it
 
 A database is not on the internet unless you

@@ -49,6 +49,8 @@ CACHE_URL=redis://${cache.HIVEPAAS_HOST}:${cache.HIVEPAAS_PORT}/0
 References to other apps are the way to connect apps: they follow the other app
 when it moves or changes, where a hard-coded address does not. **Link to another
 app** writes them for you; see [Databases](../databases/deploy-and-connect.md#connect-an-app-to-it).
+**Suggest Env** writes those a database's own image reads to set itself up; see
+[Run one from its image](../databases/deploy-and-connect.md#run-one-from-its-image).
 
 ### Variables HivePaaS sets
 

@@ -162,7 +162,8 @@ offer yet: use one of the clients above.
 - tasks and their logs, what needs attention, the cluster's nodes and volumes;
 - the app store: its catalog, templates, and their image tags;
 - the env vars that connect an app to a database, a cache or a store of its
-  env, as **Link to another app** suggests them;
+  env, as **Link to another app** suggests them, and those a database's image
+  reads to set itself up, as **Suggest Env** does;
 - a project's and an env's settings: their env vars, the project's domain
   settings, certificates, config files, secrets (by name, their values
   masked), registry and Git credentials, backup repositories and backups,
