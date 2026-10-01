@@ -80,6 +80,15 @@ container port, such as `db.example.com:5432`: Traefik opens that port, and
 routes by the domain the client names in its TLS handshake. Open the port in
 your firewall too.
 
+In the same handshake, a client may name the protocol it speaks (ALPN), and
+some refuse to go on unless the server accepts it. A TCP domain accepts the
+registered ones of the services usually behind it: PostgreSQL's (`postgresql`),
+SQL Server's (`tds/8.0`), `mqtt`, `imap`, `pop3`, `managesieve`,
+`xmpp-client`, `xmpp-server`, DNS over TLS' (`dot`), and HTTP's. A client that
+names another fails with `no application protocol`: add it to the domain's
+**Extra ALPN Protocols**, such as `x-amzn-mqtt-ca`. With **TLS Passthrough**,
+the app answers the handshake itself, and the setting does not apply.
+
 Traefik does not route **UDP**. Publish the app's port in its **Networks**
 instead.
 
