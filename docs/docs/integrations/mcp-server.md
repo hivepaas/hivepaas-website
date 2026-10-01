@@ -180,7 +180,7 @@ offer yet: use one of the clients above.
 - restart, stop, start or redeploy an app, or cancel a deployment;
 - install an app from the app store;
 - change an app's settings, or the env vars of a project or an env;
-- create a scheduled job.
+- create a scheduled job, or run one now.
 
 Nothing is ever deleted through the MCP server.
 
@@ -198,12 +198,21 @@ refused, and the assistant plans again.
 
 ## Guided tasks
 
-Clients that offer prompts get two, to start from:
+Clients that offer prompts get these, to start from:
 
 - **debug_app**: finds out why an app is not working, from its status, logs and
   deployments, and plans a fix the tools can make, or says what would.
 - **install_app**: installs an app from the app store, asking for what the
   template needs.
+- **connect_app_to_database**: adds the env vars that connect an app to a
+  database or cache of its env, as references.
+- **run_database_from_image**: sets up an app that runs a database's own image
+  from its App Kind's credentials.
+- **expose_database**: gives a database a TCP domain, so a client outside the
+  cluster can reach it - or says why MySQL and MariaDB need a published port.
+
+The last three follow a guide the server offers as a resource, **Databases on
+HivePaaS**.
 
 ## Keeping an eye on it
 
