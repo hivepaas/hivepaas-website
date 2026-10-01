@@ -160,7 +160,9 @@ offer yet: use one of the clients above.
 - projects, apps, their status, settings and deployments;
 - an app's logs, and a search through its stored logs;
 - tasks and their logs, what needs attention, the cluster's nodes and volumes;
-- the app store: its catalog, templates, and their image tags.
+- the app store: its catalog, templates, and their image tags;
+- the env vars that connect an app to a database, a cache or a store of its
+  env, as **Link to another app** suggests them.
 
 **Change**, with a key that may, and **Allow changes** on:
 
