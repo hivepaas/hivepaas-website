@@ -21,6 +21,7 @@ In the app's **Feature Settings**, under **App Preview**:
 | Setting                                    | What it does                                                                     |
 | ------------------------------------------ | -------------------------------------------------------------------------------- |
 | **Enabled**                                | Allows previews of this app.                                                     |
+| **Allow PR Comments**                      | Lets comments on a pull request create and remove its preview. Off by default.   |
 | **Preview Creation Delay**                 | Waits this long before creating a preview.                                       |
 | **DB Apps to Clone**                       | Database apps to copy for each preview, so it has a database of its own.         |
 | **Auto Clone DB Apps on Preview Creation** | Clones them for every preview, without being asked.                              |
@@ -36,7 +37,7 @@ clone settings set up first, in its **App Clone**.
 
 ## Create a preview from the pull request
 
-Comment on the pull request:
+With **Allow PR Comments** on, comment on the pull request:
 
 ```text
 /hivepaas deploy
@@ -61,6 +62,17 @@ To remove the preview before the pull request closes:
 ```text
 /hivepaas cancel
 ```
+
+With **Allow PR Comments** off, HivePaaS answers a command with where to turn
+it on, and does nothing else.
+
+:::warning[Who can comment can deploy]
+
+A preview runs the pull request's code with the app's env vars and secrets. On
+a public repository, anybody can open a pull request and comment on it: leave
+**Allow PR Comments** off there, and create previews from the dashboard.
+
+:::
 
 ## Create a preview from the dashboard
 
