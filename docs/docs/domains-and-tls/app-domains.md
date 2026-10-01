@@ -68,6 +68,13 @@ in the project.
 
 ### Rules for some paths
 
+A rate limit counts requests per client address. On the domain, it counts every
+request a page makes - its scripts, stylesheets and images as well as its API
+calls - so a limit low enough for an API turns away ordinary visitors there. Set
+it generously, or put the tighter limit on a path. Behind a proxy such as
+Cloudflare, it counts per visitor only once HivePaaS knows the proxy: see
+[System settings](../administration/system-settings.md#hivepaas).
+
 **Path Configuration** gives a part of the domain its own rules: `/api/admin`
 behind basic auth, `/api` with a rate limit. A path matches by its **Match
 Mode**: exactly, by prefix, or by regular expression.

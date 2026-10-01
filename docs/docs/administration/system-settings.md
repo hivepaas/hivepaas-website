@@ -15,8 +15,10 @@ The **System** menu holds the settings of HivePaaS itself. Only an admin sees it
   background work, and the proxy in front of it, if any. A proxy such as
   Cloudflare needs its **Proxy Provider**, **Trusted IPs** and **Proxy Hops**, so
   HivePaaS sees each request's real address.
-- **Routing Settings**: the dashboard's domains, up to two, and their
-  certificates and rules.
+- **Routing Settings**: the dashboard's domains, up to two, their
+  certificates, and the addresses allowed to reach them. HivePaaS limits the
+  rate of requests to its sign-in and system endpoints itself; the domain as a
+  whole has no rate limit, which would count every script of the dashboard.
 - **Security**: see [Sign-in and security](./sign-in.md#hivepaass-own-security).
 - **Updates**: the release channel, **stable** or **beta**, and updating
   HivePaaS. See [Upgrade](../installation/upgrade.md).
