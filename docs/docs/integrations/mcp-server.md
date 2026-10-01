@@ -36,9 +36,15 @@ Keys**, and give it what the assistant should do, on the **Project** module:
 | restarts, stops, starts and redeploys apps                 | **Execute**   |
 | installs apps, changes their configuration, schedules jobs | **Write**     |
 
-**System → AI** makes one for you: **Create a read-only key**, or **Create a key
-that can make changes**. The page checks a key you paste, and fills it into the
-setup of each client below.
+Leave the key's **Reveal secrets** capability off. The MCP server never asks for
+a secret, and without the capability the key cannot be used to read one through
+the API either. A key with **Write** can still route a secret somewhere it can be
+read - into an env var that a command prints - so give **Write** only to an
+assistant you would trust with the secrets.
+
+**System → AI** makes one for you, without the capability: **Create a read-only
+key**, or **Create a key that can make changes**. The page checks a key you
+paste, and fills it into the setup of each client below.
 
 ## Connect a client
 

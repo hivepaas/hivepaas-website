@@ -71,7 +71,17 @@ and CI. A key has:
 
 - a **name**;
 - what it may do: a key can do less than its user, never more;
+- its **capabilities**: of its user's, which the key may use - none, unless it
+  is given them;
 - an **expiry**, a year at most.
+
+The one capability a key can be given is **Reveal secrets**: reading passwords,
+private keys and other secrets in the clear, and mounting them into apps. Only a
+user who holds it can give it. Leave it off for a key that does not need it, and
+always for one given to an AI assistant: a key without it is refused every
+secret, even an admin's key. A key made before keys had capabilities has none.
+
+A key cannot make, change or delete keys.
 
 Its secret is shown once, when it is made: HivePaaS keeps only a hash of it. See
 [REST API](../integrations/rest-api.md).
