@@ -43,6 +43,21 @@ A private image needs the registry's credentials. Add them once, in
 **Integrations → Registry Auth**, globally or in the project, and choose them
 under **Registry Credentials**.
 
+A credential is a server address, a username and a password, used as they are.
+Choose one that does not expire:
+
+| Registry                  | Username                     | Password                                                                                                                    |
+| ------------------------- | ---------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| Docker Hub                | your Docker Hub username     | an access token, read-only for pulling                                                                                      |
+| GitHub Container Registry | your GitHub username         | a personal access token with `read:packages`                                                                                |
+| Google Artifact Registry  | `_json_key_base64`           | a service account's JSON key, in base64 (`base64 -w0 key.json` on Linux). Its address is like `europe-west1-docker.pkg.dev` |
+| Azure Container Registry  | a service principal's app ID | its secret - or the registry's admin user and password                                                                      |
+
+A short-lived token - Google's `oauth2accesstoken`, an Azure AD token, or
+Amazon ECR's `aws ecr get-login-password`, which lasts 12 hours - works until it
+expires, then pulls fail: Swarm keeps the credential an app was deployed with,
+and uses it again to start the app on another node.
+
 ## Run options
 
 Deployment Settings also set how the container runs:
