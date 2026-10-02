@@ -79,8 +79,9 @@ Then, in **Integrations → Registry Auth**, create a credential, and set:
   credential described above.
 - **Server Address**: the registry's address,
   `<account>.dkr.ecr.<region>.amazonaws.com`, such as
-  `123456789012.dkr.ecr.eu-west-1.amazonaws.com`. HivePaaS reads the region
-  from it.
+  `123456789012.dkr.ecr.eu-west-1.amazonaws.com`, or its dual-stack address,
+  `<account>.dkr-ecr.<region>.on.aws`. HivePaaS reads the region from it, and
+  takes only an Amazon ECR address: the token goes nowhere else.
 - **Key Auth**: the key auth holding the IAM user's keys.
 - **Role ARN**, optional: a role HivePaaS assumes with the keys, such as
   `arn:aws:iam::123456789012:role/hivepaas-pull`.
