@@ -180,8 +180,53 @@ The function's **Settings** → **Function**:
 
 **Save & Deploy** saves the settings and deploys the function.
 
+## Scale it
+
 A function has more instances by its **Replicas**, in **Settings** →
 **Availability & Scaling**: each runs **Concurrency** calls at once.
+
+Or **Autoscale**, on the same page, sets them: every 15 seconds HivePaaS reads
+the function's calls and keeps as many instances as they need, between a
+minimum and a maximum.
+
+| Field              | What it is                                                                                                                                                       |
+| ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Autoscale**      | Off by default.                                                                                                                                                  |
+| **Min Replicas**   | The fewest instances it keeps, however quiet: 1 or more. `1` by default.                                                                                         |
+| **Max Replicas**   | The most it starts, however busy: up to 50. `5` by default.                                                                                                      |
+| **Target**         | How much of an instance's **Concurrency** it keeps busy, 10 to 100 %. `70 %` by default: at a Concurrency of 16, an instance for every 11 calls running at once. |
+| **Scale-in Delay** | How long the calls stay low before it scales in, 1 minute to 1 hour. `5 minutes` by default.                                                                     |
+
+- **Out, at once**, when calls are answered `429` because every instance is at
+  its Concurrency: by more instances the more calls were turned away, at most
+  twice as many; and when the calls running at once have needed more instances
+  for 30 seconds.
+- **In, slowly**: once the calls have needed fewer for the scale-in delay, by
+  half the way down every 15 seconds.
+- Turned on, it brings the function within Min and Max at once; turned off, it
+  leaves the replicas as they are. While it is on, **Replicas** shows the count
+  and only Autoscale changes it; a deployment keeps it. A stopped function
+  stays stopped.
+- The section lists the latest scalings, with when, from and to how many, and
+  why; the **Metrics** tab draws the replicas over the calls.
+
+It counts the calls from the line the runtime logs for each one (see
+[Watch it](#watch-it)), so it needs the logs stored: without them it cannot be
+turned on, and one already on is paused, and says why. It is paused too for a
+function whose **Service Mode** is not **Replicated**.
+
+:::note[What it does not do]
+
+- **Scale to zero**: one instance at least is up, to answer the first call.
+- **Answer a burst within seconds**: new instances come in 20 seconds to a
+  minute, and calls over the Concurrency are answered `429` until then. For a
+  burst you expect, raise **Min Replicas**.
+- **See a long call before it ends**: a call is counted when it ends, so a
+  function whose calls take minutes is better scaled by hand.
+- **Keep what an instance holds**: an instance it stops loses what it kept in
+  memory, so a function that keeps state in its instance should not autoscale.
+
+:::
 
 ## Reach it
 
@@ -231,5 +276,5 @@ without its query, so that what a query carries stays out of the logs.
 
 Through the [MCP server](../integrations/mcp-server.md), an assistant can
 create a function from code it writes with you, test it with a request, deploy
-it, read its calls, and schedule it - each change planned first, and applied
-once you agree.
+it, read its calls, schedule it, and turn its autoscale on - each change
+planned first, and applied once you agree.

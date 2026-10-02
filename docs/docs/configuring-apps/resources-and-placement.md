@@ -38,6 +38,9 @@ Most apps are **Replicated**. More than one replica shares the app's traffic, an
 keeps it answering when one instance stops, provided the app keeps no state in
 its own container.
 
+A [function](../deploying-apps/functions.md#scale-it) can have its replicas set
+by **Autoscale**, from its calls.
+
 :::warning[Changing the mode]
 
 Docker Swarm cannot change the mode of a running service: saving another mode
