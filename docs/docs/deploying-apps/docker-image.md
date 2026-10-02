@@ -68,7 +68,12 @@ keeps.
 
 ### Create the credential
 
-In **Integrations → Registry Auth**, create a credential, and set:
+The AWS keys are kept in a key auth, so that one IAM key can serve the registry
+and a backup bucket, and is changed in one place. First, in **Integrations →
+Key Auth**, create a key auth with the IAM user's access key ID as its key ID,
+and its secret access key as its secret key.
+
+Then, in **Integrations → Registry Auth**, create a credential, and set:
 
 - **Type**: **Amazon ECR**. The other choice, **Username and password**, is the
   credential described above.
@@ -76,7 +81,7 @@ In **Integrations → Registry Auth**, create a credential, and set:
   `<account>.dkr.ecr.<region>.amazonaws.com`, such as
   `123456789012.dkr.ecr.eu-west-1.amazonaws.com`. HivePaaS reads the region
   from it.
-- **Access Key ID** and **Secret Access Key**: the keys of an IAM user.
+- **Key Auth**: the key auth holding the IAM user's keys.
 - **Role ARN**, optional: a role HivePaaS assumes with the keys, such as
   `arn:aws:iam::123456789012:role/hivepaas-pull`.
 
@@ -152,8 +157,13 @@ A run gets a new token for each Amazon ECR credential, and gives it to the apps
 that pull with it: the apps whose image uses the credential, and the apps and
 functions that push their builds to it. Running containers are not restarted.
 
-It also runs for a credential when its keys are saved, and when HivePaaS starts
-after being down for longer than the interval.
+It also runs at once when the keys change - a key auth's keys edited, or a
+credential linked to another key auth or role - and when HivePaaS starts after
+being down for longer than the interval. A token got with keys since edited is
+never handed over again.
+
+A key auth turned off stops its credentials from getting tokens: the next run
+fails, and notifies.
 
 With the renewal turned off, the apps that use an Amazon ECR credential cannot
 be started on another node, or again after their image is gone from their node,
