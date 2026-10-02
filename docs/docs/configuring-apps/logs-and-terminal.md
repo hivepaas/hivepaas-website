@@ -44,6 +44,20 @@ An app with no domain has no requests through Traefik, and no HTTP numbers. A
 [function](../deploying-apps/functions.md) has its calls there too, under
 **Calls**.
 
+Under **Resources**, the same tab shows what the app's containers use, summed
+over them:
+
+- **CPU**, in cores, and the limit set in the app's **Resources** settings;
+- **Memory**, the working set as `docker stats` counts it - the page cache the
+  kernel can take back left out - and its limit;
+- **Network**, in and out, in bytes a second;
+- **Containers**: each container's CPU, its peaks, and the times the kernel
+  killed it for running out of memory (**OOM kills**).
+
+The HivePaaS agent on each node reads them from every app container's cgroup
+every 15 seconds, while stored logs are on, and stores them with the logs. A
+node needs cgroup v2, which every current Linux distribution uses.
+
 ## Terminal
 
 The app's **Terminal** tab opens a shell in one of its containers, in the
