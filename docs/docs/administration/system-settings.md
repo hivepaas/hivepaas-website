@@ -35,7 +35,10 @@ dashboard unreachable undoes itself. See
 ## Traefik
 
 **System → Traefik** sets the proxy in front of every app: its replicas, log
-level, access log, HTTP/3, and extra command-line arguments. **Open Ports** lists
+level, access log, HTTP/3, and extra command-line arguments. The access log is
+what an app's HTTP numbers are counted from, in its
+[Metrics](../configuring-apps/logs-and-terminal.md#metrics) tab: **Access Log**
+writes it as JSON, without the query string. **Open Ports** lists
 the ports Traefik opened for apps' TCP domains.
 
 Traefik's startup command is applied on trial too.

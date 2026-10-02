@@ -204,11 +204,11 @@ run, and the response is the run's output, in the task's details. The app's
 
 ## Watch it
 
-The function's **Metrics** tab counts its calls over the last hour, 6 hours, 24
-hours or 7 days: how many, how many failed, how many it answered `5xx`, and how
+The function's **Metrics** tab, under **Calls**, counts its calls over the last
+hour, 6 hours, 24 hours or 7 days: how many, how many failed, how many it answered `5xx`, and how
 long its handler took - p50, p95 and p99. They are counted from the line its
 runtime logs for every call, so they need the logs stored: see
-[Logs and terminal](../configuring-apps/logs-and-terminal.md).
+[Logs, metrics and terminal](../configuring-apps/logs-and-terminal.md).
 
 In its **Logs**, every call is a line:
 

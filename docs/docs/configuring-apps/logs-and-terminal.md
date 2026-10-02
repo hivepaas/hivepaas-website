@@ -3,7 +3,7 @@ sidebar_position: 7
 description: 'Watching an app, and getting inside it.'
 ---
 
-# Logs and terminal
+# Logs, metrics and terminal
 
 ## Logs
 
@@ -15,6 +15,34 @@ administrator turns stored logs on in **System → Logging**.
 
 An app's logs are collected from Docker's `json-file` log driver, its default.
 An app set to another driver in its **Container Settings** has no logs here.
+
+## Metrics
+
+The app's **Metrics** tab counts the HTTP requests that reach it by its domains,
+over the last hour, 6 hours, 24 hours or 7 days:
+
+- **Requests**, by what the client got: `2xx` and `3xx`, `4xx`, `5xx`;
+- **Unreachable**: the requests Traefik could not get to the app at all - no
+  container running, or none answering;
+- **Duration**: p50, p95 and p99, from the client to the app's answer, close
+  rather than exact;
+- **Paths**: the 20 most requested, with numbers and ids counted as one -
+  `/users/:n`, `/orders/:id`;
+- **Replicas**: the requests each of the app's containers answered.
+
+They are counted from Traefik's access log, which HivePaaS stores with the
+logs: stored logs must be on, in **System → Logging**. Traefik writes the access
+log as JSON and without the query string, which can carry a token or an email;
+the client's IP address is kept.
+
+An installation from before this writes the access log in an older form: the
+tab says so. An administrator saves **System → Traefik → Config Options** once,
+with **Access Log** on - Traefik restarts, which takes a few seconds, on trial
+as any change of its startup command.
+
+An app with no domain has no requests through Traefik, and no HTTP numbers. A
+[function](../deploying-apps/functions.md) has its calls there too, under
+**Calls**.
 
 ## Terminal
 
