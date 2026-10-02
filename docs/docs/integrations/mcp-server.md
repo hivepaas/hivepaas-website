@@ -167,6 +167,7 @@ offer yet: use one of the clients above.
 - projects, apps, their status, settings and deployments;
 - an app's logs, and a search through its stored logs;
 - a function's calls: how many, how many failed, and how long they took;
+- an app's [pull request previews](../deploying-apps/pr-previews.md);
 - tasks and their logs, what needs attention, the cluster's nodes and volumes;
 - the app store: its catalog, templates, and their image tags;
 - the env vars that connect an app to a database, a cache or a store of its
@@ -182,11 +183,14 @@ offer yet: use one of the clients above.
 - restart, stop, start or redeploy an app, or cancel a deployment;
 - install an app from the app store, or create an app to run an image of your
   own;
-- create a function from its code, or try a function's code with a request
-  before saving it. A test run answers what the code prints as it is: code
+- create a [function](../deploying-apps/functions.md) from its code, or try a
+  function's code with a request before saving it. A test run answers what the code prints as it is: code
   that prints a secret shows it;
 - change an app's settings, or the env vars of a project or an env;
-- create a scheduled job, or run one now.
+- make a preview of an app from a pull request or a branch, told first which
+  secrets it goes without;
+- create a scheduled job - a command, or a request to a function - or run one
+  now.
 
 Nothing is ever deleted through the MCP server.
 
