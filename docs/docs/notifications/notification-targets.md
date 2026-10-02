@@ -32,14 +32,14 @@ Mark a target **Default** for everything that asks for the default target.
 Each of these has a **Notification Configuration**, with a target for when it
 succeeds, and one for when it fails:
 
-| What                                                      | Where it is set                               |
-| --------------------------------------------------------- | --------------------------------------------- |
-| Deployments                                               | the app's **Deployment Settings**             |
-| Health checks                                             | the app's **Periodic Jobs**                   |
-| Scheduled jobs and data backups                           | the job                                       |
-| Clones                                                    | the app's **App Clone**                       |
-| Certificates                                              | the certificate, for when it nears its expiry |
-| HivePaaS's own jobs: backup, cleanup, certificate renewal | their pages in **Settings**                   |
+| What                                                                              | Where it is set                               |
+| --------------------------------------------------------------------------------- | --------------------------------------------- |
+| Deployments                                                                       | the app's **Deployment Settings**             |
+| Health checks                                                                     | the app's **Periodic Jobs**                   |
+| Scheduled jobs and data backups                                                   | the job                                       |
+| Clones                                                                            | the app's **App Clone**                       |
+| Certificates                                                                      | the certificate, for when it nears its expiry |
+| HivePaaS's own jobs: backup, cleanup, certificate and registry credential renewal | their pages in **Settings**                   |
 
 A common setup: failures to the team's channel, successes to nobody.
 

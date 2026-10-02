@@ -56,7 +56,114 @@ Choose one that does not expire:
 A short-lived token - Google's `oauth2accesstoken`, an Azure AD token, or
 Amazon ECR's `aws ecr get-login-password`, which lasts 12 hours - works until it
 expires, then pulls fail: Swarm keeps the credential an app was deployed with,
-and uses it again to start the app on another node.
+and uses it again to start the app on another node. For Amazon ECR, create an
+[Amazon ECR credential](#amazon-ecr) instead.
+
+## Amazon ECR
+
+Amazon ECR has no password that lasts. Its password is a token that expires
+after 12 hours, and only AWS keys can get a new one. So an Amazon ECR credential
+holds AWS keys: HivePaaS gets tokens from them, and renews the tokens Swarm
+keeps.
+
+### Create the credential
+
+In **Integrations → Registry Auth**, create a credential, and set:
+
+- **Type**: **Amazon ECR**. The other choice, **Username and password**, is the
+  credential described above.
+- **Server Address**: the registry's address,
+  `<account>.dkr.ecr.<region>.amazonaws.com`, such as
+  `123456789012.dkr.ecr.eu-west-1.amazonaws.com`. HivePaaS reads the region
+  from it.
+- **Access Key ID** and **Secret Access Key**: the keys of an IAM user.
+- **Role ARN**, optional: a role HivePaaS assumes with the keys, such as
+  `arn:aws:iam::123456789012:role/hivepaas-pull`.
+
+**Test Connection** gets a token with the keys, and signs in to the registry
+with it.
+
+There is no username or password to give: the username is `AWS`, and the
+password is the token. The credential's page shows when its current token
+expires.
+
+An image in the registry is named with its address, such as
+`123456789012.dkr.ecr.eu-west-1.amazonaws.com/web:2.4.0`.
+
+### The IAM policy
+
+Give HivePaaS an IAM user of its own, that can pull and nothing more:
+
+- `ecr:GetAuthorizationToken`, on every resource (`"*"`), to get a token;
+- `ecr:BatchGetImage`, `ecr:GetDownloadUrlForLayer` and
+  `ecr:BatchCheckLayerAvailability`, on the repositories it pulls from.
+
+```json title="hivepaas-ecr-pull.json"
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": "ecr:GetAuthorizationToken",
+      "Resource": "*"
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "ecr:BatchGetImage",
+        "ecr:GetDownloadUrlForLayer",
+        "ecr:BatchCheckLayerAvailability"
+      ],
+      "Resource": [
+        "arn:aws:ecr:eu-west-1:123456789012:repository/web",
+        "arn:aws:ecr:eu-west-1:123456789012:repository/api"
+      ]
+    }
+  ]
+}
+```
+
+To push the images HivePaaS builds to the registry, under
+[**Registry To Push Image To**](./git-repository.md#more-than-one-node), add
+`ecr:InitiateLayerUpload`, `ecr:UploadLayerPart`, `ecr:CompleteLayerUpload` and
+`ecr:PutImage` to the second statement.
+
+With a **Role ARN**, the role carries these permissions instead. The user needs
+`sts:AssumeRole` on the role, and the role's trust policy must let the user
+assume it.
+
+### Token renewal
+
+Swarm keeps the credential an app was deployed with, and pulls the image with it
+again: to start the app on another node, or after its image was removed from its
+node. A token kept there stops working after 12 hours. The renewal job hands
+Swarm a new one before then.
+
+Set it in **Settings → Registry Auth Renewal**:
+
+- **Interval**: how often it runs, from 1 to 10 hours, every 6 hours by default.
+  Each token it hands over lasts at least the interval and an hour more, so it
+  is still good at the next run.
+- **Notification Configuration**: a run that fails notifies the default
+  notification target, unless you choose another.
+- **Run Renewal Now**, under **Actions**, runs it at once.
+
+A run gets a new token for each Amazon ECR credential, and gives it to the apps
+that pull with it: the apps whose image uses the credential, and the apps and
+functions that push their builds to it. Running containers are not restarted.
+
+It also runs for a credential when its keys are saved, and when HivePaaS starts
+after being down for longer than the interval.
+
+With the renewal turned off, the apps that use an Amazon ECR credential cannot
+be started on another node, or again after their image is gone from their node,
+once 12 hours have passed.
+
+### Not supported
+
+- Amazon ECR Public, `public.ecr.aws`.
+- Keys from the host, such as an EC2 instance's role: the credential needs keys
+  of its own.
 
 ## Run options
 

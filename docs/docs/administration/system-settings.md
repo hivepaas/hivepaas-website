@@ -74,4 +74,6 @@ The **Settings** menu holds settings that apply to all projects:
 - **Image Build**: how and where images are built;
 - **App Placement**: which nodes run apps, see [App placement](../cluster/app-placement.md);
 - scheduled jobs of HivePaaS's own: **Data Backup**, **Data Cleanup**,
-  **Backup Repo Cleanup** and **SSL Renewal**.
+  **Backup Repo Cleanup**, **SSL Renewal** and **Registry Auth Renewal**, which
+  renews the tokens of Amazon ECR credentials: see
+  [Amazon ECR](../deploying-apps/docker-image.md#token-renewal).
