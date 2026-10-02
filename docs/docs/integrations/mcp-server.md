@@ -30,17 +30,18 @@ HTTP.
 The server takes an API key, and nothing else. Create one in **Your Account → API
 Keys**, and give it what the assistant should do, on the **Project** module:
 
-| The assistant                                              | The key needs |
-| ---------------------------------------------------------- | ------------- |
-| reads apps, logs, deployments, tasks and the app store     | **Read**      |
-| restarts, stops, starts and redeploys apps                 | **Execute**   |
-| installs apps, changes their configuration, schedules jobs | **Write**     |
+| The assistant                                                                           | The key needs |
+| --------------------------------------------------------------------------------------- | ------------- |
+| reads apps, logs, deployments, tasks and the app store                                  | **Read**      |
+| restarts, stops, starts and redeploys apps                                              | **Execute**   |
+| installs apps, creates and tries functions, changes their configuration, schedules jobs | **Write**     |
 
 Leave the key's **Reveal secrets** capability off. The MCP server never asks for
 a secret, and without the capability the key cannot be used to read one through
 the API either. A key with **Write** can still route a secret somewhere it can be
-read - into an env var that a command prints - so give **Write** only to an
-assistant you would trust with the secrets.
+read - into an env var that a command prints, or a function's test run that
+prints it - so give **Write** only to an assistant you would trust with the
+secrets.
 
 **System → AI** makes one for you, without the capability: **Create a read-only
 key**, or **Create a key that can make changes**. The page checks a key you
@@ -165,6 +166,7 @@ offer yet: use one of the clients above.
 
 - projects, apps, their status, settings and deployments;
 - an app's logs, and a search through its stored logs;
+- a function's calls: how many, how many failed, and how long they took;
 - tasks and their logs, what needs attention, the cluster's nodes and volumes;
 - the app store: its catalog, templates, and their image tags;
 - the env vars that connect an app to a database, a cache or a store of its
@@ -180,6 +182,9 @@ offer yet: use one of the clients above.
 - restart, stop, start or redeploy an app, or cancel a deployment;
 - install an app from the app store, or create an app to run an image of your
   own;
+- create a function from its code, or try a function's code with a request
+  before saving it. A test run answers what the code prints as it is: code
+  that prints a secret shows it;
 - change an app's settings, or the env vars of a project or an env;
 - create a scheduled job, or run one now.
 
@@ -207,6 +212,8 @@ Clients that offer prompts get these, to start from:
   template needs.
 - **deploy_image**: runs a Docker image of your own: creates the app, gives it
   its image, port, domain and variables, and deploys it, a plan at a time.
+- **deploy_function**: writes a function with you, creates it on a runtime -
+  Node.js, Bun, Python or Go - deploys it and tries it with a request.
 - **connect_app_to_database**: adds the env vars that connect an app to a
   database or cache of its env, as references.
 - **run_database_from_image**: sets up an app that runs a database's own image
@@ -215,7 +222,8 @@ Clients that offer prompts get these, to start from:
   cluster can reach it - or says why MySQL and MariaDB need a published port.
 
 The database prompts follow a guide the server offers as a resource, **Databases on
-HivePaaS**.
+HivePaaS**; the function prompt, **Functions on HivePaaS**, which says how a
+handler is written for each runtime.
 
 ## Keeping an eye on it
 
