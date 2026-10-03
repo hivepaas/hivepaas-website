@@ -56,6 +56,39 @@ Set:
 
 Without it, apps show their live logs only.
 
+### Routes and calls
+
+**System → Logging → Routes and Calls** runs OBI, an eBPF program, on the nodes
+you choose, to measure the routes and calls of the apps whose **Feature
+Settings** ask for them: see
+[Routes and calls](../configuring-apps/logs-and-terminal.md#routes-and-calls).
+
+A node needs:
+
+- Linux 5.8 or later, with BTF (`/sys/kernel/btf/vmlinux`), as the kernels of
+  current distributions have;
+- to be a VM or a dedicated server: a container-based VPS, OpenVZ or LXC, runs
+  on its host's kernel and cannot run OBI;
+- twice the memory its capacity takes free, when OBI starts.
+
+The page lists every node with what its agent last found: whether it can run
+OBI, and why not.
+
+A node's **Capacity** is how many requests and connections OBI tracks there at
+once. OBI takes its memory whole when it starts, idle or not; too small a
+capacity loses what does not fit, without saying so.
+
+| Capacity | Memory   | Tracked at once | Recommended for  |
+| -------- | -------- | --------------- | ---------------- |
+| Small    | ~100 MiB | ~7,500          | nodes under 8 GB |
+| Medium   | ~140 MiB | ~15,000         | 8 to 32 GB       |
+| Large    | ~215 MiB | ~30,000         | 32 GB and more   |
+
+**Recommended**, the default, follows the node's memory.
+
+OBI runs while stored logs are on: its numbers are kept with them. Each node's
+HivePaaS agent starts, changes or stops it within 30 seconds of a save.
+
 ## Registry
 
 **System → Registry** runs a registry in the cluster, so an image built on one

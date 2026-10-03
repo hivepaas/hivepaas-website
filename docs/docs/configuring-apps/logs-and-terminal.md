@@ -61,6 +61,32 @@ node needs cgroup v2, which every current Linux distribution uses.
 For an app that [autoscales](./resources-and-placement.md#autoscale), the
 **Requests** and **CPU** charts also draw its replicas, on an axis of their own.
 
+### Routes and calls
+
+Under **Routes** and **Dependencies**, the same tab shows what an app serves and
+what it calls, measured inside its containers by OBI, an eBPF program HivePaaS
+runs on the nodes an administrator chooses:
+
+- **Routes**: every request the app answered - from Traefik, or from another app
+  of its project - by route as its framework names it, such as `/users/{id}`:
+  how many, how many failed (a `5xx` or an error), and p50, p95 and p99;
+- **Dependencies**: every call the app made, by kind - HTTP, database, RPC - and
+  by peer: another app of its environment, shown as itself; a database, by its
+  system and database, such as `postgresql/shop`; or an outside host.
+
+The app needs nothing installed or changed. No request, header or query text is
+kept: only the route, the method, or an operation such as `SELECT`.
+
+To turn them on:
+
+1. an administrator turns on **System → Logging → Routes and Calls** and chooses
+   the nodes that measure them: see
+   [Routes and calls](../administration/system-settings.md#routes-and-calls);
+2. the app's **Feature Settings** turn on **Routes and Calls**.
+
+What an app serves or calls on a node that does not run OBI is not counted: the
+tab says how many of its nodes do.
+
 ## Terminal
 
 The app's **Terminal** tab opens a shell in one of its containers, in the
@@ -89,4 +115,4 @@ state, how long it has run, and the error of one that failed to start.
 
 The terminal, the logs and scheduled jobs are on for every app. An app's
 **Feature Settings** can turn each of them off, such as the terminal of an app
-that handles sensitive data.
+that handles sensitive data. **Routes and Calls** is off until they turn it on.
