@@ -221,8 +221,9 @@ function whose **Service Mode** is not **Replicated**.
 - **Answer a burst within seconds**: new instances come in 20 seconds to a
   minute, and calls over the Concurrency are answered `429` until then. For a
   burst you expect, raise **Min Replicas**.
-- **See a long call before it ends**: a call is counted when it ends, so a
-  function whose calls take minutes is better scaled by hand.
+- **See a long call before it ends**: a call is counted when it ends, and for
+  a minute at most, so a function whose calls take minutes is better scaled by
+  hand.
 - **Keep what an instance holds**: an instance it stops loses what it kept in
   memory, so a function that keeps state in its instance should not autoscale.
 

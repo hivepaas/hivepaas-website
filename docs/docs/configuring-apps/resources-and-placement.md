@@ -82,7 +82,12 @@ from Traefik's access log, the CPU from the rows the HivePaaS agent writes - see
 [Logs, metrics and terminal](./logs-and-terminal.md). The requests also need a
 domain; the CPU a limit or a reservation, in **Resources**. Each says in the
 section when it cannot be read, and why: one that cannot holds the app as it is,
-while the other carries on.
+while the other carries on. It reads the minute that ended 10 seconds ago, so
+that the lines of every node - and of every Traefik replica - have arrived.
+
+A request is counted when it ends, and for a minute at most. A WebSocket, a
+stream of server-sent events or a long poll is not seen while it is open: an
+app that serves mostly those scales better on CPU.
 
 An app that publishes a port in **host** mode cannot autoscale: it runs one
 replica a node at most.
