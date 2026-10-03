@@ -82,7 +82,9 @@ from Traefik's access log, the CPU from the rows the HivePaaS agent writes - see
 [Logs, metrics and terminal](./logs-and-terminal.md). The requests also need a
 domain; the CPU a limit or a reservation, in **Resources**. Each says in the
 section when it cannot be read, and why: one that cannot holds the app as it is,
-while the other carries on. It reads the minute that ended 10 seconds ago, so
+while the other carries on. Autoscale cannot be turned on while none of what
+it scales on can be read; one already on says it is paused, and its settings
+can still be changed. It reads the minute that ended 10 seconds ago, so
 that the lines of every node - and of every Traefik replica - have arrived.
 
 A request is counted when it ends, and for a minute at most. A WebSocket, a
