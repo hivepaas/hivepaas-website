@@ -89,11 +89,27 @@ With **Allow PR Comments** off, HivePaaS answers a command with where to turn
 it on, and does nothing else. A command it does not understand is answered with
 the list of commands.
 
-:::warning[Who can comment can deploy]
+A preview runs the pull request's code with the app's env vars and secrets, so
+only someone who can write to the repository runs a command; anybody else is
+answered that they cannot, and nothing is done.
 
-A preview runs the pull request's code with the app's env vars and secrets. On
-a public repository, anybody can open a pull request and comment on it: leave
-**Allow PR Comments** off there, and create previews from the dashboard.
+| Provider      | Who can run a command                                                                                                               |
+| ------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| **GitHub**    | The repository's owner, its organization's members, and its collaborators, as GitHub says in the webhook.                           |
+| **GitLab**    | Members of the project, directly or by its groups, at **Developer** or above. HivePaaS asks GitLab, with the app's Git credentials. |
+| **Gitea**     | The owner, and users with write access. HivePaaS asks Gitea, with the app's Git credentials.                                        |
+| **Bitbucket** | The repository's owner; on a private repository, anyone who can comment on it.                                                      |
+| **Gogs**      | The same as Bitbucket.                                                                                                              |
+
+On GitLab and Gitea without Git credentials to ask with, it is the same as
+Bitbucket.
+
+:::warning[A preview follows its pull request]
+
+Once a preview is up, every push to the pull request deploys it again, whoever
+pushes. Read what a pull request from outside the team changes before you
+deploy a preview of it, and remove the preview with `/hivepaas cancel` once
+you no longer need it: until then, its author's next pushes are deployed too.
 
 :::
 
