@@ -13,9 +13,16 @@ a provisioning tool, or the next server.
 On the server:
 
 ```bash
-curl -fsSLO https://raw.githubusercontent.com/hivepaas/hivepaas/release/deployment/release/install.sh
-curl -fsSLO https://raw.githubusercontent.com/hivepaas/hivepaas/release/deployment/release/install.env
+curl -fsSL https://get.hivepaas.com -o install.sh
+curl -fsSLO https://github.com/hivepaas/hivepaas/releases/download/v1.0.0-beta1/install.env
 ```
+
+Both come with a release: `get.hivepaas.com` is the installer of the current
+one, and `install.env` is attached to it, beside the installer. For another
+release, take `install.env` from that release on the
+[Releases](https://github.com/hivepaas/hivepaas/releases) page. The copies in
+the repository are not the release's: the installer there deploys whatever
+`main` holds.
 
 ## 2. Fill in the settings
 
