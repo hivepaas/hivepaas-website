@@ -58,6 +58,9 @@ The HivePaaS agent on each node reads them from every app container's cgroup
 every 15 seconds, while stored logs are on, and stores them with the logs. A
 node needs cgroup v2, which every current Linux distribution uses.
 
+For an app that [autoscales](./resources-and-placement.md#autoscale), the
+**Requests** and **CPU** charts also draw its replicas, on an axis of their own.
+
 ## Terminal
 
 The app's **Terminal** tab opens a shell in one of its containers, in the
