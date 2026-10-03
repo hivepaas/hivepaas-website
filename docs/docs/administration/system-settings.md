@@ -86,6 +86,14 @@ capacity loses what does not fit, without saying so.
 
 **Recommended**, the default, follows the node's memory.
 
+The memory in the table is a one-core node's. OBI takes more on a node with
+more cores, and when busy: Small took up to about 230 MiB on 10 cores under
+heavy load. Its container is limited to 512 MiB.
+
+OBI also costs each request it measures about 14 µs of CPU, in the app and in
+OBI itself: a percent or two for an app whose requests use a millisecond of
+CPU, more for one that answers trivial requests at its CPU's limit.
+
 OBI runs while stored logs are on: its numbers are kept with them. Each node's
 HivePaaS agent starts, changes or stops it within 30 seconds of a save.
 
