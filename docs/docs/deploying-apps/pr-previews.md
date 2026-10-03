@@ -104,12 +104,16 @@ answered that they cannot, and nothing is done.
 On GitLab and Gitea without Git credentials to ask with, it is the same as
 Bitbucket.
 
-:::warning[A preview follows its pull request]
+A preview follows its pull request: every push to it deploys the preview
+again, when the pull request's author is someone who can run a command. A pull
+request from anybody else is not deployed again: HivePaaS says so in it, and
+someone who can reads the new commits, then comments `/hivepaas deploy` to
+deploy them.
 
-Once a preview is up, every push to the pull request deploys it again, whoever
-pushes. Read what a pull request from outside the team changes before you
-deploy a preview of it, and remove the preview with `/hivepaas cancel` once
-you no longer need it: until then, its author's next pushes are deployed too.
+:::warning[Read it before you deploy it]
+
+A command deploys the pull request as it is, whoever wrote it. Read what a pull
+request from outside the team changes before you comment `/hivepaas deploy`.
 
 :::
 
