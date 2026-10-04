@@ -14,8 +14,9 @@ project you have, too: see [Into an existing project](#into-an-existing-project)
 
 On **Projects**, open **New Project** and choose **From Docker Compose**:
 
-- paste the compose file, or open it;
-- paste its `.env`, if it has one;
+- paste the compose file, open it, or **Open folder** - the folder holding it,
+  such as the `docker` folder of the software's repository;
+- paste its `.env`, if it has one: opened with the folder, it is read from there;
 - name the project - left empty, it takes the file's own `name:`;
 - name the environment, `production` by default;
 - choose the **Profiles** whose services are created, if the file has any.
@@ -23,8 +24,20 @@ On **Projects**, open **New Project** and choose **From Docker Compose**:
 The file is read again as you change anything, and nothing is created until you
 confirm. It is read on the server without touching the server: no file of the
 server's and none of its environment variables. A file the compose file reads -
-an `env_file`, a secret's or a config's file, a file it mounts - is given on the
-page.
+an `env_file`, a secret's or a config's file, a file it mounts, a compose file it
+includes - is given on the page.
+
+### Opening the folder
+
+The folder is read in your browser: the compose file is its shallowest
+`compose.yaml`, `compose.yml`, `docker-compose.yaml` or `docker-compose.yml`, and
+every path is relative to that file's directory. Its `.env` is read too; a folder
+with only a `.env.example` offers it - change the passwords it gives, which are
+the example's, known to anybody.
+
+Then each file the review asks for is given from the folder, and only those:
+nothing else of the folder leaves your browser. A file larger than 500 KB is not
+given - it would not fit a config - nor more than 100 files or 5 MB in all.
 
 ## 2. Review it
 
@@ -36,9 +49,16 @@ get the same value. Uncheck **Secret** to keep it as plain text, or check it for
 another. **Generate** fills a secret left empty with a random value. A required
 variable, `${NAME:?}`, has to have a value before anything else is shown.
 
-**Files** are the files the compose file reads. Paste each, or open it. One left
-missing is created empty, and the app that reads it will not start right until it
-is filled, in the environment's **Config Files** or **Secrets**.
+**Files** are the files the compose file reads. Paste each, or open it - or open
+the folder, which gives them. One left missing is created empty, and the app that
+reads it will not start right until it is filled, in the environment's **Config
+Files** or **Secrets**. A compose file an `include` or `extends` reads has to be
+given before anything more is read.
+
+A **mounted directory** - `./nginx/conf.d:/etc/nginx/conf.d` - is the app's own
+directory on the project's volume. With the folder open, its files are mounted
+in it, read only, unless you uncheck them; what the app writes beside them is
+kept. Without, it starts empty.
 
 **Services** are the apps they become. For each published port, choose:
 
@@ -95,9 +115,12 @@ is its environment's and its own.
   every other: the file's own networks are not kept.
 - **Volumes.** A named volume is a directory of the project's volume. Several
   services mounting one share the directory of the first that writes to it. A
-  directory of the compose file's, such as `./data`, is one too, and starts empty:
-  its files are not copied. A file it mounts, such as `./nginx.conf`, is a config
-  file of the environment.
+  directory of the compose file's, such as `./data`, is one too: empty, or with
+  the files given under it mounted in it, read only. A file it mounts, such as
+  `./nginx.conf`, is a config file of the environment.
+- **Included and extended files** are read beside themselves, as compose reads
+  them: their paths, `.env` and variables are theirs. An include's
+  `project_directory` is not supported, and nothing is fetched from a URL.
 - **Variables.** A variable written out in the file whose name reads as a
   secret's, such as `POSTGRES_PASSWORD: example`, is kept as an encrypted secret
   of the app, which the variable refers to. One a `${VARIABLE}` fills follows the
