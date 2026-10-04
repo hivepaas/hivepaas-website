@@ -74,6 +74,10 @@ on by default.
   directory of the compose file's, such as `./data`, is one too, and starts empty:
   its files are not copied. A file it mounts, such as `./nginx.conf`, is a config
   file of the environment.
+- **Variables.** A variable written out in the file whose name reads as a
+  secret's, such as `POSTGRES_PASSWORD: example`, is kept as an encrypted secret
+  of the app, which the variable refers to. One a `${VARIABLE}` fills follows the
+  variable: an environment secret, or plain text if **Secret** is unchecked.
 - **Secrets and configs** are the environment's secrets and config files, mounted
   where compose mounts them: `/run/secrets/<name>`, `/<name>`.
 - **Commands.** `command`, `entrypoint` and `working_dir` are the app's
