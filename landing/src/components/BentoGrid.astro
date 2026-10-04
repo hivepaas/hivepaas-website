@@ -55,7 +55,7 @@
             </div>
             <div class="vis-item item-running">
               <div class="vis-item-top">
-                <span class="vis-name">PostgreSQL 16</span>
+                <span class="vis-name">PostgreSQL 18</span>
                 <span class="vis-badge badge-state-live">100% Running</span>
               </div>
               <span class="vis-desc">Cluster Volume intact</span>
@@ -77,8 +77,8 @@
 
         <div class="security-chip">
           <div class="security-row">
-            <span class="sec-label">GDPR Compliance</span>
-            <span class="sec-val val-green">Native 100%</span>
+            <span class="sec-label">Telemetry</span>
+            <span class="sec-val val-green">None</span>
           </div>
           <div class="security-row">
             <span class="sec-label">Secret Encryption</span>
@@ -86,7 +86,7 @@
           </div>
           <div class="security-row">
             <span class="sec-label">Backup Target</span>
-            <span class="sec-val">Automated S3</span>
+            <span class="sec-val">Kopia → S3 / volume</span>
           </div>
         </div>
       </div>
@@ -96,10 +96,10 @@
         <div class="bento-badge-row">
           <span class="linear-pill pill-glow-purple">⚡ Pure Go Core</span>
         </div>
-        <h3 class="bento-title">&lt; 200 MB RAM Overhead</h3>
+        <h3 class="bento-title">~300 MB Control Plane</h3>
         <p class="bento-text">
-          Engineered in Go with pure efficiency. While standard Kubernetes control planes consume 1.2GB–1.5GB of RAM at idle, 
-          the entire HivePaaS stack runs under 200MB — leaving 90%+ of your VPS for your actual workloads.
+          Written in Go. A Kubernetes control plane alone takes 1.2–1.5 GB of RAM at idle; HivePaaS's whole control
+          plane — API, agent, database, Redis and Traefik — runs in about 300 MB, leaving the rest of your server to your apps.
         </p>
 
         <!-- Memory Comparison Meter -->
@@ -107,9 +107,9 @@
           <div class="meter-row">
             <span class="meter-name">HivePaaS</span>
             <div class="meter-bar-wrapper">
-              <div class="meter-bar bar-hivepaas" style="width: 14%;"></div>
+              <div class="meter-bar bar-hivepaas" style="width: 20%;"></div>
             </div>
-            <span class="meter-val">&lt; 200 MB</span>
+            <span class="meter-val">~300 MB</span>
           </div>
           <div class="meter-row">
             <span class="meter-name">K8s Master</span>
