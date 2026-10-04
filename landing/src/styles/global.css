@@ -37,6 +37,10 @@
   --font-mono: 'JetBrains Mono', monospace;
   
   --container-max-width: 1240px;
+  --container-gutter: 1.5rem;
+  /* A card's inner padding: less on a phone, where every rem is width */
+  --card-pad: 2rem;
+  --inset-pad: 1.25rem;
   --header-height: 68px;
 }
 
@@ -87,8 +91,16 @@ body {
   max-width: var(--container-max-width);
   margin-left: auto;
   margin-right: auto;
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
+  padding-left: var(--container-gutter);
+  padding-right: var(--container-gutter);
+}
+
+@media (max-width: 640px) {
+  :root {
+    --container-gutter: 1rem;
+    --card-pad: 1.25rem;
+    --inset-pad: 0.85rem;
+  }
 }
 
 .section {
@@ -113,7 +125,7 @@ body {
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid var(--border-card);
   border-radius: 20px;
-  padding: 2.25rem;
+  padding: var(--card-pad);
   overflow: hidden;
   transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   display: flex;
