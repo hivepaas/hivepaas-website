@@ -60,9 +60,12 @@ quit and reopen the browser.
 
 A project holds your apps, in environments.
 
-1. Open **Projects**, and click **New Project**.
+1. Open **Projects**, click **New Project**, and choose **Empty project**.
 2. Give it a name, such as `My first project`.
 3. Keep its environments, `development` and `production`, and create it.
+
+Software that comes with a `docker-compose.yml` makes a project of its own:
+choose [From Docker Compose](../deploying-apps/docker-compose.md) instead.
 
 ## 5. Deploy an app from the app store
 

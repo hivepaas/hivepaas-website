@@ -183,6 +183,8 @@ offer yet: use one of the clients above.
 - restart, stop, start or redeploy an app, or cancel a deployment;
 - install an app from the app store, or create an app to run an image of your
   own;
+- create a project from a [Docker Compose file](../deploying-apps/docker-compose.md),
+  told first what each service becomes and what is left out;
 - create a [function](../deploying-apps/functions.md) from its code, or try a
   function's code with a request before saving it. A test run answers what the code prints as it is: code
   that prints a secret shows it;
