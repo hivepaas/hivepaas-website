@@ -100,8 +100,9 @@ HivePaaS agent starts, changes or stops it within 30 seconds of a save. While
 runs, and say which nodes could run it.
 
 Each HivePaaS release names the OBI it runs. An update moves it with the agent:
-each node's agent pulls the new OBI while the old one still runs, swaps them,
-and removes the old image.
+each node's agent pulls the new OBI while the old one still runs, then swaps
+them. The old image goes with the daily system cleanup, which prunes unused
+images on every node.
 
 ## Registry
 
