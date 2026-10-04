@@ -99,6 +99,10 @@ HivePaaS agent starts, changes or stops it within 30 seconds of a save. While
 **Routes and Calls** is off, the agents check every 10 minutes that no OBI
 runs, and say which nodes could run it.
 
+Each HivePaaS release names the OBI it runs. An update moves it with the agent:
+each node's agent pulls the new OBI while the old one still runs, swaps them,
+and removes the old image.
+
 ## Registry
 
 **System → Registry** runs a registry in the cluster, so an image built on one
