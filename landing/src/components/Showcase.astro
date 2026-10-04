@@ -1,0 +1,195 @@
+---
+// Showcase.astro - the real dashboard, captured from the live demo
+
+const screens = [
+  {
+    id: 'metrics',
+    label: 'Metrics',
+    caption: 'Requests, errors and latency of every app, measured on the node by eBPF — no SDK in your code.',
+    alt: 'HivePaaS app metrics: requests, 5xx rate, p95 latency and a duration chart over 24 hours',
+  },
+  {
+    id: 'apps',
+    label: 'Apps',
+    caption: 'Projects with their own environments: apps, databases and functions side by side.',
+    alt: 'HivePaaS project page listing a function, a PostgreSQL database and an app, all active',
+  },
+  {
+    id: 'functions',
+    label: 'Functions',
+    caption: 'Write a function in the browser, run it, and deploy it — Node.js, TypeScript, Bun, Python or Go.',
+    alt: 'HivePaaS function code editor with a TypeScript handler and a request runner',
+  },
+  {
+    id: 'app-store',
+    label: 'App Store',
+    caption: '300+ templates — databases, CMSs, analytics, AI tools — ready to deploy in one click.',
+    alt: 'HivePaaS app store with 336 templates in categories such as databases and web apps',
+  },
+];
+---
+
+<section class="showcase-section" id="tour" aria-label="A tour of the HivePaaS dashboard">
+  <div class="container">
+    <div class="showcase-tabs" role="tablist" aria-label="Dashboard views">
+      {screens.map((s, i) => (
+        <button
+          class="showcase-tab"
+          role="tab"
+          id={`tab-${s.id}`}
+          aria-controls={`panel-${s.id}`}
+          aria-selected={i === 0 ? 'true' : 'false'}
+          tabindex={i === 0 ? 0 : -1}
+          data-screen={s.id}
+        >
+          {s.label}
+        </button>
+      ))}
+    </div>
+
+    <div class="showcase-window">
+      <div class="window-bar" aria-hidden="true">
+        <span class="window-dot"></span>
+        <span class="window-dot"></span>
+        <span class="window-dot"></span>
+        <span class="window-url">demo2.hivepaas.com</span>
+      </div>
+      {screens.map((s, i) => (
+        <figure
+          class="showcase-panel"
+          role="tabpanel"
+          id={`panel-${s.id}`}
+          aria-labelledby={`tab-${s.id}`}
+          hidden={i !== 0}
+        >
+          <img
+            src={`/screens/${s.id}.webp`}
+            alt={s.alt}
+            width="1600"
+            height="1000"
+            loading={i === 0 ? 'eager' : 'lazy'}
+            decoding="async"
+          />
+          <figcaption>{s.caption}</figcaption>
+        </figure>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .showcase-section {
+    position: relative;
+    z-index: 1;
+    padding-bottom: 2rem;
+  }
+
+  .showcase-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .showcase-tab {
+    font-family: var(--font-sans);
+    font-size: 0.88rem;
+    font-weight: 600;
+    padding: 0.45rem 1rem;
+    border-radius: 9999px;
+    border: 1px solid var(--border-card);
+    background: rgba(255, 255, 255, 0.04);
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .showcase-tab:hover {
+    color: var(--text-primary);
+    border-color: rgba(255, 255, 255, 0.25);
+  }
+
+  .showcase-tab[aria-selected='true'] {
+    color: var(--accent-amber-light);
+    border-color: rgba(245, 158, 11, 0.45);
+    background: rgba(245, 158, 11, 0.1);
+  }
+
+  .showcase-window {
+    max-width: 1100px;
+    margin: 0 auto;
+    border-radius: 16px;
+    border: 1px solid var(--border-card);
+    background: #0c0e13;
+    overflow: hidden;
+    box-shadow: 0 40px 100px -30px rgba(0, 0, 0, 0.9), 0 0 60px -20px rgba(245, 158, 11, 0.25);
+  }
+
+  .window-bar {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.7rem 1rem;
+    border-bottom: 1px solid var(--border-subtle);
+    background: rgba(255, 255, 255, 0.03);
+  }
+
+  .window-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.14);
+  }
+
+  .window-url {
+    margin-left: 0.75rem;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--text-muted);
+  }
+
+  .showcase-panel {
+    margin: 0;
+  }
+
+  .showcase-panel img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+  }
+
+  .showcase-panel figcaption {
+    padding: 0.9rem 1.25rem;
+    border-top: 1px solid var(--border-subtle);
+    font-size: 0.92rem;
+    color: var(--text-secondary);
+    text-align: center;
+  }
+</style>
+
+<script>
+  const tabs = [...document.querySelectorAll<HTMLButtonElement>('.showcase-tab')];
+
+  const select = (tab: HTMLButtonElement) => {
+    for (const t of tabs) {
+      const selected = t === tab;
+      t.setAttribute('aria-selected', String(selected));
+      t.tabIndex = selected ? 0 : -1;
+      const panel = document.getElementById(`panel-${t.dataset.screen}`);
+      if (panel) panel.hidden = !selected;
+    }
+  };
+
+  tabs.forEach((tab, i) => {
+    tab.addEventListener('click', () => select(tab));
+    tab.addEventListener('keydown', e => {
+      const step = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+      if (!step) return;
+      const next = tabs[(i + step + tabs.length) % tabs.length];
+      select(next);
+      next.focus();
+    });
+  });
+</script>

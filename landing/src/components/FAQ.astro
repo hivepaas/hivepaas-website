@@ -1,0 +1,90 @@
+---
+// FAQ.astro - the questions people ask before installing
+import { faq } from '../data/faq';
+---
+
+<section class="section faq-section" id="faq">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">FAQ</span>
+      <h2 class="section-title">Questions, answered</h2>
+      <p class="section-desc">
+        Something else on your mind?
+        Ask on <a href="https://discord.com/invite/2TgD3zDb2e" target="_blank" rel="noopener noreferrer">Discord</a>{' '}
+        or read the <a href="https://docs.hivepaas.com" target="_blank" rel="noopener noreferrer">documentation</a>.
+      </p>
+    </div>
+
+    <div class="faq-list">
+      {faq.map((item, i) => (
+        <details class="faq-item" open={i === 0}>
+          <summary class="faq-question">{item.question}</summary>
+          <p class="faq-answer">{item.answer}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .section-desc a {
+    color: var(--accent-amber-light);
+  }
+
+  .faq-list {
+    max-width: 820px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+  }
+
+  .faq-item {
+    border: 1px solid var(--border-card);
+    border-radius: 14px;
+    background: var(--bg-card);
+    transition: border-color 0.2s ease;
+  }
+
+  .faq-item[open],
+  .faq-item:hover {
+    border-color: rgba(245, 158, 11, 0.35);
+  }
+
+  .faq-question {
+    list-style: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.15rem 1.4rem;
+    font-size: 1.02rem;
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+
+  .faq-question::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-question::after {
+    content: '+';
+    flex-shrink: 0;
+    font-family: var(--font-mono);
+    font-size: 1.2rem;
+    color: var(--accent-amber);
+    transition: transform 0.2s ease;
+  }
+
+  .faq-item[open] .faq-question::after {
+    transform: rotate(45deg);
+  }
+
+  .faq-answer {
+    padding: 0 1.4rem 1.25rem;
+    font-size: 0.96rem;
+    line-height: 1.7;
+    color: var(--text-secondary);
+  }
+</style>
