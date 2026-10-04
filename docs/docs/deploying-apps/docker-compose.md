@@ -124,8 +124,12 @@ is its environment's and its own.
 - **Volumes.** A named volume is a directory of the project's volume. Several
   services mounting one share the directory of the first that writes to it. A
   directory of the compose file's, such as `./data`, is one too: empty, or with
-  the files given under it mounted in it, read only. A file it mounts, such as
-  `./nginx.conf`, is a config file of the environment.
+  the files given under it mounted in it, read only. One under another mounted
+  directory, `./data/logs` beside `./data`, is a directory of its own, as the
+  plan warns: a service mounting one does not see the other's files there. A
+  file it mounts, such as `./nginx.conf`, is a config file of the environment;
+  a read-only volume holding one is mounted writable, which Docker needs to
+  mount the file in it.
 - **Included and extended files** are read beside themselves, as compose reads
   them: their paths, `.env` and variables are theirs. An include's
   `project_directory` is not supported, and nothing is fetched from a URL.
