@@ -96,7 +96,8 @@ CPU, more for one that answers trivial requests at its CPU's limit.
 
 OBI runs while stored logs are on: its numbers are kept with them. Each node's
 HivePaaS agent starts, changes or stops it within 30 seconds of a save. While
-**Routes and Calls** is off, the agents only check whether it was turned on.
+**Routes and Calls** is off, the agents check every 10 minutes that no OBI
+runs, and say which nodes could run it.
 
 ## Registry
 
