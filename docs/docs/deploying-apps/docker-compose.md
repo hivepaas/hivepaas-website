@@ -58,7 +58,9 @@ given before anything more is read.
 A **mounted directory** - `./nginx/conf.d:/etc/nginx/conf.d` - is the app's own
 directory on the project's volume. With the folder open, its files are mounted
 in it, read only, unless you uncheck them; what the app writes beside them is
-kept. Without, it starts empty.
+kept. Without, it starts empty. One mounted read only, `:ro`, is its files
+alone, with no directory of the volume under them - unless another service
+writes it: this one then reads that one's directory, without the files.
 
 **Services** are the apps they become. For each published port, choose:
 
