@@ -3,13 +3,18 @@
 import '../styles/global.css';
 import Navbar from '../components/Navbar.astro';
 import Hero from '../components/Hero.astro';
+import Showcase from '../components/Showcase.astro';
 import LiveDemo from '../components/LiveDemo.astro';
+import Features from '../components/Features.astro';
 import BentoGrid from '../components/BentoGrid.astro';
 import Comparison from '../components/Comparison.astro';
+import Alternatives from '../components/Alternatives.astro';
 import Audience from '../components/Audience.astro';
 import HowItWorks from '../components/HowItWorks.astro';
+import FAQ from '../components/FAQ.astro';
 import CTA from '../components/CTA.astro';
 import Footer from '../components/Footer.astro';
+import { faq } from '../data/faq';
 
 const pageTitle = "HivePaaS — Your own Heroku, on your servers";
 const pageDescription = "An open-source, self-hosted PaaS on Docker Swarm. Deploy apps, databases and functions from one VPS to a whole cluster, with SSL, backups and autoscaling built in.";
@@ -28,6 +33,15 @@ const structuredData = {
   offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
   sameAs: ["https://github.com/hivepaas/hivepaas", "https://docs.hivepaas.com"],
 };
+const faqData = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faq.map(item => ({
+    "@type": "Question",
+    name: item.question,
+    acceptedAnswer: { "@type": "Answer", text: item.answer },
+  })),
+};
 ---
 
 <!doctype html>
@@ -40,7 +54,7 @@ const structuredData = {
     <title>{pageTitle}</title>
     <meta name="title" content={pageTitle} />
     <meta name="description" content={pageDescription} />
-    <meta name="keywords" content="self-hosted PaaS, Heroku alternative, Coolify alternative, Docker Swarm, open source PaaS, deploy on VPS, serverless functions, PR previews, HivePaaS" />
+    <meta name="keywords" content="self-hosted PaaS, Heroku alternative, open source PaaS, Docker Swarm, deploy on VPS, serverless functions, PR previews, HivePaaS" />
     <meta name="author" content="HivePaaS" />
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href={siteUrl} />
@@ -65,6 +79,7 @@ const structuredData = {
 
     <!-- What search engines read about the product -->
     <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+    <script type="application/ld+json" set:html={JSON.stringify(faqData)} />
 
     <!-- Favicons -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -85,11 +100,15 @@ const structuredData = {
     <!-- Main Content Flow -->
     <main>
       <Hero />
+      <Showcase />
       <LiveDemo />
+      <Features />
       <BentoGrid />
       <Comparison />
+      <Alternatives />
       <Audience />
       <HowItWorks />
+      <FAQ />
       <CTA />
     </main>
 

@@ -25,9 +25,8 @@
         <div class="bento-content-top">
           <h3 class="bento-title">Unbreakable Apps: If HivePaaS Stops, Your Services Keep Running.</h3>
           <p class="bento-text">
-            Unlike proprietary PaaS solutions that hook deep into container runtimes, HivePaaS deploys standard 
-            <strong> native Docker Swarm services</strong>. If you ever uninstall or stop HivePaaS,
-            <strong> every container, proxy route, and database continues running without a single dropped packet.</strong>
+            HivePaaS deploys every app as a standard <strong>native Docker Swarm service</strong>.
+            If you ever uninstall or stop HivePaaS, <strong>every container, proxy route, and database continues running without a single dropped packet.</strong>
           </p>
         </div>
 
@@ -98,8 +97,9 @@
         </div>
         <h3 class="bento-title">~300 MB Control Plane</h3>
         <p class="bento-text">
-          Written in Go. A Kubernetes control plane alone takes 1.2–1.5 GB of RAM at idle; HivePaaS's whole control
-          plane — API, agent, database, Redis and Traefik — runs in about 300 MB, leaving the rest of your server to your apps.
+          Written in Go. HivePaaS's whole control plane — API, agent, database, Redis and Traefik — runs in about
+          300 MB, leaving the rest of your server to your apps. A typical Kubernetes control plane, built for far
+          larger clusters, starts at around a gigabyte.
         </p>
 
         <!-- Memory Comparison Meter -->
@@ -112,11 +112,11 @@
             <span class="meter-val">~300 MB</span>
           </div>
           <div class="meter-row">
-            <span class="meter-name">K8s Master</span>
+            <span class="meter-name">K8s control plane</span>
             <div class="meter-bar-wrapper">
               <div class="meter-bar bar-k8s" style="width: 80%;"></div>
             </div>
-            <span class="meter-val">~1.2 GB</span>
+            <span class="meter-val">~1 GB+</span>
           </div>
         </div>
       </div>
@@ -403,7 +403,7 @@
   }
 
   .bar-hivepaas { background: linear-gradient(90deg, #fbbf24, #f59e0b); }
-  .bar-k8s { background: linear-gradient(90deg, #ef4444, #dc2626); }
+  .bar-k8s { background: linear-gradient(90deg, #64748b, #475569); }
 
   .meter-val {
     min-width: 75px;
