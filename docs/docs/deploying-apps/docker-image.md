@@ -182,10 +182,16 @@ Deployment Settings also set how the container runs:
 
 | Setting                     | What it does                                                                              |
 | --------------------------- | ----------------------------------------------------------------------------------------- |
-| **Command**                 | Runs this instead of the image's own command.                                             |
+| **Entrypoint**              | Runs this instead of the image's entrypoint, with the command as its arguments.           |
+| **Command**                 | Runs this instead of the image's own command: the entrypoint's arguments.                 |
 | **Working Directory**       | The directory the command runs in.                                                        |
 | **Pre-deployment Command**  | Runs in a container of the version still running, before the app is updated.              |
 | **Post-deployment Command** | Runs in a container of the new version, once it is running, such as `make db-migrate-up`. |
+
+Left empty, the entrypoint and the command are the image's. Each is split into
+words as a shell splits a line, so quote a word that holds spaces:
+`sh -c 'npm run migrate && npm start'`. No shell runs them: `$HOME` and `&&`
+reach the program as they are written, unless the program is a shell.
 
 A pre- or post-deployment command that fails fails the deployment.
 

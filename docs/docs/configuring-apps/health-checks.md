@@ -16,7 +16,8 @@ HivePaaS has two kinds of health check:
 
 In the app's **Container Settings**, under the health check, choose its **Mode**:
 
-- **Inherit**: the image's own `HEALTHCHECK`, if it has one;
+- **Inherit**: the image's own `HEALTHCHECK`, if it has one, with the timings
+  below; leave the command empty;
 - **CMD**: a command run directly, such as `curl -f http://localhost:8080/health`;
 - **CMD-SHELL**: a command run by the container's shell, such as
   `pg_isready -U "$POSTGRES_USER"`.
