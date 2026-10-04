@@ -83,6 +83,18 @@
   backdrop-filter: blur(12px);
 }
 
+/* The blur makes the navbar the containing block of its fixed children, and
+   the mobile sidebar is one: while it is open, the blur goes, so the sidebar
+   fills the screen instead of the navbar's 64 px. Its own ground is opaque,
+   since the navbar's is translucent. */
+.navbar.navbar-sidebar--show {
+  backdrop-filter: none;
+}
+
+.navbar-sidebar {
+  background-color: var(--ifm-background-surface-color);
+}
+
 /* The brand, as the landing page's header draws it. */
 .hp-brand {
   gap: 0.65rem;
