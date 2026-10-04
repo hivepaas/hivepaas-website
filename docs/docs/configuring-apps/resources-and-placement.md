@@ -65,8 +65,11 @@ asking for more instances wins.
 | **CPU**            | How much of an instance's CPU limit - or, without one, its reservation - it keeps busy, 10 to 100 %. `70 %` by default; within a tenth of it, nothing changes. |
 | **Scale-in Delay** | How long the load stays low before it scales in, 1 minute to 1 hour. `5 minutes` by default.                                                                   |
 
-- **Out** once the load has needed more instances for 30 seconds. After a
-  scale-out from CPU, the next waits a minute: a starting container burns CPU.
+- **Out** once the load has needed more instances for 30 seconds, then every
+  15 seconds while it still does. **At once for a burst**: requests over the
+  last 15 seconds needing twice the instances running, or more. Each time to
+  twice as many at most, or 4 more when that is more. From CPU, a scale-out
+  waits a minute after the last one: a starting container burns CPU.
 - **In** once the load has needed fewer for the scale-in delay, by half the way
   down every 15 seconds.
 - While it is on, **Replicas** shows the count and only Autoscale changes it; a
@@ -85,7 +88,8 @@ section when it cannot be read, and why: one that cannot holds the app as it is,
 while the other carries on. Autoscale cannot be turned on while none of what
 it scales on can be read; one already on says it is paused, and its settings
 can still be changed. It reads the minute that ended 10 seconds ago, so
-that the lines of every node - and of every Traefik replica - have arrived.
+that the lines of every node - and of every Traefik replica - have arrived,
+and its last 15 seconds apart, for a burst.
 
 A request is counted when it ends, and for a minute at most. A WebSocket, a
 stream of server-sent events or a long poll is not seen while it is open: an

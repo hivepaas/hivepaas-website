@@ -198,9 +198,11 @@ minimum and a maximum.
 | **Scale-in Delay** | How long the calls stay low before it scales in, 1 minute to 1 hour. `5 minutes` by default.                                                                     |
 
 - **Out, at once**, when calls are answered `429` because every instance is at
-  its Concurrency: by more instances the more calls were turned away, at most
-  twice as many; and when the calls running at once have needed more instances
-  for 30 seconds.
+  its Concurrency - by more instances the more calls were turned away - or
+  come in a burst: the calls running at once over the last 15 seconds needing
+  twice the instances, or more. Otherwise once they have needed more instances
+  for 30 seconds, then every 15 seconds while they still do. Each time to twice
+  as many at most, or 4 more when that is more.
 - **In, slowly**: once the calls have needed fewer for the scale-in delay, by
   half the way down every 15 seconds.
 - Turned on, it brings the function within Min and Max at once; turned off, it
