@@ -7,7 +7,8 @@ description: 'A new project from a docker-compose.yml: an app per service.'
 
 Most software you can host yourself ships a `docker-compose.yml`. Paste it, and
 HivePaaS creates a project from it: one environment, an app per service, reached
-by the same names as in the file, and deployed.
+by the same names as in the file, and deployed. It can add the services to a
+project you have, too: see [Into an existing project](#into-an-existing-project).
 
 ## 1. Paste the file
 
@@ -60,6 +61,29 @@ Below is the plan, as an import shows one: what is created, and what HivePaaS
 cannot carry over. Uncheck a service to leave it out. **Create project** creates
 it all, accepting the plan's issues; **Deploy the apps once they are created** is
 on by default.
+
+## Into an existing project
+
+In a project, open **Apps**, then **New From** and **Docker Compose**. The page is
+the same, but instead of naming a project you choose the environment: one the
+project has - the one picked in the header, at first - or **A new environment**,
+named and coloured. A project has ten environments at most.
+
+Nothing the project has is changed: the apps are only added.
+
+- **A service named as an app of the environment** - by its name, or by a name
+  that app is reached by - waits for your choice: **Use the env's app, as it
+  is**, and the service is not created, the others reaching that app by the
+  name; or **Create it under another key**. The others then still reach the
+  existing app by the old name, so change the file where they refer to it.
+- **A name the environment already answers to** is not added to the new app.
+- **A variable's secret** the environment already has is used as it is: the
+  value given here is not written. Change it in the environment's **Secrets**.
+- **A secret or config file** of the file's whose name the environment has is
+  created as `<name>-2`, so the apps read what you gave.
+
+Two environments never share data: an app's directory on the project's volume
+is its environment's and its own.
 
 ## How a service becomes an app
 
