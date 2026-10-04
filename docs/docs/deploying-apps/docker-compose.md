@@ -160,8 +160,15 @@ volume afterwards, in their **Storage Settings**.
 - **What Swarm services do not have**: `privileged`, `devices`, `network_mode`,
   `pid`, `ipc`, `cpu_shares` and the like are named on the service, and left out.
 - **The host**: a directory of the host's is mounted only for an administrator,
-  with privileged apps on in **Security**; the Docker socket never - give the app
-  [Docker API access](../configuring-apps/resources-and-placement.md#docker-api) instead.
+  with privileged apps on in **Security**.
+- **The Docker socket** is never mounted: once the app is created, give it
+  [Docker API access](../configuring-apps/resources-and-placement.md#docker-api)
+  in its **Docker API** settings - through the proxy, as you configure it there,
+  or the node's own socket, which takes an administrator with privileged apps
+  on. The proxy's socket is at `$DOCKER_HOST`, not `/var/run/docker.sock`: an
+  app that only looks there needs the node's socket, or to be told
+  `DOCKER_HOST`. The page lists each app that asked for the socket, with a link
+  to its settings.
 - **Capabilities**, ulimits, sysctls and GPUs take Write on the Cluster module;
   without it, the app is created without them.
 - **Labels** for Traefik are dropped once their hosts are read: an app is
