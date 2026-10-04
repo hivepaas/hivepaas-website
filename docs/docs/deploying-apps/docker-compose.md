@@ -74,6 +74,12 @@ when HivePaaS has a root domain; a database's or a broker's - 5432, 3306, 6379,
 compose file publishes them for a laptop and a server should not; any other is a
 port on the nodes.
 
+A service routed by **Traefik labels** -
+``traefik.http.routers.<name>.rule=Host(`app.example.com`)`` - usually publishes
+no port: its hosts are offered as its domains, on the container port the labels
+route to, and a port it publishes as well is not published by default. A path
+the rule matches is not kept: the whole host reaches the app.
+
 A service the file only builds has no image to run: give it one, or it is not
 created. HivePaaS builds from a Git repository, not from a local directory.
 
@@ -152,7 +158,8 @@ volume afterwards, in their **Storage Settings**.
   [Docker API access](../configuring-apps/resources-and-placement.md#docker-api) instead.
 - **Capabilities**, ulimits, sysctls and GPUs take Write on the Cluster module;
   without it, the app is created without them.
-- **Labels** for Traefik are dropped: an app is routed by its domains.
+- **Labels** for Traefik are dropped once their hosts are read: an app is
+  routed by its domains.
 
 Creating a project from a compose file is recorded in the **Audit Logs** as
 `compose-import`.
