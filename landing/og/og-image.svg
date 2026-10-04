@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <!-- The image a link to hivepaas.com shows when shared (og:image). Rendered to
+       public/og-image.png by og/render.mjs; edit this, then run it again. -->
+  <defs>
+    <radialGradient id="glow" cx="78%" cy="18%" r="70%">
+      <stop offset="0" stop-color="#f59e0b" stop-opacity="0.28"/>
+      <stop offset="0.55" stop-color="#8b5cf6" stop-opacity="0.08"/>
+      <stop offset="1" stop-color="#040508" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="title" x1="0" x2="1">
+      <stop offset="0" stop-color="#fbbf24"/>
+      <stop offset="1" stop-color="#f59e0b"/>
+    </linearGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" fill="none" stroke="#ffffff" stroke-opacity="0.04"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="630" fill="#040508"/>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+
+  <!-- Logo: the seven cells of the hive -->
+  <g transform="translate(80 86) scale(3)">
+    <circle cx="12.98" cy="9.30" r="4.3" fill="#543d2b"/>
+    <circle cx="23.02" cy="9.30" r="4.3" fill="#f59e0b"/>
+    <circle cx="7.95" cy="18.00" r="4.3" fill="#543d2b"/>
+    <circle cx="18.00" cy="18.00" r="4.3" fill="#f59e0b"/>
+    <circle cx="28.05" cy="18.00" r="4.3" fill="#f59e0b"/>
+    <circle cx="12.98" cy="26.70" r="4.3" fill="#543d2b"/>
+    <circle cx="23.02" cy="26.70" r="4.3" fill="#f59e0b"/>
+  </g>
+  <text x="206" y="158" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="52" font-weight="700" fill="#ffffff">Hive<tspan fill="#f59e0b">PaaS</tspan></text>
+
+  <text x="80" y="318" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="78" font-weight="800" fill="#ffffff">Your own Heroku.</text>
+  <text x="80" y="408" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="78" font-weight="800" fill="url(#title)">On your servers.</text>
+
+  <text x="80" y="482" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="30" fill="#94a3b8">Apps · Databases · Functions · Backups · Autoscaling — on Docker Swarm</text>
+
+  <rect x="80" y="528" width="700" height="52" rx="10" fill="#0c1018" stroke="#1f2937"/>
+  <text x="102" y="562" font-family="Menlo, Monaco, Courier New, monospace" font-size="22" fill="#e2e8f0"><tspan fill="#f59e0b">$</tspan> curl -fsSL https://get.hivepaas.com | sudo bash</text>
+  <text x="1120" y="562" text-anchor="end" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="26" font-weight="600" fill="#f59e0b">hivepaas.com</text>
+</svg>

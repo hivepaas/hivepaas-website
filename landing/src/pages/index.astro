@@ -11,8 +11,23 @@ import HowItWorks from '../components/HowItWorks.astro';
 import CTA from '../components/CTA.astro';
 import Footer from '../components/Footer.astro';
 
-const pageTitle = "HivePaaS - The Lightweight, Self-Hosted PaaS Built on Docker Swarm";
-const pageDescription = "Deploy applications, databases, and cron jobs instantly on your own servers with zero vendor lock-in. 100% open source, self-hosted, lightweight Docker Swarm clustering.";
+const pageTitle = "HivePaaS — Your own Heroku, on your servers";
+const pageDescription = "An open-source, self-hosted PaaS on Docker Swarm. Deploy apps, databases and functions from one VPS to a whole cluster, with SSL, backups and autoscaling built in.";
+const siteUrl = "https://hivepaas.com/";
+const ogImage = new URL("/og-image.png", siteUrl).href;
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: "HivePaaS",
+  url: siteUrl,
+  description: pageDescription,
+  applicationCategory: "DeveloperApplication",
+  operatingSystem: "Linux",
+  license: "https://www.apache.org/licenses/LICENSE-2.0",
+  image: ogImage,
+  offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+  sameAs: ["https://github.com/hivepaas/hivepaas", "https://docs.hivepaas.com"],
+};
 ---
 
 <!doctype html>
@@ -25,21 +40,31 @@ const pageDescription = "Deploy applications, databases, and cron jobs instantly
     <title>{pageTitle}</title>
     <meta name="title" content={pageTitle} />
     <meta name="description" content={pageDescription} />
-    <meta name="keywords" content="PaaS, Self-Hosted, Docker Swarm, Open Source, Kubernetes Alternative, Heroku Alternative, Cloud Hosting, Ephemeral Previews, VPS Deployments, HivePaaS" />
+    <meta name="keywords" content="self-hosted PaaS, Heroku alternative, Coolify alternative, Docker Swarm, open source PaaS, deploy on VPS, serverless functions, PR previews, HivePaaS" />
     <meta name="author" content="HivePaaS" />
     <meta name="robots" content="index, follow" />
+    <link rel="canonical" href={siteUrl} />
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://hivepaas.com/" />
+    <meta property="og:site_name" content="HivePaaS" />
+    <meta property="og:url" content={siteUrl} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="HivePaaS — Your own Heroku, on your servers." />
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={pageDescription} />
     
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://hivepaas.com/" />
+    <meta property="twitter:url" content={siteUrl} />
     <meta property="twitter:title" content={pageTitle} />
     <meta property="twitter:description" content={pageDescription} />
+    <meta property="twitter:image" content={ogImage} />
+
+    <!-- What search engines read about the product -->
+    <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
 
     <!-- Favicons -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
