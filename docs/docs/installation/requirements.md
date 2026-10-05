@@ -30,6 +30,10 @@ HivePaaS needs **Docker 29.5 or newer**.
 - **Docker is older than 29.5:** the installer offers to upgrade it. Upgrading
   restarts the containers already running.
 - **The server is already in a swarm:** it must be a manager, not a worker.
+- **The server was in another swarm, and left it:** restart Docker before
+  installing, with `sudo systemctl restart docker`. Until it restarts, Docker
+  keeps the old swarm's network addresses, and the new swarm's networks given
+  the same ones cannot start; the installer stops and says so.
 
 ## Network
 
