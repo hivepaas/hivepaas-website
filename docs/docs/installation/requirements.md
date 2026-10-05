@@ -30,10 +30,12 @@ HivePaaS needs **Docker 29.5 or newer**.
 - **Docker is older than 29.5:** the installer offers to upgrade it. Upgrading
   restarts the containers already running.
 - **The server is already in a swarm:** it must be a manager, not a worker.
-- **The server was in another swarm, and left it:** restart Docker before
-  installing, with `sudo systemctl restart docker`. Until it restarts, Docker
-  keeps the old swarm's network addresses, and the new swarm's networks given
-  the same ones cannot start; the installer stops and says so.
+- **Docker's address pools stay out of 10.0.0.0/8:** a swarm takes its
+  networks' addresses from 10.0.0.0/8. If `default-address-pools` in
+  `/etc/docker/daemon.json` gives Docker's own networks addresses from that
+  range too, the two clash and the swarm's networks cannot start. The installer
+  stops if they do: see
+  [A network cannot start](../troubleshooting/common-issues.md#a-network-cannot-start-pool-overlaps).
 
 ## Network
 
