@@ -217,6 +217,16 @@ It counts the calls from the line the runtime logs for each one (see
 turned on, and one already on is paused, and says why. It is paused too for a
 function whose **Service Mode** is not **Replicated**.
 
+A function a domain reaches is read at the proxy as well: its requests in
+flight there, from when the proxy sends one on to when the function answers,
+at the same **Target** an instance, and whichever needs more instances is
+taken. The handler's time leaves out a request waiting in the runtime before
+it starts - and a Node.js or Bun function, on one thread, short of CPU keeps
+its handler quick while requests queue: the proxy sees them waiting. The
+calls still count what the proxy does not: those from inside the project, and
+those turned away. A request the proxy could not get to the function - a `502`
+or a `503` - is no load.
+
 :::note[What it does not do]
 
 - **Scale to zero**: one instance at least is up, to answer the first call.
