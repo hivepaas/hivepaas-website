@@ -14,7 +14,7 @@ On the server:
 
 ```bash
 curl -fsSL https://get.hivepaas.com -o install.sh
-curl -fsSLO https://github.com/hivepaas/hivepaas/releases/download/v1.0.0-beta1/install.env
+curl -fsSLO https://github.com/hivepaas/hivepaas/releases/download/v1.0.0-beta2/install.env
 ```
 
 Both come with a release: `get.hivepaas.com` is the installer of the current
