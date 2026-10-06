@@ -33,7 +33,10 @@ over the last hour, 6 hours, 24 hours or 7 days:
 They are counted from Traefik's access log, which HivePaaS stores with the
 logs: stored logs must be on, in **System → Logging**. Traefik writes the access
 log as JSON and without the query string, which can carry a token or an email;
-the client's IP address is kept.
+the client's IP address is kept. Only the fields HivePaaS counts by and a few to
+read a line by are written - the service, replica, method, path, statuses and
+durations; the client, host, router, protocol, response size, retries and TLS
+version - so that each line takes less room and is read back faster.
 
 An installation from before this writes the access log in an older form: the
 tab says so. An administrator saves **System → Traefik → Config Options** once,

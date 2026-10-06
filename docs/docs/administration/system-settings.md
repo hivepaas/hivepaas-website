@@ -38,7 +38,9 @@ dashboard unreachable undoes itself. See
 level, access log, HTTP/3, and extra command-line arguments. The access log is
 what an app's HTTP numbers are counted from, in its
 [Metrics](../configuring-apps/logs-and-terminal.md#metrics) tab: **Access Log**
-writes it as JSON, without the query string. **Open Ports** lists
+writes it as JSON, without the query string, and with only the fields HivePaaS
+counts by and a few to read a line by. To keep another field too, add it to the
+arguments, such as `--accesslog.fields.names.StartUTC=keep`. **Open Ports** lists
 the ports Traefik opened for apps' TCP domains.
 
 Traefik's startup command is applied on trial too.
