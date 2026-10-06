@@ -17,7 +17,7 @@ The system backup is off until you set it up. In **Settings → Data Backup**:
 | **Back Up**             | HivePaaS's database, the spec of the whole installation, or both.                      |
 | **Backup Repository**   | A [backup repository](./backup-repositories.md) of the installation, not of a project. |
 | **Secrets in the Spec** | **Omit**, **Plaintext**, or **Encrypted** with a **Spec Passphrase**.                  |
-| **Scheduling**          | When it runs: daily is the default.                                                    |
+| **Scheduling**          | When it runs: daily at 00:30 in the installation's timezone is the default.            |
 
 Then turn it on. **Run Backup Now** takes one at once.
 

@@ -29,7 +29,15 @@ curl -fsSL https://get.hivepaas.com | sudo bash
 | **Root domain**            | The domain your apps get subdomains of: the app domain, or a domain it is under. Enter keeps the one suggested, such as `example.com`.         |
 | **App data directory**     | Where HivePaaS keeps its data. Enter keeps `/var/lib/hivepaas`.                                                                                |
 | **Project data directory** | Where your projects' data goes. Enter keeps `project_data` in the app data directory.                                                          |
+| **Timezone**               | The hours scheduled jobs run at, a zone name such as `Asia/Ho_Chi_Minh`. Enter keeps the server's own, or `UTC`.                               |
 | **App secret**             | The key every stored secret is encrypted with. Enter generates one; give your own only to reuse one, with 32 characters or more and no spaces. |
+
+The timezone is when HivePaaS's own daily jobs run - the cleanup after its
+midnight, the backup half an hour later - and what the hours of a scheduled
+job's cron expression mean. To change it later, run the installer again with
+`HIVEPAAS_TIMEZONE` set and `--redeploy`: the daily jobs still at their default
+times move to the new timezone, and cron expressions are read in it from then
+on. An installation from before the installer asked runs in UTC until then.
 
 When Docker is missing or too old, it asks first whether to install or upgrade
 it.

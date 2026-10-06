@@ -21,8 +21,9 @@ In the app's **Scheduled Jobs**, create a scheduled job:
 | Retries and timeout            | How many times to retry a run that fails, how long to wait between tries, and how long a run may take. |
 | **Notification Configuration** | Who hears when a run succeeds or fails.                                                                |
 
-A cron expression such as `0 3 * * *` runs the job at 3:00 every day. A job with
-**No schedule** runs only by hand, or as a step of a job sequence.
+A cron expression such as `0 3 * * *` runs the job at 3:00 every day, in the
+installation's timezone, the one the installer asked for: the field says which.
+A job with **No schedule** runs only by hand, or as a step of a job sequence.
 
 Retry only a command that is safe to run twice.
 

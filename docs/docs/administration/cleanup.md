@@ -19,7 +19,9 @@ of old tasks and deployments add up. A cleanup job clears them on a schedule.
 | **Cache Cleanup Options**        | Build caches and repository caches, past their retention.                                                            |
 | **Docker Swarm Cleanup Options** | On every node: stopped containers, unused images, networks and volumes, and the build cache, each if chosen.         |
 
-It runs on its schedule, daily by default: a **Cron Expression** or an interval.
+It runs on its schedule: by default every day at midnight in the installation's
+timezone, the one the installer asked for. Its schedule is a **Cron Expression**
+or an interval.
 **Run Cleanup Now** runs it at once. A notification can report each run.
 
 By default, it keeps tasks, deployments, audit logs, system errors and deleted
