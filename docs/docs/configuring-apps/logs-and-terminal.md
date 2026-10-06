@@ -39,9 +39,11 @@ durations; the client, host, router, protocol, response size, retries and TLS
 version - so that each line takes less room and is read back faster.
 
 An installation from before this writes the access log in an older form: the
-tab says so. An administrator saves **System → Traefik → Config Options** once,
-with **Access Log** on - Traefik restarts, which takes a few seconds, on trial
-as any change of its startup command.
+tab says so. Updating HivePaaS brings it to the current form, and the update
+plan says Traefik restarts for it, which takes a few seconds. Without waiting
+for an update, an administrator saves **System → Traefik → Config Options**
+once, with **Access Log** on - Traefik restarts on trial, as for any change of
+its startup command.
 
 An app with no domain has no requests through Traefik, and no HTTP numbers. A
 [function](../deploying-apps/functions.md) has its calls there too, under
