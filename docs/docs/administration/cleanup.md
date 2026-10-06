@@ -31,6 +31,28 @@ It also removes apps left behind by a project or environment that was deleted.
 **Prune Volumes** deletes anonymous volumes no container uses. Named volumes,
 such as apps' storage, are kept.
 
+## System apps
+
+With **System Apps → Sync With Settings**, on by default, each run also brings
+the apps HivePaaS runs for itself - the registry, and the logging backend and
+collector - to their settings in **System → Registry** and **System →
+Logging**:
+
+- One switched off is removed. Its data - the registry's images, the stored
+  logs - is kept.
+- One switched on but missing is created, and one whose service is gone is
+  created again, with its data.
+- One running an image or settings other than its own is deployed again.
+
+What a deployment would not mend is reported, not changed: an app scaled to
+zero, or one whose containers keep failing. The run then fails, so that its
+notification says what needs looking at; its log has the details.
+
+OBI is checked too, on the nodes **System → Logging** lists for performance
+data. A node no longer in the cluster is taken off the list. A node whose agent
+is not running, or where OBI cannot run - an old kernel, too little memory - is
+reported. Nothing is synced while HivePaaS is being updated.
+
 ## Clearing caches now
 
 **Force Clear Build Cache** and **Force Clear Repo Cache**, on the same page,
