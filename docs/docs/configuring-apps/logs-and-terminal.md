@@ -72,9 +72,10 @@ Under **Routes** and **Dependencies**, the same tab shows what an app serves and
 what it calls, measured inside its containers by OBI, an eBPF program HivePaaS
 runs on the nodes an administrator chooses:
 
-- **Routes**: every request the app answered - from Traefik, or from another app
-  of its project - by route as its framework names it, such as `/users/{id}`:
-  how many, how many failed (a `5xx` or an error), and p50, p95 and p99;
+- **Routes**: every request the app answered - from Traefik, from another app
+  of its project, or from its own health check (a function's is left out) - by
+  route as its framework names it, such as `/users/{id}`: how many, how many
+  failed (a `5xx` or an error), and p50, p95 and p99;
 - **Dependencies**: every call the app made, by kind - HTTP, database, RPC - and
   by peer: another app of its environment, shown as itself; a database, by its
   system and database, such as `postgresql/shop`; or an outside host.
