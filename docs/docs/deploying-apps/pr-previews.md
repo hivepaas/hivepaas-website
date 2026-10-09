@@ -27,6 +27,9 @@ It starts as a copy of the app:
   built from the newest commit, with the app's build settings.
 - **Its container** is a copy of the app's as it is when the preview is made -
   its command, resources and health check - with **one replica**.
+- **Its storage** is its own: each of the app's mounts, at the same path, on a
+  directory of the preview's, empty when it starts. The preview never reads or
+  writes the app's data, and what it wrote goes with it.
 - **Its domains** are the app's, prefixed with `pr-42-`: see
   [Its domain](#its-domain).
 - **Its env vars** are the app's. A reference to a database app cloned for the

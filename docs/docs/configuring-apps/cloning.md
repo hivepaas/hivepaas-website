@@ -31,6 +31,11 @@ The settings are kept, so the next clone of the app is one click.
 | **Clone Scheduled Jobs**           | Its scheduled jobs.                                                        |
 | **Clone Volumes**                  | Its storage mounts, and with **Clone Volume Data**, the data on them.      |
 
+With **Clone Volumes**, each of the copy's mounts is a directory of its own,
+named after the copy, on the same volume: empty, or a copy of the app's with
+**Clone Volume Data**. Without it, the copy has no storage: it never reads or
+writes the app's.
+
 **Target Status** and **Target Replicas** say whether the copy starts, and with
 how many instances.
 
