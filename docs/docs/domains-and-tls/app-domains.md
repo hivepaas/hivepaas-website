@@ -63,6 +63,15 @@ Add configurations to a domain to shape its traffic:
 | **Websocket Configuration**       | Keeps WebSocket connections working.                                                          |
 | **Load Balancing Configuration**  | How requests are spread over the app's replicas: round robin, or others.                      |
 
+**Path Rewrite Configuration** replaces a path in one of two ways:
+
+- **Replace Path** `/old`, **Replace Path With** `/new`: `/old` becomes `/new`,
+  and what is under it too - `/old/page` becomes `/new/page`. The path is taken
+  as written, dots and all; `/older` and the other paths are left alone.
+- With **Is Regex**, **Replace Path** is a pattern, and **Replace Path With**
+  may use its groups: `^/blog/([0-9]+)$` with `/posts/$1` turns `/blog/42` into
+  `/posts/42`. Paths the pattern does not match are left alone.
+
 Basic auth users are set up once, in **Integrations → Basic Auth**, globally or
 in the project.
 
