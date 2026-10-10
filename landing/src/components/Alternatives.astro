@@ -19,6 +19,18 @@ const projects = [
   },
 ];
 
+// What HivePaaS holds to in all it does, above the list of what it does.
+const pillars = [
+  {
+    title: 'Full-featured, yet light',
+    text: 'One Go service and a small agent per node, on the Docker Swarm that Docker already includes: no other cluster to run, and one server is enough to start.',
+  },
+  {
+    title: 'Security first',
+    text: 'Releases signed offline, one key post-quantum, with images scanned and pinned by digest. Secrets encrypted at rest, and hidden from any API key not allowed to reveal them.',
+  },
+];
+
 const focus = [
   'Functions next to your apps: Node.js & TypeScript, Bun, Python and Go',
   'Autoscaling on requests or CPU, and request metrics measured by eBPF',
@@ -51,6 +63,14 @@ const focus = [
 
     <div class="bento-card focus-card">
       <h3 class="focus-title">Where HivePaaS puts its focus</h3>
+      <div class="focus-pillars">
+        {pillars.map(p => (
+          <div class="focus-pillar">
+            <span class="pillar-title">{p.title}</span>
+            <span class="pillar-text">{p.text}</span>
+          </div>
+        ))}
+      </div>
       <ul class="focus-list">
         {focus.map(f => <li>{f}</li>)}
       </ul>
@@ -106,6 +126,41 @@ const focus = [
     font-weight: 750;
     color: var(--accent-amber-light);
     margin-bottom: 1.1rem;
+  }
+
+  .focus-pillars {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem 2rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  @media (min-width: 800px) {
+    .focus-pillars {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .focus-pillar {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    padding-left: 1rem;
+    border-left: 3px solid var(--accent-amber);
+  }
+
+  .pillar-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+
+  .pillar-text {
+    font-size: 0.92rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
   }
 
   .focus-list {
