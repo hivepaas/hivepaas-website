@@ -63,7 +63,7 @@
   mask: var(--hp-icon) center / contain no-repeat;
 }
 
-/* A page of its own at the top level, such as CLI: set like a section, with its
+/* A page of its own at the top level: set like a section, with its
    icon from its sidebar_class_name. The icon is ::after, put first, because
    ::before is the current page's edge. */
 .theme-doc-sidebar-item-link-level-1[class*='hp-icon-'] > .menu__link {

@@ -9,7 +9,7 @@ A CI pipeline drives HivePaaS through its [REST API](./rest-api.md): deploy once
 the tests pass, build the image in CI and deploy it, restart an app, run a job.
 The examples call the API with `curl`, and read its answers with `jq`. They are
 GitHub Actions workflows, and the same commands work in any CI. The
-[CLI](../cli.md#in-ci) does the same with one command each: `hivepaas deploy`
+[CLI](../cli/ci.md) does the same with one command each: `hivepaas deploy`
 waits for the deployment, and `hivepaas job run` for the job.
 
 ## Before you start
