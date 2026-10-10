@@ -19,7 +19,7 @@ export const faq: FaqItem[] = [
   {
     question: 'Can I run it on a single server?',
     answer:
-      'Yes. HivePaaS installs on one Linux server, which becomes the manager of a swarm, and more servers can join it later as workers. 4 CPUs, 8 GB of memory and a 100 GB disk are recommended; it runs on less, with less room left for your apps.',
+      'Yes. HivePaaS installs on one Linux server, which becomes the manager of a swarm, and more servers can join it later as workers. 4 CPUs, 8 GB of memory and a 100 GB disk are recommended; it runs on less, with less room left for your apps - even a server with 1 CPU and 1 GB of memory runs it smoothly.',
   },
   {
     question: 'Which Linux distributions does it support?',
