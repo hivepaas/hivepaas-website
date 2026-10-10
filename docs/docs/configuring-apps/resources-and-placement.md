@@ -25,20 +25,26 @@ capabilities needs **Write** access to the **Cluster** module.
 
 ## GPUs
 
-**Enable GPU**, in the app's **Resources**, reserves one GPU for it: Docker
-Swarm runs the app on a node that has one free. While every GPU is taken, the
-app waits, and its **Instances** say why: _no suitable node (insufficient
-resources)_. For more than one, reserve them under **Resource Reservation →
-Generic Resources** instead: **NVIDIA-GPU** with the count, such as `2`.
+An app is given a GPU in its **Resources**, under **Resource Reservation →
+Generic Resources**: the name its node lists its GPUs as, with how many -
+**NVIDIA-GPU** or **AMD_GPU**, and `1`. Docker Swarm runs the app on a node
+that has that many free, and tells the container which ones are its. While
+every GPU is taken, the app waits, and its **Instances** say why: _no
+suitable node (insufficient resources)_.
 
 Giving an app a GPU, or taking it away, needs **Write** access to the
-**Cluster** module. A Docker Compose file's `gpus`, or its device reservations
-for GPUs, reserve them the same way.
+**Cluster** module - any generic resource with `GPU` in its name. A Docker
+Compose file's `gpus`, or its device reservations for GPUs, reserve
+**NVIDIA-GPU**; its `generic_resources` are kept as they are.
 
 ### Preparing a node
 
-A node offers its GPUs to apps once Docker on it lists them. On each node with
-NVIDIA GPUs:
+A node offers its GPUs to apps once Docker on it lists them, and runs its
+containers with the GPU maker's runtime, which hands each container the GPUs
+Swarm reserved for it. Restart Docker after the changes:
+`sudo systemctl restart docker`.
+
+**NVIDIA**
 
 1. Install the NVIDIA driver and the
    [NVIDIA Container Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html).
@@ -59,7 +65,26 @@ NVIDIA GPUs:
    and set it to `"DOCKER_RESOURCE_NVIDIA-GPU"`: Swarm names the GPU it
    reserved for a container in that variable, and the runtime gives the
    container that GPU.
-4. Restart Docker: `sudo systemctl restart docker`.
+
+**AMD**
+
+1. Install the ROCm driver and the
+   [AMD Container Toolkit](https://instinct.docs.amd.com/projects/container-toolkit/en/latest/container-runtime/overview.html),
+   1.2.0 or later.
+2. In `/etc/docker/daemon.json`, make AMD's runtime the default and list the
+   node's GPUs, one entry each, by UUID, as AMD's
+   [Docker Swarm guide](https://instinct.docs.amd.com/projects/container-toolkit/en/latest/container-runtime/docker-swarm.html)
+   shows:
+
+   ```json
+   {
+     "default-runtime": "amd",
+     "runtimes": {
+       "amd": { "path": "amd-container-runtime", "runtimeArgs": [] }
+     },
+     "node-generic-resources": ["AMD_GPU=0x..."]
+   }
+   ```
 
 ## Replicas and modes
 
