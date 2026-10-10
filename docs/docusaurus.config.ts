@@ -68,6 +68,9 @@ const config: Config = {
       'classic',
       {
         docs: {
+          // The site is docs.hivepaas.com: the docs are at its root, not under
+          // a /docs of their own. nginx.conf sends the old /docs/ links here.
+          routeBasePath: '/',
           sidebarPath: './sidebars.ts',
           editUrl: EDIT_URL,
         },
@@ -88,7 +91,7 @@ const config: Config = {
       {
         hashed: true,
         indexBlog: false,
-        docsRouteBasePath: ['/docs', '/api'],
+        docsRouteBasePath: ['/', '/api'],
         docsDir: ['docs', 'api'],
         highlightSearchTermsOnTargetPage: true,
         explicitSearchResultPath: true,
@@ -182,12 +185,12 @@ const config: Config = {
           items: [
             {
               label: 'Getting started',
-              to: '/docs/getting-started/introduction',
+              to: '/getting-started/introduction',
             },
-            { label: 'Installation', to: '/docs/installation/requirements' },
+            { label: 'Installation', to: '/installation/requirements' },
             {
               label: 'Troubleshooting',
-              to: '/docs/troubleshooting/common-issues',
+              to: '/troubleshooting/common-issues',
             },
             { label: 'API reference', to: '/api/hivepaas-api' },
             { label: 'Release notes', href: `${GITHUB_URL}/releases` },
