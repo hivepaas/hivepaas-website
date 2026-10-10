@@ -3,6 +3,7 @@
   "position": 3,
   "link": {
     "type": "generated-index",
+    "slug": "/deploying-apps",
     "description": "Getting your apps running: from images, from Git, from the app store."
   },
   "className": "hp-icon-rocket"

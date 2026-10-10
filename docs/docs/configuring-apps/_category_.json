@@ -3,6 +3,7 @@
   "position": 4,
   "link": {
     "type": "generated-index",
+    "slug": "/configuring-apps",
     "description": "Everything an app can be told: its environment, storage, resources and jobs."
   },
   "className": "hp-icon-sliders-horizontal"

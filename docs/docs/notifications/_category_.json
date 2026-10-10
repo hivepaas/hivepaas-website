@@ -3,6 +3,7 @@
   "position": 8,
   "link": {
     "type": "generated-index",
+    "slug": "/notifications",
     "description": "Hearing about deployments, failures and system events."
   },
   "className": "hp-icon-bell"

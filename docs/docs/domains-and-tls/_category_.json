@@ -3,6 +3,7 @@
   "position": 5,
   "link": {
     "type": "generated-index",
+    "slug": "/domains-and-tls",
     "description": "Domains for your apps, and the certificates that secure them."
   },
   "className": "hp-icon-globe"

@@ -3,6 +3,7 @@
   "position": 13,
   "link": {
     "type": "generated-index",
+    "slug": "/troubleshooting",
     "description": "When something does not work: finding out why, and fixing it."
   },
   "className": "hp-icon-life-buoy"

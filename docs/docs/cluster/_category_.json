@@ -3,6 +3,7 @@
   "position": 9,
   "link": {
     "type": "generated-index",
+    "slug": "/cluster",
     "description": "The Docker Swarm under HivePaaS: its nodes, networks and volumes."
   },
   "className": "hp-icon-container"

@@ -3,6 +3,7 @@
   "position": 11,
   "link": {
     "type": "generated-index",
+    "slug": "/integrations",
     "description": "Driving HivePaaS from scripts, CI and AI assistants."
   },
   "className": "hp-icon-puzzle"

@@ -3,6 +3,7 @@
   "position": 1,
   "link": {
     "type": "generated-index",
+    "slug": "/getting-started",
     "description": "What HivePaaS is, and your first app on it."
   },
   "className": "hp-icon-book-open"
