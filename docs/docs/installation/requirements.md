@@ -17,7 +17,7 @@ Swarm. More servers can join it later, as workers.
   - SLES and openSUSE;
   - Arch and Manjaro;
   - Alpine.
-- **4 CPUs, 8 GB of memory and a 40 GB disk are recommended.** HivePaaS runs on
+- **4 CPUs, 8 GB of memory and a 100 GB disk are recommended.** HivePaaS runs on
   less, with less room left for your apps: the installer warns and goes on.
 
 A fresh server is best. The installer installs what is missing itself.
