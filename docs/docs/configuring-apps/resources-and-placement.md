@@ -20,8 +20,46 @@ Set a memory limit on every app: an app without one can take the memory of every
 other app on its node.
 
 The same page has the finer settings: swap, `/dev/shm` size, process limits,
-ulimits, kernel parameters, GPUs, and Linux capabilities. Changing capabilities
-needs **Write** access to the **Cluster** module.
+ulimits, kernel parameters, [GPUs](#gpus), and Linux capabilities. Changing
+capabilities needs **Write** access to the **Cluster** module.
+
+## GPUs
+
+**Enable GPU**, in the app's **Resources**, reserves one GPU for it: Docker
+Swarm runs the app on a node that has one free. While every GPU is taken, the
+app waits, and its **Instances** say why: _no suitable node (insufficient
+resources)_. For more than one, reserve them under **Resource Reservation →
+Generic Resources** instead: **NVIDIA-GPU** with the count, such as `2`.
+
+Giving an app a GPU, or taking it away, needs **Write** access to the
+**Cluster** module. A Docker Compose file's `gpus`, or its device reservations
+for GPUs, reserve them the same way.
+
+### Preparing a node
+
+A node offers its GPUs to apps once Docker on it lists them. On each node with
+NVIDIA GPUs:
+
+1. Install the NVIDIA driver and the
+   [NVIDIA Container Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html).
+2. In `/etc/docker/daemon.json`, make NVIDIA's runtime the default and list the
+   node's GPUs, one entry each, by the UUID `nvidia-smi -L` prints for it:
+
+   ```json
+   {
+     "default-runtime": "nvidia",
+     "runtimes": {
+       "nvidia": { "path": "nvidia-container-runtime", "runtimeArgs": [] }
+     },
+     "node-generic-resources": ["NVIDIA-GPU=GPU-1d2c3b4a-..."]
+   }
+   ```
+
+3. In `/etc/nvidia-container-runtime/config.toml`, uncomment `swarm-resource`
+   and set it to `"DOCKER_RESOURCE_NVIDIA-GPU"`: Swarm names the GPU it
+   reserved for a container in that variable, and the runtime gives the
+   container that GPU.
+4. Restart Docker: `sudo systemctl restart docker`.
 
 ## Replicas and modes
 

@@ -170,7 +170,9 @@ volume afterwards, in their **Storage Settings**.
   `DOCKER_HOST`. The page lists each app that asked for the socket, with a link
   to its settings.
 - **Capabilities**, ulimits, sysctls and GPUs take Write on the Cluster module;
-  without it, the app is created without them.
+  without it, the app is created without them. GPUs are reserved by count, as
+  [Resources](../configuring-apps/resources-and-placement.md#gpus) reserves
+  them: `count: all` reserves one.
 - **Labels** for Traefik are dropped once their hosts are read: an app is
   routed by its domains.
 
