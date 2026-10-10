@@ -6,3 +6,4 @@ dist/
 yarn.lock
 docs/api/
 docs/openapi/
+docs/docs/cli/commands/
