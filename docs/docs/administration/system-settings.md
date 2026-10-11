@@ -115,6 +115,12 @@ cloud storage bucket, and removes old builds, keeping the newest of each app.
 Builds push to it once it is on: see
 [From a Git repository](../deploying-apps/git-repository.md#more-than-one-node).
 
+## Image Scanning
+
+**System → Image Scanning** runs Trivy in the cluster, to scan the images apps
+run for known vulnerabilities: after each deployment, every day, and when asked.
+See [Image scanning](../configuring-apps/image-scanning.md).
+
 ## AI
 
 **System → AI** turns on HivePaaS's MCP server, for AI assistants. See
