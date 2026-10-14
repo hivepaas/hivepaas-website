@@ -103,8 +103,8 @@ runs, and say which nodes could run it.
 
 Each HivePaaS release names the OBI it runs. An update moves it with the agent:
 each node's agent pulls the new OBI while the old one still runs, then swaps
-them. The old image goes with the daily system cleanup, which prunes unused
-images on every node.
+them. The old image goes with the daily system cleanup, which removes images
+left unused on every node - see [Cleanup](./cleanup.md#images).
 
 ## Registry
 

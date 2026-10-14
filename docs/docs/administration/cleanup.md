@@ -33,6 +33,25 @@ It also removes apps left behind by a project or environment that was deleted.
 **Prune Volumes** deletes anonymous volumes no container uses. Named volumes,
 such as apps' storage, are kept.
 
+## Images
+
+**Prune Images** removes, on every node, the images left unused for the
+**Object Retention**: 3 days by default. The count starts when a run first
+finds an image unused, not when the image was built or pulled: an image pulled
+ten days ago and used until yesterday goes three days from today.
+
+An image is in use, however old, while:
+
+- a container on the node runs it, even a stopped one;
+- a service names it, even one scaled to zero, or ran it before its last update,
+  as a rollback would run it again;
+- the running HivePaaS release names it: its own apps, OBI, Trivy and the
+  function runtimes.
+
+Each run notes the unused images in HivePaaS's Redis. A restart of Redis starts
+every count over: images then go later, never sooner. With an empty **Object
+Retention**, an unused image goes at the first run.
+
 ## System apps
 
 With **System Apps → Sync With Settings**, on by default, each run also brings
