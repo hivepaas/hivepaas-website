@@ -34,7 +34,8 @@ HivePaaS's own apps are not scanned.
 The app's **Security** tab shows:
 
 - the image, its platform and its OS - with a warning when the OS is past its
-  support, as its packages get no more fixes;
+  support, as its packages get no more fixes - and whether the last scan read it
+  from its registry (see [Where scans run](#where-scans-run));
 - how many vulnerabilities of each severity it carries, and how many have a fix;
 - the vulnerabilities, the worst first: the package, the version installed and
   the version that fixes it. **Fixable only** is on by default;
@@ -65,28 +66,52 @@ again at once.
 
 ## Switching it on
 
-In **System → Image Scanning → Configuration**, check **Enabled** and save.
-HivePaaS then runs:
+In **System → Image Scanning → Configuration**, check **Enabled**, choose the
+**Data volume**, and save. Each scan is then a container of Trivy's image,
+started for it and removed when it ends: nothing runs between scans. It runs
+under the **CPU limit** and **Memory limit** set here, 1 core and 512mb by
+default.
 
-- **Trivy's server**, which holds the vulnerability database: about 1.4 GB on
-  disk, fetched in under a minute, and renewed by itself every hour;
-- **a runner on every node**, which reads the images of its node and asks the
-  server. It runs the scans of its node one at a time, under the **CPU limit**
-  and **Memory limit** set here (1 core and 512mb by default).
+Trivy keeps on the volume, in a directory `hivepaas/scanning/trivy`, its
+vulnerability database (about 1.5 GB, renewed by the first scan after each
+upstream rebuild), its Java database (about 1.4 GB, fetched by the first scan
+of an image with Java libraries and renewed every week) and what it has
+analyzed, so an image scanned before is scanned again in under a second. The
+volume can be changed at any time: the next scan fetches the databases again.
+A Tmpfs volume is refused, as it is emptied after every scan. A volume in use
+cannot be deleted while scanning is on.
 
-A node that runs an image with Java libraries also fetches Trivy's Java
-database once, about 1 GB, and renews it every week.
+### Where scans run
 
-The page shows whether the server runs, on how many nodes the runners run, and
-how old the database of the last scan is. **Apps** lists every scanned app and
-what its images carry; **Actions** runs the daily scan now.
+The volume decides where scans run, as it decides where an app that stores its
+data on it runs:
+
+| The volume                                | Scans run                                                            |
+| ----------------------------------------- | -------------------------------------------------------------------- |
+| On a node, or **Current node**            | on that node                                                         |
+| **By node label**                         | on a node carrying the label: the one running the image, if one does |
+| **All nodes (shared storage)**, as on NFS | on the node running each image                                       |
+
+A scan on the node that runs the image reads it from that node's Docker. A scan
+on another node reads it from its registry, by its digest, so it is exactly
+what runs; with the credentials the app pulls its image with. An image that is
+on its node only and in no registry - loaded there by hand - cannot be read
+elsewhere: its scan says so. In a cluster of one node, or with a shared volume,
+every image is read where it runs.
+
+Scans on the same volume run one at a time: Trivy's cache is opened by one at a
+time.
+
+The page shows the volume, where scans run, and how old the database of the
+last scan is. **Apps** lists every scanned app and what its images carry;
+**Actions** runs the daily scan now.
 
 The daily scan's schedule and notification are set on the same page. Its
 notification is sent only when the scan found something new: an app that runs a
 fixable CRITICAL or HIGH vulnerability it did not run at the last report.
 
-Switching it off removes the server and the runners. What the scans found stays
-on the apps' Security tabs.
+Switching it off scans nothing more. What the scans found stays on the apps'
+Security tabs, and the volume keeps Trivy's data.
 
 ### Without access to the internet
 

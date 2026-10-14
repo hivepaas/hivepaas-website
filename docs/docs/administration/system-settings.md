@@ -117,9 +117,11 @@ Builds push to it once it is on: see
 
 ## Image Scanning
 
-**System → Image Scanning** runs Trivy in the cluster, to scan the images apps
-run for known vulnerabilities: after each deployment, every day, and when asked.
-See [Image scanning](../configuring-apps/image-scanning.md).
+**System → Image Scanning** scans the images apps run for known
+vulnerabilities, with Trivy: after each deployment, every day, and when asked.
+Each scan is a container started for it; Trivy's databases are kept on a volume
+you choose, which decides where scans run. See
+[Image scanning](../configuring-apps/image-scanning.md).
 
 ## AI
 
