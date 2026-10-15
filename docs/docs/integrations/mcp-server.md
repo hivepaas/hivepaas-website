@@ -30,11 +30,11 @@ HTTP.
 The server takes an API key, and nothing else. Create one in **Your Account → API
 Keys**, and give it what the assistant should do, on the **Project** module:
 
-| The assistant                                                                           | The key needs |
-| --------------------------------------------------------------------------------------- | ------------- |
-| reads apps, logs, deployments, tasks and the app store                                  | **Read**      |
-| restarts, stops, starts and redeploys apps                                              | **Execute**   |
-| installs apps, creates and tries functions, changes their configuration, schedules jobs | **Write**     |
+| The assistant                                                                                         | The key needs |
+| ----------------------------------------------------------------------------------------------------- | ------------- |
+| reads apps, logs, deployments, tasks and the app store                                                | **Read**      |
+| restarts, stops, starts and redeploys apps                                                            | **Execute**   |
+| installs apps, creates and tries functions, changes their configuration, schedules jobs, scans images | **Write**     |
 
 Leave the key's **Reveal secrets** capability off. The MCP server never asks for
 a secret, and without the capability the key cannot be used to read one through
@@ -169,6 +169,9 @@ offer yet: use one of the clients above.
 - a function's calls: how many, how many failed, and how long they took;
 - an app's [pull request previews](../deploying-apps/pr-previews.md);
 - tasks and their logs, what needs attention, the cluster's nodes and volumes;
+- an app's [known vulnerabilities](../configuring-apps/image-scanning.md): by
+  default those CRITICAL and HIGH a fixed version is out for, with the version
+  that fixes each;
 - the app store: its catalog, templates, and their image tags;
 - the env vars that connect an app to a database, a cache or a store of its
   env, as **Link to another app** suggests them, and those a database's image
@@ -193,7 +196,8 @@ offer yet: use one of the clients above.
 - make a preview of an app from a pull request or a branch, told first which
   secrets it goes without;
 - create a scheduled job - a command, or a request to a function - or run one
-  now.
+  now;
+- scan an app's images for vulnerabilities now.
 
 Nothing is ever deleted through the MCP server.
 

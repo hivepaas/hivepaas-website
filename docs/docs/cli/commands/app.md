@@ -131,6 +131,32 @@ Flags:
 | `--replicas int` | run this many replicas |
 | `--requests int` | autoscale on the requests in flight each replica takes |
 
+## hivepaas app scan
+
+Ask the server to scan the images the app runs now, as the Security tab's Scan now does. The scan is a task; with --wait the command follows it, then lists what it found as `hivepaas app vulns` does, and takes its flags. A scan that fails exits 8.
+
+```text
+hivepaas app scan [APP] [flags]
+```
+
+Examples:
+
+```bash
+hivepaas app scan api
+hivepaas deploy && hivepaas app scan --wait --fail-on critical
+```
+
+Flags:
+
+| Flag | Description |
+| --- | --- |
+| `--all` | list the findings no fixed version is out for too |
+| `--fail-on string` | exit 11 when the app runs a fixable finding of this severity or worse that no ignore sets aside: critical, high, medium or low |
+| `--ignored` | list the findings an ignore sets aside too, with why |
+| `--severity strings` | only these severities: critical,high,medium,low,unknown |
+| `--timeout duration` | how long to wait for the scan (default: `15m0s`) |
+| `--wait` | wait for the scan, then list what it found |
+
 ## hivepaas app start
 
 Start an app that was stopped
@@ -148,3 +174,30 @@ hivepaas app stop [APP]
 ```
 
 The [global flags](./index.md#global-flags) apply to every command.
+
+## hivepaas app vulns
+
+List what the images the app runs carry, as the server's image scanning found it when it last scanned them: each image with its counts by severity, fixable/all, then the findings, the worst first - those a fixed version is out for, unless --all. Findings an ignore sets aside are left out of the counts and the list; --ignored lists them too, with why.
+
+--fail-on is a gate for a CI job: the command exits 11 when the app runs a fixable finding of that severity or worse that no ignore sets aside. It looks at the last scan: `hivepaas app scan --wait` scans first.
+
+```text
+hivepaas app vulns [APP] [flags]
+```
+
+Examples:
+
+```bash
+hivepaas app vulns api
+hivepaas app vulns --severity critical,high --all
+hivepaas app vulns --fail-on high -o json
+```
+
+Flags:
+
+| Flag | Description |
+| --- | --- |
+| `--all` | list the findings no fixed version is out for too |
+| `--fail-on string` | exit 11 when the app runs a fixable finding of this severity or worse that no ignore sets aside: critical, high, medium or low |
+| `--ignored` | list the findings an ignore sets aside too, with why |
+| `--severity strings` | only these severities: critical,high,medium,low,unknown |

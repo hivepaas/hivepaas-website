@@ -45,3 +45,18 @@ installation.
 `--timeout` changes that. `job run` waits for a scheduled job's run the same
 way. A command that would ask at a terminal needs `--yes` here: see
 [Scripting](./scripting.md).
+
+## Failing on vulnerabilities
+
+After the deploy, a step can scan the images the app now runs and fail the job
+when they carry a fixable vulnerability of a severity, or worse, that no ignore
+sets aside - with exit code 11:
+
+```bash
+hivepaas app scan -p shop -e production -a api --wait --fail-on critical
+```
+
+It lists what it found either way. `hivepaas app vulns --fail-on high` checks
+the last scan without scanning again. The installation must have
+[image scanning](../configuring-apps/image-scanning.md) switched on, and the
+key needs **Write** to scan.

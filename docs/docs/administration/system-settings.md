@@ -120,7 +120,8 @@ Builds push to it once it is on: see
 **System → Image Scanning** scans the images apps run for known
 vulnerabilities, with Trivy: after each deployment, every day, and when asked.
 Each scan is a container started for it; Trivy's databases are kept on a volume
-you choose, which decides where scans run. See
+you choose, which decides where scans run. Its **HivePaaS** tab shows what
+HivePaaS's own images carry. See
 [Image scanning](../configuring-apps/image-scanning.md).
 
 ## AI

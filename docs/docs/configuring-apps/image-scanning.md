@@ -27,7 +27,8 @@ the daily scan; **Scan now** always scans.
 
 What is scanned is the image each of the app's running tasks runs. An app with
 no running task keeps what it ran last, and says why it was not scanned again.
-HivePaaS's own apps are not scanned.
+HivePaaS's own images are scanned by the daily scan: see
+[HivePaaS's own images](#hivepaass-own-images).
 
 ## The Security tab
 
@@ -45,6 +46,23 @@ The app's header shows a red badge with the number of fixable **CRITICAL**
 vulnerabilities, or an amber one for fixable **HIGH** ones when there is no
 CRITICAL. **Home → Needs attention** lists every app with a fixable CRITICAL
 vulnerability.
+
+### An image's SBOM
+
+**Download SBOM** on an image lists the packages it carries as a
+[CycloneDX](https://cyclonedx.org) JSON file, `<app>-<image id>.cdx.json`, for a
+tool that keeps an inventory of what runs, or one that checks licenses. It is
+read as a scan reads the image - on the same node, with the same volume - and
+takes a few seconds; it is not kept. Only an image the app runs now has one.
+
+## A project's Security tab
+
+The project's **Security** tab lists its apps and what their images carry, the
+worst first: how many **CRITICAL** and **HIGH** vulnerabilities, how many of
+them have a fix, and when they were last scanned. Each opens the app's Security
+tab. It is for a project's members, who cannot open System: they see the apps
+they may read. While scanning is off, the tab says so, and still lists what the
+last scans found.
 
 ## Setting a vulnerability aside
 
@@ -117,6 +135,36 @@ fixable CRITICAL or HIGH vulnerability it did not run at the last report.
 
 Switching it off scans nothing more. What the scans found stays on the apps'
 Security tabs, and the volume keeps Trivy's data.
+
+## HivePaaS's own images
+
+The daily scan also scans the images HivePaaS itself runs: the app, the agent,
+the database, Redis and Traefik, and the registry, the logging backend, the log
+collector and OBI when they run. Trivy's own image is not: it runs only while it
+scans.
+
+**System → Image Scanning → HivePaaS** lists them, each with its image and what
+it carries; a row opens its vulnerabilities, as an app's Security tab shows
+them. They are fixed by [upgrading HivePaaS](../installation/upgrade.md), not by
+anything you rebuild, so they are in no app's counts, not in **Needs
+attention**, and not in the daily notification. The tab says when a newer
+release is out.
+
+**Ignore…** there sets a vulnerability aside for every project's apps too, or
+for HivePaaS's images only. An ignore of every project set from an app's tab
+applies to HivePaaS's images as well.
+
+## From an assistant or a script
+
+- [The MCP server](../integrations/mcp-server.md) lets an AI assistant read an
+  app's vulnerabilities - by default those CRITICAL and HIGH with a fix - and,
+  with a key that may write, scan its images now.
+- [The CLI](../cli/commands/app.md#hivepaas-app-vulns)'s `hivepaas app vulns`
+  lists them, and `--fail-on` fails a CI job on what it finds:
+
+  ```bash
+  hivepaas deploy && hivepaas app scan --wait --fail-on critical
+  ```
 
 ### Without access to the internet
 

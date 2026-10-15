@@ -39,6 +39,7 @@ stops with exit code 2.
 | 8    | a deployment, task or job run that failed          |
 | 9    | timed out waiting                                  |
 | 10   | the installation's API is newer: update the CLI    |
+| 11   | `app vulns --fail-on` found what it fails on       |
 | 130  | interrupted                                        |
 
 ## Any API call
