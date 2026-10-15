@@ -64,6 +64,11 @@ An ignored vulnerability leaves the counts, the badge and the daily report. It
 needs no new scan, and removing it - **Remove** under **Ignored** - counts it
 again at once.
 
+An ignore goes with an [export](../administration/export-and-import.md) of its
+scope - the app, its environment, its project, or the whole installation for
+one of every project - with its reason, who wrote it and its end date, and an
+import brings it back. One that has expired stays behind.
+
 ## Switching it on
 
 In **System → Image Scanning → Configuration**, check **Enabled**, choose the
