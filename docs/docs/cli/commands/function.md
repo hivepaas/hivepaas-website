@@ -8,7 +8,7 @@ description: 'Functions: code HivePaaS runs on a runtime, a handler answering on
 
 # hivepaas function
 
-Functions: code HivePaaS runs on one of its runtimes - node24, bun1, python313, go127 - a handler that answers one request. The code is a directory's here: init writes a runtime's starter code, create makes a function of it, deploy sends it again, run calls it once before it is deployed. A function's logs and domains are its app's: hivepaas logs, hivepaas domain.
+Functions: code HivePaaS runs on one of its runtimes - node24, bun1, python313, php85, go127 - a handler that answers one request. The code is a directory's here: init writes a runtime's starter code, create makes a function of it, deploy sends it again, run calls it once before it is deployed. A function's logs and domains are its app's: hivepaas logs, hivepaas domain.
 
 ```text
 hivepaas function [command]
@@ -20,7 +20,7 @@ Aliases: `function`, `fn`, `functions`
 
 Make a function in an environment, of DIR's code - . by default - or with --repo of a repository's, and deploy it: the command waits for the deployment while following its logs, as deploy does. The directory is linked to the function, so that `function deploy` there needs no flags, unless --no-link or it is linked to another app already.
 
-What is sent of a directory leaves out .git, node_modules, __pycache__, .venv, venv, .hivepaas and what its .gitignore ignores; --list shows it.
+What is sent of a directory leaves out .git, node_modules, __pycache__, .venv, venv, .hivepaas, vendor beside a composer.json and what its .gitignore ignores; --list shows it.
 
 ```text
 hivepaas function create NAME [DIR] [flags]
@@ -56,7 +56,7 @@ Flags:
 | `--push-to string` | push the built image to the registry of this credential; none keeps it on the node |
 | `--ref string` | the branch to build, or tags/NAME for a tag |
 | `--repo string` | build the function from this git repository |
-| `--runtime string` | node24, bun1, python313 or go127 |
+| `--runtime string` | node24, bun1, python313, php85 or go127 |
 | `--timeout duration` | how long to wait for the deployment (default: `30m0s`) |
 
 ## hivepaas function deploy
@@ -126,7 +126,7 @@ Flags:
 | Flag | Description |
 | --- | --- |
 | `--force` | overwrite the files there |
-| `--runtime string` | node24, bun1, python313 or go127 |
+| `--runtime string` | node24, bun1, python313, php85 or go127 |
 | `--typescript` | Node.js's starter code in TypeScript |
 
 ## hivepaas function ls

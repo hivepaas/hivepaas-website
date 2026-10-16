@@ -22,7 +22,7 @@ In the project's **Apps** tab, click **New Function**:
 | ---------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Name**               | The function's name, such as `hello`.                                                                                                                |
 | **Environment**        | The environment it runs in.                                                                                                                          |
-| **Runtime**            | **Node.js 24**, **Bun 1**, **Python 3.13** or **Go 1.27**. See [Runtimes](#runtimes).                                                                |
+| **Runtime**            | **Node.js 24**, **Bun 1**, **Python 3.13**, **PHP 8.5** or **Go 1.27**. See [Runtimes](#runtimes).                                                   |
 | **Language**           | For Node.js: **JavaScript** or **TypeScript**.                                                                                                       |
 | **Code**               | **Write it here**: start from the runtime's template, and edit it in the **Code** tab. **From a repository**: build it from a Git repository's code. |
 | **Expose at a domain** | Routes the function at a domain, over HTTPS. Off, it is reached inside its project only.                                                             |
@@ -43,6 +43,7 @@ repository's webhook or GitHub App tells HivePaaS of it: see
 | **Node.js 24**  | JavaScript, or TypeScript with its types removed | `index.js`     | `default` |
 | **Bun 1**       | JavaScript or TypeScript                         | `index.ts`     | `default` |
 | **Python 3.13** | Python                                           | `main.py`      | `handler` |
+| **PHP 8.5**     | PHP                                              | `index.php`    | `handler` |
 | **Go 1.27**     | Go, compiled                                     | `.`            | `Handle`  |
 
 The handler's file and its name are the defaults of the function's settings,
@@ -60,6 +61,16 @@ and can be changed there.
   one per 128 MiB of its memory limit. Set `WEB_CONCURRENCY` in its env vars to
   choose the number. An `async def` handler is the fastest, but must not block:
   blocking code, such as `time.sleep` or `requests`, belongs in a plain `def`.
+- **PHP** runs each call in a process of its own that keeps the handler loaded,
+  one call at a time: processes start as calls need them, up to the
+  **Concurrency** and one per 32 MiB of the memory limit, and stop when the calls
+  no longer need them. Set `WEB_CONCURRENCY` to keep a number of them. What a
+  variable holds lasts from one call to the next in its process. The handler is
+  a function, with its namespace - `App\handle` - or a static method,
+  `Handler::handle`. `echo` goes to the logs, not the response. A call past the
+  **Timeout** stops its process, as does `exit` or a fatal error; another takes
+  its place. A `php.ini` in the code adds to the runtime's settings: OPcache
+  and its JIT are off unless it sets `opcache.enable_cli = 1`.
 - **Go** compiles the function's package. Its handler's file is the package's
   directory, `.` for the module's root.
 
@@ -77,6 +88,15 @@ export default async function (req, ctx) {
 ```python title="Python - main.py"
 def handler(req, ctx):
     return {"status": 200, "body": {"hello": req.query.get("name", "world")}}
+```
+
+```php title="PHP - index.php"
+<?php
+
+function handler(Hivepaas\Request $req, Hivepaas\Context $ctx): array
+{
+    return ['status' => 200, 'body' => ['hello' => $req->query['name'] ?? 'world']];
+}
 ```
 
 ```go title="Go - handler.go"
@@ -97,10 +117,12 @@ func Handle(ctx context.Context, req *hivepaas.Request) (*hivepaas.Response, err
 headers - their names in lower case - and the body, as bytes, as text
 (`text()`) or as JSON (`json()`).
 
-**The response** is an object with `status`, `headers` and `body`:
+**The response** is an object with `status`, `headers` and `body` - in PHP, an
+array with those keys:
 
 - a body that is text is sent as `text/plain`, bytes as
-  `application/octet-stream`, anything else - an object, a list - as JSON;
+  `application/octet-stream` - in PHP, `new Hivepaas\Bytes($data)` - anything
+  else - an object, a list - as JSON;
 - a `Content-Type` among the headers replaces that;
 - returning nothing answers `204`, and leaving out `status` answers `200`.
 
@@ -128,10 +150,15 @@ A manifest beside the code installs its libraries when the function is built:
 | Node.js | `package.json`     | npm            |
 | Bun     | `package.json`     | bun            |
 | Python  | `requirements.txt` | uv             |
+| PHP     | `composer.json`    | Composer       |
 | Go      | `go.mod`           | go             |
 
 Without a lock file, the build makes one; keep it in the code so that every
-build installs the same versions. Debian packages, such as `ffmpeg`, go in the
+build installs the same versions. A PHP function's private repositories take
+their credentials from `auth.json`, beside `composer.json`. PHP's extensions are
+those of the runtime's image: `bcmath`, `exif`, `gd`, `gmp`, `intl`, `mysqli`,
+`opcache`, `pdo_mysql`, `pdo_pgsql`, `pgsql`, `redis`, `sockets`, `zip` and the
+common ones; Composer cannot add another. Debian packages, such as `ffmpeg`, go in the
 function's settings, under **Debian Packages**.
 
 ## Edit and test it

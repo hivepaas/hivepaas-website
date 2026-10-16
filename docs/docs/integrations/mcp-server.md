@@ -224,7 +224,7 @@ Clients that offer prompts get these, to start from:
 - **deploy_image**: runs a Docker image of your own: creates the app, gives it
   its image, port, domain and variables, and deploys it, a plan at a time.
 - **deploy_function**: writes a function with you, creates it on a runtime -
-  Node.js, Bun, Python or Go - deploys it and tries it with a request.
+  Node.js, Bun, Python, PHP or Go - deploys it and tries it with a request.
 - **connect_app_to_database**: adds the env vars that connect an app to a
   database or cache of its env, as references.
 - **run_database_from_image**: sets up an app that runs a database's own image
