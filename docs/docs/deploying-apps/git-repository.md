@@ -44,11 +44,13 @@ Under **Dockerfile Source**:
   language.
 - **Auto-Generate**: HivePaaS reads the source, recognizes what it is, and writes
   a Dockerfile for it. **Dockerfile Gen Scan Path** is the directory to read,
-  for a repository whose app is not at its root.
+  for a repository whose app is not at its root: the image is built from that
+  directory, and the rest of the repository is not part of it.
 
 Auto-Generate recognizes Go, Ruby, Python, PHP, Elixir, Java, Rust, Next.js,
 Bun, Deno, Node.js, .NET, Dart, C and C++, Zig, Scala, Astro, Nuxt, R, and static
-sites. The deployment's logs show the Dockerfile it wrote.
+sites. The deployment's logs say what it found - the language, its version, the
+install, build and start commands - and show the Dockerfile it wrote.
 
 ## 4. Deploy
 
@@ -61,6 +63,13 @@ A build that needs env vars, such as an API URL compiled into a frontend, takes
 them from the app's **Env Variables**, under **Build Time Env Variables**. A
 generated Dockerfile also reads some of its options from them: the deployment's
 logs say so.
+
+A generated Dockerfile gives every one of them to its install and build steps.
+One that uses a secret reaches them as a BuildKit secret, never as a build
+argument, whose value the image would keep. In a Dockerfile of your own, declare
+a plain one with `ARG NAME`, and read one that uses a secret through a secret
+mount: `RUN --mount=type=secret,id=NAME,env=NAME <command>`. A Dockerfile that
+declares a secret one with `ARG` is refused.
 
 ## More than one node
 
