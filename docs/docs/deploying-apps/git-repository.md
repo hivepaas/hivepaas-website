@@ -52,6 +52,12 @@ Bun, Deno, Node.js, .NET, Dart, C and C++, Zig, Scala, Astro, Nuxt, R, and stati
 sites. The deployment's logs say what it found - the language, its version, the
 install, build and start commands - and show the Dockerfile it wrote.
 
+The version is the one the project names - `.nvmrc`, `.python-version`,
+`.ruby-version`, `go.mod` - or the newest its constraint allows, such as
+`engines.node` or `composer.json`'s `php`. To pin another, set it as a build-time
+env var: `NODE_VERSION`, `PYTHON_VERSION`, `PHP_VERSION`, `RUBY_VERSION`,
+`GO_VERSION`.
+
 ## 4. Deploy
 
 Click **Deploy**. The deployment checks out the source, builds the image, and
