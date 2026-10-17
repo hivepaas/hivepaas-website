@@ -13,7 +13,10 @@ installation each. [Paddle](https://www.paddle.com) takes the payment.
 1. In **System → License**, click **Upgrade**. It opens the portal's pricing
    page for this installation.
 2. Choose **Monthly** or **Yearly**, and click **Subscribe** under a plan.
-3. Sign in to the portal, or create an account with your email address.
+3. Sign in to the portal, or create an account: with your email address, or
+   with **Continue with Google** or **Continue with GitHub**. A provider's
+   sign-in with an email no account has offers to create one; confirm it, and
+   you are back on the way to the checkout.
 4. Check the **Installation ID**, and click **Continue to payment**.
 5. Pay in Paddle's checkout: by card, PayPal, Apple Pay or Google Pay.
 6. The portal issues the license: `Your Hive license is ready`. It shows the
@@ -38,6 +41,15 @@ A license is for one installation, and an installation has one license. Buying
 for an installation that already has a license in force is refused:
 `This installation already has a license in force. Change the plan of your subscription instead.`
 A trial on the installation is not in the way: the paid key replaces it.
+
+### Signing in with Google or GitHub
+
+Signing in with Google or GitHub opens the portal account that has the same
+email: one made with your email address works with either, and keeps its
+password. An email the provider has not verified is refused. Under another email
+than your account's, the portal offers a new, separate account: go back and sign
+in the way you did before instead. If you set up two-factor authentication, the
+portal asks for your code after the provider too.
 
 ## Paddle, the merchant of record
 
