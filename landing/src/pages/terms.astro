@@ -3,7 +3,7 @@
 // details come from src/data/legal.ts.
 import LegalLayout from '../layouts/LegalLayout.astro';
 import LegalValue from '../components/legal/LegalValue.astro';
-import { GRACE_DAYS, MOVES_PER_YEAR, REFUND_DAYS, TRIAL_DAYS, getPlan } from '../data/plans';
+import { GRACE_DAYS, MOVES_PER_YEAR, PAYMENT_RETRY_DAYS, REFUND_DAYS, TRIAL_DAYS, getPlan } from '../data/plans';
 import { DISCORD_URL, DOCS_PLANS_URL, GITHUB_URL, PORTAL_URL } from '../data/site';
 
 const bee = getPlan('bee');
@@ -82,8 +82,8 @@ const apiary = getPlan('apiary');
       next period. Either way, the new key is issued at once.
     </li>
     <li>
-      If a renewal payment fails, Paddle retries it for a while; if it is still not paid, the subscription is
-      cancelled.
+      If a renewal payment fails, Paddle retries it for up to {PAYMENT_RETRY_DAYS} days, which a paid key's grace covers
+      (see <a href="#keys">License keys</a>); if it is still not paid, the subscription is cancelled.
     </li>
   </ul>
 

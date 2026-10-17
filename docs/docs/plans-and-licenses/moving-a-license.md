@@ -46,8 +46,8 @@ The key the old installation holds is superseded, and no renewal follows it.
 - **Online**, the old installation learns of the move at its next daily check:
   its status turns **Moved**, and a banner says
   `This license key now belongs to another installation.` It keeps its plan for
-  14 days from the move, and no longer than the key's own grace, then it is on
-  Bee.
+  the key's grace counted from the move, 30 days, but not past the end of the
+  key's own grace, then it is on Bee.
 - **Offline**, it keeps the old key until the key runs out, with its grace.
 
 Either way, nothing that runs there is stopped: see

@@ -44,7 +44,9 @@ export interface Plan {
 export const YEARLY_DISCOUNT_PERCENT = 20;
 export const TRIAL_DAYS = 14;
 /** Days a paid key keeps working after the period paid for. A trial has none. */
-export const GRACE_DAYS = 14;
+export const GRACE_DAYS = 30;
+/** Days Paddle retries a failed renewal, at most: GRACE_DAYS covers them. */
+export const PAYMENT_RETRY_DAYS = 30;
 /** Moves of a license to another installation, in any 365 days. */
 export const MOVES_PER_YEAR = 10;
 /** A full refund on request within this many days of a payment. */

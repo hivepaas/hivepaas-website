@@ -81,17 +81,17 @@ In **Manage billing**, cancel the subscription in Paddle's billing portal. It
 runs to the end of the period paid for: **Subscriptions** shows the day it
 **Cancels on**.
 
-No key follows. The last one holds to its end date, then for its 14 days of
+No key follows. The last one holds to its end date, then for its 30 days of
 grace, and then the installation is on Bee. Nothing that runs is stopped.
 
 ## When a payment fails
 
-When Paddle cannot charge a renewal, it tries again for up to 14 days, then
+When Paddle cannot charge a renewal, it tries again for up to 30 days, then
 cancels the subscription. Meanwhile the portal says `A payment is failing`, with
 **Update your card**, which opens Paddle's billing portal.
 
-The installation keeps its plan all along: a key holds for 14 days past the
-period it was paid for, which covers Paddle's tries. Once a payment goes
+The installation keeps its plan all along: a paid key holds for 30 days past
+the period it was paid for, which covers Paddle's tries. Once a payment goes
 through, the renewed key follows as usual.
 
 ## Refunds

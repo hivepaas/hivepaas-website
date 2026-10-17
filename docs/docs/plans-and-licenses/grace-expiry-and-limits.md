@@ -1,6 +1,6 @@
 ---
 sidebar_position: 6
-description: 'A key past its period, the 14 days of grace, Bee after them, the banners, and what happens when a limit is reached.'
+description: 'A key past its period, the 30 days of grace, Bee after them, the banners, and what happens when a limit is reached.'
 ---
 
 # Grace, expiry and limits
@@ -8,13 +8,13 @@ description: 'A key past its period, the 14 days of grace, Bee after them, the b
 ## A key's dates
 
 A key holds until the end of the period paid for: **System → License** shows
-it as **Paid until**, and the status as **Active**. It then keeps its plan for
-14 more days, its grace: **Grace period**. After that the installation is on
+it as **Paid until**, and the status as **Active**. A paid key then keeps its
+plan for 30 more days, its grace: **Grace period**. After that the installation is on
 Bee: **Expired**.
 
 ```mermaid
 flowchart LR
-    active["Active<br/>the key's plan"] -->|"Paid until"| grace["Grace period<br/>the key's plan, 14 days"]
+    active["Active<br/>the key's plan"] -->|"Paid until"| grace["Grace period<br/>the key's plan, 30 days"]
     grace -->|"Grace ends"| expired["Expired<br/>Bee"]
 ```
 
