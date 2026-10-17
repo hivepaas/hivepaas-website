@@ -25,6 +25,11 @@ To set it up, a user scans a QR code with the app, and enters the code it shows.
 An admin can require it of a user by setting their **Security Option** to
 **Password 2FA**: they set it up on their next sign-in.
 
+A provider's sign-in stands for the password, not for the code: a user who set
+up an authenticator app enters the code after signing in with GitHub, Google or
+any other provider too. **Trust this device** on the sign-in page spares it on
+that device for 48 hours, after a provider as after a password.
+
 :::tip
 
 The installer's `admin` signs in with a password alone. Turn on two-factor
