@@ -4,6 +4,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PlanCards from '../components/pricing/PlanCards.astro';
 import PlanTable from '../components/pricing/PlanTable.astro';
+import EveryPlanFeatures from '../components/pricing/EveryPlanFeatures.astro';
 import Promises from '../components/pricing/Promises.astro';
 import FAQ from '../components/FAQ.astro';
 import CTA from '../components/CTA.astro';
@@ -100,6 +101,7 @@ const faqData = {
   </section>
 
   <PlanCards />
+  <EveryPlanFeatures />
   <PlanTable />
   <Promises />
   <FAQ items={pricingFaq} title="Plans and billing, answered" />

@@ -57,6 +57,52 @@ export const BEE_SIGN_IN = ['GitHub', 'GitHub App', 'GitLab', 'Gitea'];
 /** The ones a paid plan adds. */
 export const PAID_SIGN_IN = ['Google', 'Microsoft', 'OpenID Connect'];
 
+/**
+ * What every plan has, Bee too: a plan sets limits and sign-in providers, never
+ * which features there are. Each is in the documentation. The portal's pricing
+ * page lists the same (hivepaas-portal-web, pricing.constants.ts).
+ */
+export const EVERY_PLAN_FEATURES: { group: string; items: string[] }[] = [
+  {
+    group: 'Deploy',
+    items: [
+      'From Git, a Docker image or Docker Compose',
+      'Pull request previews',
+      'Functions',
+      'App Store, 300+ templates',
+      'PostgreSQL, MySQL, MariaDB, MongoDB, Redis, Valkey and ClickHouse',
+    ],
+  },
+  {
+    group: 'Run & scale',
+    items: [
+      'Autoscale and metrics',
+      'Logs and a web terminal',
+      'Scheduled jobs',
+      'Health checks and rollbacks',
+      'Clusters of nodes, with volumes and networks',
+    ],
+  },
+  {
+    group: 'Protect',
+    items: [
+      'Backups to S3, Backblaze, Cloudflare R2 or MinIO, and restores',
+      'Image vulnerability scanning',
+      'Domains with automatic SSL, wildcards too',
+      'Secrets and environment variables',
+      'Two-factor sign-in, roles and audit logs',
+    ],
+  },
+  {
+    group: 'Integrate',
+    items: [
+      'REST API and CLI',
+      'MCP, for AI assistants',
+      'Notifications by email, Slack, Discord, Telegram or webhook',
+    ],
+  },
+];
+
 const unlimited = {
   apps: 'none',
   functions: 'none',

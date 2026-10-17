@@ -1,0 +1,78 @@
+---
+// EveryPlanFeatures.astro - what every plan has, Bee too: the plans differ in
+// limits and sign-in providers only, so the features are listed once.
+import { EVERY_PLAN_FEATURES } from '../../data/plans';
+---
+
+<section class="section every-plan-section" id="every-plan">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">Every Plan</span>
+      <h2 class="section-title">Every plan includes every feature, Bee too</h2>
+      <p class="section-desc">
+        A plan sets how many nodes, users, apps, functions and previews you may have, and which sign-in providers.
+        Nothing else.
+      </p>
+    </div>
+
+    <div class="every-plan-grid">
+      {EVERY_PLAN_FEATURES.map(({ group, items }) => (
+        <div class="bento-card">
+          <h3 class="bento-title">{group}</h3>
+          <ul class="every-plan-list">
+            {items.map(item => <li>{item}</li>)}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .every-plan-section {
+    padding-top: 2rem;
+  }
+
+  .every-plan-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  @media (min-width: 640px) {
+    .every-plan-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1100px) {
+    .every-plan-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  .every-plan-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+    margin: 0;
+    padding: 0;
+  }
+
+  .every-plan-list li {
+    position: relative;
+    padding-left: 1.4rem;
+    font-size: 0.88rem;
+    line-height: 1.5;
+    color: var(--text-secondary);
+  }
+
+  .every-plan-list li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--accent-amber);
+    font-weight: 700;
+  }
+</style>

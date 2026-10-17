@@ -32,6 +32,7 @@ function features(plan: Plan): string[] {
       `${formatLimit(limits.previews, 'preview', 'previews')} at a time`,
       `Sign-in with ${joinList(BEE_SIGN_IN)}`,
       'No key, no time limit',
+      'Every HivePaaS feature, below',
     ];
   }
   return [
@@ -41,6 +42,7 @@ function features(plan: Plan): string[] {
     `Every sign-in provider, with ${joinList(PAID_SIGN_IN)}`,
     'One installation per key',
     'Renewed keys arrive by themselves, or by email',
+    'Every HivePaaS feature, below',
   ];
 }
 
