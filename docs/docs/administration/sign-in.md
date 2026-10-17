@@ -52,14 +52,47 @@ one cannot be added or enabled; one set up before keeps signing people in, and
 3. Copy the application's **Client ID** and **Client Secret** back. For OpenID
    Connect, give the provider's **Auto-Discovery URL** too, such as
    `https://sso.example.com/realms/acme/.well-known/openid-configuration`.
+4. For a GitLab or Gitea of your own, give its **Auth URL**, **Token URL** and
+   **Profile URL**, all three, such as `https://git.example.com/oauth/authorize`,
+   `https://git.example.com/oauth/token` and
+   `https://git.example.com/api/v4/user` for GitLab, or
+   `https://git.example.com/login/oauth/authorize`,
+   `https://git.example.com/login/oauth/access_token` and
+   `https://git.example.com/api/v1/user` for Gitea. Leave them empty for
+   gitlab.com or gitea.com.
 
 The sign-in page then offers the provider.
+
+A GitHub App that signs people in needs the **Email addresses** account
+permission, read-only: without it, GitHub does not tell HivePaaS the email of
+somebody who keeps theirs private.
 
 ### Who can sign in
 
 Single sign-on signs in users HivePaaS already has, by email: invite a user
 first. An invited user who signs in with the provider the first time is active
 from then on.
+
+The email has to be one the provider vouches for: one the person proved they
+hold. An email that is only typed into a profile would let whoever typed it sign
+in as the user who has it. So each provider's email is checked its own way:
+
+| Provider       | The email signed in with                                                                                                                                          |
+| -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| GitHub         | The public email, which GitHub lets be only a verified one, or else the primary email, once it is verified.                                                       |
+| GitLab         | The primary email, once it is confirmed.                                                                                                                          |
+| Gitea          | The primary email, when it is among the account's verified emails.                                                                                                |
+| Google         | The account's email, when Google says it is verified.                                                                                                             |
+| Microsoft      | The user principal name, which is in a domain the organization proved it owns; the mail address only in that same domain. A guest of the organization is refused. |
+| OpenID Connect | The email, when the provider says `email_verified`.                                                                                                               |
+
+An OpenID Connect provider whose users and emails you manage yourself, such as
+your own Keycloak, may not say `email_verified` for every user. Turn on **Trust
+emails** in its setting to take every email it gives as verified. Never turn it
+on for a provider anybody can sign up to.
+
+A sign-in that fails comes back to the sign-in page, which says why: an email
+the provider does not vouch for, or one no user has.
 
 An admin can require a user to sign in with single sign-on only, with the
 **Enforce SSO** security option.
