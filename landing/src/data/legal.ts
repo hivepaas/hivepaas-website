@@ -2,9 +2,9 @@
 // licenses. These pages are DRAFTS for the owner's review: Paddle's website
 // review needs them, naming the legal business and a contact.
 //
-// TODO(owner): replace each [PLACEHOLDER] below, review the three pages
-// (src/pages/terms.astro, privacy.astro, refunds.astro), then set `draft` to
-// false. A value still in brackets is highlighted on the pages.
+// TODO(owner): review the three pages (src/pages/terms.astro, privacy.astro,
+// refunds.astro), then set `draft` to false. A value in brackets would be
+// highlighted on the pages as a placeholder still to fill in.
 export const legal = {
   /** Shows a "draft" notice on the three pages while true. */
   draft: true,
@@ -18,8 +18,8 @@ export const legal = {
   /** The law the Terms are governed by, read after "governed by". */
   governingLaw:
     'the laws of Vietnam, with the courts of Hanoi deciding any dispute',
-  /** General and legal contact. Proposed: support@hivepaas.com. */
-  contactEmail: '[CONTACT EMAIL]',
+  /** General and legal contact: the one mailbox HivePaaS has. */
+  contactEmail: 'support@hivepaas.com',
   /** When the pages last changed in substance: update it on publishing. */
   updated: 'October 17, 2026',
 };

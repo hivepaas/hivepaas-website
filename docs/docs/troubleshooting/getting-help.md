@@ -1,8 +1,7 @@
 ---
 sidebar_position: 6
 description: 'Where to ask, and what to include.'
-# TODO(owner): confirm the support address under "Licenses and billing" (proposed:
-# support@hivepaas.com) and that its mailbox exists. It is written on this page only:
+# The support address under "Licenses and billing" is written on this page only:
 # the other pages link to that section.
 ---
 

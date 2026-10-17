@@ -10,8 +10,7 @@ export const DISCORD_URL = 'https://discord.com/invite/2TgD3zDb2e';
 export const DOCS_PLANS_URL = `${DOCS_URL}/plans-and-licenses`;
 
 // Where a customer asks for Apiary, which is sold by contact and not through
-// the checkout. portal-web's CONTACT_SALES_URL uses the same address.
-// TODO(owner): confirm the address (proposed: sales@hivepaas.com) and that its
-// mailbox exists.
-export const SALES_EMAIL = 'sales@hivepaas.com';
+// the checkout: the one mailbox HivePaaS has, support@, as for everything else.
+// portal-web's CONTACT_SALES_URL uses the same address.
+export const SALES_EMAIL = 'support@hivepaas.com';
 export const SALES_MAILTO = `mailto:${SALES_EMAIL}?subject=HivePaaS%20Apiary`;
