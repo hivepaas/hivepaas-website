@@ -14,6 +14,11 @@ send it, or have HivePaaS email it when an email account is set up.
 The invited user opens the link, picks a username and a password, and is in.
 Until then, they show as pending.
 
+A plan limits how many users there are: active ones, and pending ones, as an
+invitation holds a seat. Disabled users do not count. At the limit, an
+invitation to someone new is refused, and so is enabling a disabled user. See
+[Plans and limits](../plans-and-licenses/plans-and-limits.md#users).
+
 ## Roles
 
 - **Admin**: everything, including users and HivePaaS's own settings.
@@ -59,7 +64,8 @@ See [Sign-in and security](./sign-in.md).
 ## Disable or remove a user
 
 **Disable User** stops a user signing in, and keeps their account and what it
-did. **Remove User** deletes the account.
+did. **Remove User** deletes the account. Either frees the user's seat in the
+plan's limit.
 
 A user who forgot their password can be given a reset link: **Reset Password**
 makes one to send them.

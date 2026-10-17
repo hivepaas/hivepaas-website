@@ -49,6 +49,10 @@ It deploys them all at once, the dependencies first. Each is an ordinary app:
 its settings, logs and deployments are on its page, and its settings can be
 changed like any other app's.
 
+Towards the plan's limit of apps, a template counts once, as the app you named:
+the apps it creates beside it belong to that one. See
+[Plans and limits](../plans-and-licenses/plans-and-limits.md#apps).
+
 ## After deploying
 
 - **The app's own setup:** some apps create their admin account on your first

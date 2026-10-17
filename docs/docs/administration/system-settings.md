@@ -32,6 +32,13 @@ it, through the new configuration, before the time is up. A change that made the
 dashboard unreachable undoes itself. See
 [Recovering from a bad change](../troubleshooting/recovering-from-a-bad-change.md).
 
+## License
+
+**System → License** shows the plan in force and its status, how much of each
+of its limits is used, and the installation's ID. A license key is installed
+there, and the daily check for a renewed key shown. See
+[Install a license key](../plans-and-licenses/install-a-license-key.md).
+
 ## Traefik
 
 **System → Traefik** sets the proxy in front of every app: its replicas, log

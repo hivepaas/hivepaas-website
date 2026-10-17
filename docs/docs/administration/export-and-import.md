@@ -44,6 +44,12 @@ Then choose:
   Otherwise, a new app starts on a placeholder image, and a changed one keeps
   its current image until someone deploys it.
 
+The apps and functions an import creates count towards the plan's limits, and
+so do the Google, Microsoft and OpenID Connect sign-in providers it enables. An
+import that would go past one is refused whole, before anything changes. A
+bundle never carries the license key: install it on a new installation before
+importing. See [Plans and limits](../plans-and-licenses/plans-and-limits.md).
+
 ## What a bundle leaves out
 
 - Settings that cannot be made again from a file.

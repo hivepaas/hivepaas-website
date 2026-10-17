@@ -10,6 +10,10 @@ HivePaaS creates a project from it: one environment, an app per service, reached
 by the same names as in the file, and deployed. It can add the services to a
 project you have, too: see [Into an existing project](#into-an-existing-project).
 
+Each app it creates counts towards the plan's limit of apps. A file with more
+services than the plan has room for is refused whole, before anything is
+created. See [Plans and limits](../plans-and-licenses/plans-and-limits.md#apps).
+
 ## 1. Paste the file
 
 On **Projects**, open **New Project** and choose **From Docker Compose**:

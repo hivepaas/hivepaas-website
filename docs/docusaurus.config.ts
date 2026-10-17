@@ -166,6 +166,11 @@ const config: Config = {
           label: 'API',
         },
         {
+          href: `${WEBSITE_URL}/pricing`,
+          label: 'Pricing',
+          position: 'right',
+        },
+        {
           href: DISCORD_URL,
           label: 'Discord',
           position: 'right',
@@ -188,6 +193,7 @@ const config: Config = {
               to: '/getting-started/introduction',
             },
             { label: 'Installation', to: '/installation/requirements' },
+            { label: 'Plans and licenses', to: '/plans-and-licenses' },
             {
               label: 'Troubleshooting',
               to: '/troubleshooting/common-issues',
@@ -208,6 +214,9 @@ const config: Config = {
           title: 'More',
           items: [
             { label: 'Website', href: WEBSITE_URL },
+            { label: 'Pricing', href: `${WEBSITE_URL}/pricing` },
+            { label: 'Terms', href: `${WEBSITE_URL}/terms` },
+            { label: 'Privacy', href: `${WEBSITE_URL}/privacy` },
             { label: 'GitHub', href: GITHUB_URL },
           ],
         },

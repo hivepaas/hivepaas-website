@@ -67,3 +67,39 @@ Every container on the server restarts. The swarm, its services and its
 networks are kept; networks made with `docker network create` on this server
 alone are forgotten. Docker makes `docker0` and `docker_gwbridge` again from the
 new range, and the swarm's networks start.
+
+## "The license portal could not be reached"
+
+**System → License → Online renewal** shows it as the last check's error, or
+**Check for a newer key** answers it: HivePaaS could not ask
+`portal.hivepaas.com` for a renewed key. The key installed holds meanwhile, and
+the daily check tries again the next day.
+
+From the manager node, check that the portal answers:
+
+```bash
+curl -sS https://portal.hivepaas.com/api/ping
+```
+
+- **A firewall** must let the server reach `portal.hivepaas.com` over HTTPS,
+  port 443.
+- **DNS**: the server must resolve `portal.hivepaas.com`.
+- **A proxy**: HivePaaS's request goes through the one `HTTPS_PROXY` names in
+  the environment of `hivepaas_app` and `hivepaas_worker`, if any.
+
+An installation that is not to reach the internet can do without: turn the
+daily check off, and paste each renewed key from its email. See
+[Renewal and privacy](../plans-and-licenses/renewal-and-privacy.md).
+
+## "This license key is for another installation"
+
+A key names the installation it is for. Pasting one for another installation is
+refused, with this installation's ID; a key already installed that names
+another shows as **Another installation's key**, and the installation is on Bee.
+
+- **The key is another installation's**: compare the ID with the
+  **Installation** of the license under the portal's **Licenses**, and paste
+  the right key.
+- **The swarm was made again**, as in a disaster recovery, or HivePaaS moved to
+  a new server: its ID is new. [Move the license](../plans-and-licenses/moving-a-license.md)
+  to it in the portal, and paste the key it issues.

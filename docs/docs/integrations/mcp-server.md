@@ -213,6 +213,15 @@ A plan is good for 10 minutes, once, and only for whoever made it. If what it
 saw has changed since, such as an app redeployed in between, applying it is
 refused, and the assistant plans again.
 
+## Plan limits
+
+What an assistant creates counts towards the installation's plan, as it does
+from the dashboard: an app, a function, a preview. A creation past a limit is
+refused, and the assistant is told what that means: not to try again, which
+would be refused the same way, and to tell you that an admin upgrades the plan
+in **System → License**. It cannot make room itself: nothing is deleted through
+the MCP server. See [Plans and limits](../plans-and-licenses/plans-and-limits.md).
+
 ## Guided tasks
 
 Clients that offer prompts get these, to start from:

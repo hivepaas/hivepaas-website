@@ -49,7 +49,10 @@ cannot be read.
 ## Moving to a new server
 
 1. [Install HivePaaS](../installation/install.md) on the new server.
-2. Download the latest `spec.tar.gz` from a snapshot of the system backup.
-3. [Import](../administration/export-and-import.md#import) it in **Operations →
+2. With a license, [move it](../plans-and-licenses/moving-a-license.md) to the
+   new installation, and install its key: the new swarm has a new ID, and on
+   Bee an import past its limits is refused.
+3. Download the latest `spec.tar.gz` from a snapshot of the system backup.
+4. [Import](../administration/export-and-import.md#import) it in **Operations →
    Export**.
-4. Restore your apps' data from their own backups: see [Restoring](./restoring.md).
+5. Restore your apps' data from their own backups: see [Restoring](./restoring.md).

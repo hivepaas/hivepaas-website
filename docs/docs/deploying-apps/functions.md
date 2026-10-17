@@ -36,6 +36,10 @@ repository's webhook or GitHub App tells HivePaaS of it: see
 
 **Create Function** creates it and starts its first deployment at once.
 
+Functions are counted apart from apps: Bee, the free plan, allows 20 of them,
+and every paid plan as many as you like. See
+[Plans and limits](../plans-and-licenses/plans-and-limits.md#functions).
+
 ## Runtimes
 
 | Runtime         | Language                                         | Handler's file | Handler   |

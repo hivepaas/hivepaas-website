@@ -13,6 +13,11 @@ servers you own.
 It runs on [Docker Swarm](https://docs.docker.com/engine/swarm/), from a single
 server to a cluster of them, and is open source under the Apache 2.0 license.
 
+Without a license key, an installation runs on Bee, the free plan, for as long
+as you like: 2 nodes, 2 users, 20 apps, 20 functions and 2 pull request previews
+at a time. A paid plan's key lifts those limits for one installation, and works
+offline. See [Plans and licenses](../plans-and-licenses/index.md).
+
 ## What it does
 
 ### Deploys your apps
@@ -39,7 +44,8 @@ server to a cluster of them, and is open source under the Apache 2.0 license.
 
 - Projects, each with its own environments, such as `development` and `production`.
 - Users with access per project and per module, two-factor authentication, and
-  sign-in with your OAuth or OIDC provider.
+  sign-in with GitHub, GitLab or Gitea, or, on a paid plan, Google, Microsoft or
+  your OpenID Connect provider.
 - A REST API, and an MCP server for AI assistants.
 
 ## How it works

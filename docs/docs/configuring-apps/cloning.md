@@ -60,6 +60,12 @@ Two ways, for two kinds of data:
 A clone runs as a task, listed in the app's tasks with its log. One that fails
 leaves no app behind, and its task says why.
 
+A clone is a new app, and counts towards the plan's limit of apps; a function's
+clone with **Clone Deployment Configuration** is a function, and counts towards
+its functions. The limit is checked when you ask, and again when the task
+creates the copy. See
+[Plans and limits](../plans-and-licenses/plans-and-limits.md#what-counts).
+
 To be told how it ended, choose a [notification target](../notifications/notification-targets.md)
 under **Notification Configuration**, for success, for failure, or both. The
 message names the copy and, for a failure, the reason. Nobody is told until a

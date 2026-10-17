@@ -1,6 +1,9 @@
 ---
 sidebar_position: 6
 description: 'Where to ask, and what to include.'
+# TODO(owner): confirm the support address under "Licenses and billing" (proposed:
+# support@hivepaas.com) and that its mailbox exists. It is written on this page only:
+# the other pages link to that section.
 ---
 
 # Getting help
@@ -23,3 +26,15 @@ A question with these gets an answer sooner:
 
 Take secrets out first: passwords, API keys, tokens and private keys can appear in
 logs and in env vars.
+
+## Licenses and billing
+
+- **Payments, invoices, canceling and refunds** are Paddle's: use **Manage
+  billing** in the license portal, or [paddle.net](https://paddle.net). See
+  [Buying and billing](../plans-and-licenses/buying-and-billing.md).
+- **A license itself**, such as a move past the 10 a year, or a key that does
+  not work: write to [support@hivepaas.com](mailto:support@hivepaas.com), with
+  its license ID and the installation ID, both in **System → License**.
+
+Never post a license key, in an issue, a discussion or a chat: it carries the
+name and the email address it was issued to.

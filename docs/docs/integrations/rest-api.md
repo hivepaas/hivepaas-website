@@ -46,3 +46,19 @@ A request that fails is answered with a 4xx or 5xx status and a JSON body whose
   "detail": "..."
 }
 ```
+
+One error also carries `params`, values a script can act on:
+`ERR_PLAN_LIMIT_REACHED`, a `412` for a creation past the installation's plan,
+names the limit, the most the plan allows, and the plan:
+
+```json
+{
+  "status": 412,
+  "code": "ERR_PLAN_LIMIT_REACHED",
+  "title": "Precondition Failed",
+  "detail": "The Bee plan allows 20 apps. Remove one, or upgrade.",
+  "params": { "Limit": "apps", "Max": 20, "Plan": "bee" }
+}
+```
+
+See [When a limit is reached](../plans-and-licenses/grace-expiry-and-limits.md#through-the-api).

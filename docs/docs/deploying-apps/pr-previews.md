@@ -132,6 +132,17 @@ In the app's **Preview Deployments** tab, **Create a preview** with:
 
 This works whatever **Allow PR Comments** says.
 
+## How many at a time
+
+A plan limits how many previews exist at once, across the installation: 2 on
+Bee, the free plan. The database apps cloned for a preview are part of it, and
+do not count. Past the limit, a preview is not made: HivePaaS comments on its
+pull request, `Bee runs 2 previews at a time: close one, or upgrade.`, and tells
+the app's notification target for failed deployments. One asked for from the
+dashboard is refused there. Closing a pull request removes its preview, and
+frees its place. See
+[Grace, expiry and limits](../plans-and-licenses/grace-expiry-and-limits.md#clones-and-previews).
+
 ## Its domain
 
 A preview answers beside each of the app's domains, its name prefixed: the

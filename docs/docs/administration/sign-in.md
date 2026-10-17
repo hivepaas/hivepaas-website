@@ -38,6 +38,11 @@ Users can sign in with an account they already have: GitHub, GitLab, Gitea,
 Google, Microsoft, or any OpenID Connect provider, such as Keycloak, Authentik
 or Okta.
 
+Google, Microsoft and OpenID Connect take a paid plan. On Bee, the free plan,
+one cannot be added or enabled; one set up before keeps signing people in, and
+**Integrations → OAuth** marks it **Kept on Bee**. See
+[Sign-in providers on Bee](../plans-and-licenses/plans-and-limits.md#sign-in-providers-on-bee).
+
 ### Add a provider
 
 1. In **Integrations → OAuth**, create one. Choose the **Provider**.

@@ -33,6 +33,11 @@ Keep these ports closed to the internet.
 The server joins as a worker. HivePaaS starts its agent on it on its own, and
 the node shows in **Cluster → Nodes**.
 
+A plan limits how many nodes the swarm has, whatever their state: 2 on Bee, the
+free plan. At the limit, HivePaaS gives no join command. Removing a node frees
+its place; draining it does not. See
+[Plans and limits](../plans-and-licenses/plans-and-limits.md#nodes).
+
 :::tip[More than one node]
 
 - An image HivePaaS builds stays on the node that built it: turn on the

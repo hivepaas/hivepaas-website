@@ -46,6 +46,10 @@ HivePaaS needs **Docker 29.5 or newer**.
   80 to issue certificates.
 - **The server must reach the internet**, to download Docker, HivePaaS's images
   and release files from GitHub, and its certificates from Let's Encrypt.
+- **The license portal, once a license key is installed.** HivePaaS asks
+  `portal.hivepaas.com`, over HTTPS, for a renewed key once a day, unless that
+  is turned off. Without a key it never does. See
+  [Renewal and privacy](../plans-and-licenses/renewal-and-privacy.md).
 
 ## Domains
 

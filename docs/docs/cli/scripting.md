@@ -26,21 +26,21 @@ stops with exit code 2.
 
 ## Exit codes
 
-| Code | Meaning                                            |
-| ---- | -------------------------------------------------- |
-| 0    | done                                               |
-| 1    | failed, or `status --fail` found something         |
-| 2    | wrong usage, or a question with no terminal to ask |
-| 3    | the key is not accepted                            |
-| 4    | the key may not do this                            |
-| 5    | not found                                          |
-| 6    | refused by the installation's checks               |
-| 7    | the installation failed                            |
-| 8    | a deployment, task or job run that failed          |
-| 9    | timed out waiting                                  |
-| 10   | the installation's API is newer: update the CLI    |
-| 11   | `app vulns --fail-on` found what it fails on       |
-| 130  | interrupted                                        |
+| Code | Meaning                                                                               |
+| ---- | ------------------------------------------------------------------------------------- |
+| 0    | done                                                                                  |
+| 1    | failed, or `status --fail` found something                                            |
+| 2    | wrong usage, or a question with no terminal to ask                                    |
+| 3    | the key is not accepted                                                               |
+| 4    | the key may not do this                                                               |
+| 5    | not found                                                                             |
+| 6    | refused by the installation's checks, or its plan's limits (`ERR_PLAN_LIMIT_REACHED`) |
+| 7    | the installation failed                                                               |
+| 8    | a deployment, task or job run that failed                                             |
+| 9    | timed out waiting                                                                     |
+| 10   | the installation's API is newer: update the CLI                                       |
+| 11   | `app vulns --fail-on` found what it fails on                                          |
+| 130  | interrupted                                                                           |
 
 ## Any API call
 
