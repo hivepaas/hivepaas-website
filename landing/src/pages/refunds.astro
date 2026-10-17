@@ -5,7 +5,6 @@
 import LegalLayout from '../layouts/LegalLayout.astro';
 import LegalValue from '../components/legal/LegalValue.astro';
 import { REFUND_DAYS, getPlan } from '../data/plans';
-import { PORTAL_URL } from '../data/site';
 
 const bee = getPlan('bee');
 ---
@@ -40,8 +39,11 @@ const bee = getPlan('bee');
   <h2 id="after">What happens after a refund</h2>
   <ul>
     <li>
-      <strong>The license is revoked.</strong> Once the payment is refunded in full, the portal issues no more keys for
-      the license: no renewals, plan changes or moves.
+      <strong>The license is revoked.</strong> Once a payment for a period - the first one or a renewal - is refunded
+      in full, the portal issues no more keys for the license: no renewals, plan changes or moves.
+    </li>
+    <li>
+      <strong>The subscription is canceled.</strong> The portal cancels it at once, so nothing more is charged for it.
     </li>
     <li>
       <strong>The key you have runs out on its own.</strong> Keys are checked offline and cannot be recalled, so the
@@ -51,15 +53,12 @@ const bee = getPlan('bee');
       <strong>Nothing that runs is stopped.</strong> As at any expiry, apps, functions, users and nodes stay; only
       creating more beyond {bee.name}'s limits stops.
     </li>
-    <li>
-      <strong>To stop future payments, cancel the subscription</strong> as well, from the portal's{' '}
-      <a href={PORTAL_URL}>billing page</a> or on paddle.net.
-    </li>
   </ul>
 
   <h2 id="other">Partial refunds and credits</h2>
   <p>
-    A partial refund or a credit, for example after a plan change, does not revoke the license.
+    A partial refund, a credit, or a refund of a plan change's charge does not revoke the license or cancel the
+    subscription.
   </p>
 
   <h2 id="contact">Questions</h2>

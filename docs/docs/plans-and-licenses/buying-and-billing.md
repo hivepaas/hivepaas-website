@@ -100,10 +100,12 @@ A payment is refunded in full on request within 14 days. Ask Paddle for it, at
 [paddle.net](https://paddle.net), where you find the order by the email on its
 receipt: refunds are Paddle's to make, not something to write to HivePaaS about.
 
-When a payment is refunded in full, the portal revokes its license by itself:
-it issues no more keys for it. The key already installed keeps working to its
-end date and through its grace, as a key is checked offline and cannot be
-called back. A partial refund, or a credit, changes nothing.
+When a payment for a period - the first one or a renewal - is refunded in full,
+the portal revokes its license by itself, issuing no more keys for it, and
+cancels its subscription at once, so nothing more is charged. The key already
+installed keeps working to its end date and through its grace, as a key is
+checked offline and cannot be called back. A partial refund, a credit, or a
+refund of a plan change's charge changes nothing.
 
 See the [refund policy](https://hivepaas.com/refunds).
 
