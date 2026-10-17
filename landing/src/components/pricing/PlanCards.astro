@@ -1,0 +1,447 @@
+---
+// PlanCards.astro - the plans as cards, with a monthly / yearly toggle.
+// The toggle sets data-period on the section; CSS shows that period's prices,
+// and the script points each Subscribe link at it. Without script, monthly.
+import {
+  BEE_SIGN_IN,
+  PAID_SIGN_IN,
+  TRIAL_URL,
+  YEARLY_DISCOUNT_PERCENT,
+  formatLimit,
+  formatUsd,
+  getPlan,
+  perMonth,
+  plans,
+  subscribeUrl,
+  type Plan,
+} from '../../data/plans';
+import { SALES_EMAIL, SALES_MAILTO } from '../../data/site';
+
+const cardPlans = plans.filter(p => p.id !== 'apiary');
+const apiary = getPlan('apiary');
+
+const joinList = (items: string[]) => `${items.slice(0, -1).join(', ')} and ${items[items.length - 1]}`;
+
+function features(plan: Plan): string[] {
+  const { limits } = plan;
+  if (plan.id === 'bee') {
+    return [
+      formatLimit(limits.nodes, 'node', 'nodes'),
+      formatLimit(limits.users, 'user', 'users'),
+      `${formatLimit(limits.apps, 'app', 'apps')} and ${formatLimit(limits.functions, 'function', 'functions')}`,
+      `${formatLimit(limits.previews, 'preview', 'previews')} at a time`,
+      `Sign-in with ${joinList(BEE_SIGN_IN)}`,
+      'No key, no time limit',
+    ];
+  }
+  return [
+    formatLimit(limits.nodes, 'node', 'nodes'),
+    formatLimit(limits.users, 'user', 'users'),
+    'Unlimited apps, functions and previews',
+    `Every sign-in provider, with ${joinList(PAID_SIGN_IN)}`,
+    'One installation per key',
+    'Renewed keys arrive by themselves, or by email',
+  ];
+}
+
+const apiaryFeatures = [
+  'Nodes and users set for you',
+  'Several installations per key',
+  'Invoices instead of cards',
+  'Support terms',
+];
+---
+
+<section class="plans-section" id="plans" data-plans data-period="monthly">
+  <div class="container">
+    <div class="period-toggle" role="group" aria-label="Billing period">
+      <button type="button" class="period-btn" data-set-period="monthly" aria-pressed="true">Monthly</button>
+      <button type="button" class="period-btn" data-set-period="yearly" aria-pressed="false">
+        Yearly <span class="save-chip">Save {YEARLY_DISCOUNT_PERCENT}%</span>
+      </button>
+    </div>
+
+    <div class="plans-grid">
+      {cardPlans.map(plan => (
+        <article class:list={['bento-card', 'plan-card', { 'plan-featured': plan.trialDays }]}>
+          <div class="plan-head">
+            <h2 class="plan-name">{plan.name}</h2>
+            {plan.trialDays && (
+              <span class="linear-pill pill-glow-amber plan-badge">{plan.trialDays}-day trial, no card</span>
+            )}
+          </div>
+          <p class="plan-tagline">{plan.tagline}</p>
+
+          <div class="plan-price">
+            {plan.prices ? (
+              <>
+                <p class="price-line price-monthly">
+                  <span class="price-amount">{formatUsd(plan.prices.monthly)}</span>
+                  <span class="price-unit">/ month</span>
+                </p>
+                <p class="price-note price-monthly">billed monthly</p>
+                <p class="price-line price-yearly">
+                  <span class="price-amount">{formatUsd(perMonth(plan.prices.yearly))}</span>
+                  <span class="price-unit">/ month</span>
+                </p>
+                <p class="price-note price-yearly">{formatUsd(plan.prices.yearly)} billed yearly</p>
+              </>
+            ) : (
+              <>
+                <p class="price-line">
+                  <span class="price-amount">Free</span>
+                </p>
+                <p class="price-note">forever, no key needed</p>
+              </>
+            )}
+          </div>
+
+          <div class="plan-actions">
+            {plan.prices ? (
+              <a
+                class:list={['btn', plan.trialDays ? 'btn-primary' : 'btn-secondary']}
+                href={subscribeUrl('monthly')}
+                data-href-monthly={subscribeUrl('monthly')}
+                data-href-yearly={subscribeUrl('yearly')}
+              >
+                Subscribe
+              </a>
+            ) : (
+              <a class="btn btn-secondary" href="#quickstart">Install free</a>
+            )}
+            {plan.trialDays && (
+              <a class="btn btn-secondary" href={TRIAL_URL}>Start a {plan.trialDays}-day trial</a>
+            )}
+          </div>
+
+          <ul class="plan-features">
+            {features(plan).map(f => <li>{f}</li>)}
+          </ul>
+        </article>
+      ))}
+    </div>
+
+    <article class="bento-card plan-card apiary-card">
+      <div class="apiary-intro">
+        <div class="plan-head">
+          <h2 class="plan-name">{apiary.name}</h2>
+        </div>
+        <p class="plan-tagline">{apiary.tagline}</p>
+        <div class="plan-price">
+          <p class="price-line"><span class="price-amount">Let's talk</span></p>
+          <p class="price-note">quoted for you</p>
+        </div>
+      </div>
+      <ul class="plan-features apiary-features">
+        {apiaryFeatures.map(f => <li>{f}</li>)}
+      </ul>
+      <div class="plan-actions apiary-actions">
+        <a class="btn btn-secondary" href={SALES_MAILTO}>Contact us</a>
+        <span class="apiary-email">{SALES_EMAIL}</span>
+      </div>
+    </article>
+
+    <div class="plans-notes">
+      <p>
+        <strong>Prices in USD.</strong> Taxes are calculated at checkout from your location; Paddle is our merchant
+        of record. A yearly price is {YEARLY_DISCOUNT_PERCENT}% off twelve monthly ones.
+      </p>
+      <p>
+        <strong>A key is for one installation.</strong> HivePaaS shows its installation ID in{' '}
+        <span class="ui-path">System → License</span>, and the portal asks for it when you subscribe or start the
+        trial. Running HivePaaS already? <span class="ui-path">Upgrade</span> there opens the portal with the ID filled
+        in. New to it? <a href="#quickstart">Install it free</a>, then start the trial from the same page.
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .plans-section {
+    position: relative;
+    z-index: 1;
+    padding-bottom: 4rem;
+  }
+
+  /* Monthly / yearly */
+  .period-toggle {
+    display: flex;
+    width: fit-content;
+    margin: 0 auto 2.5rem;
+    padding: 0.3rem;
+    gap: 0.25rem;
+    border-radius: 9999px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--border-card);
+  }
+
+  .period-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1.2rem;
+    border: 1px solid transparent;
+    border-radius: 9999px;
+    background: none;
+    color: var(--text-secondary);
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .period-btn:hover {
+    color: var(--text-primary);
+  }
+
+  .period-btn[aria-pressed='true'] {
+    color: var(--accent-amber-light);
+    background: rgba(245, 158, 11, 0.12);
+    border-color: rgba(245, 158, 11, 0.35);
+  }
+
+  .save-chip {
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 0.1rem 0.45rem;
+    border-radius: 9999px;
+    color: #34d399;
+    background: rgba(16, 185, 129, 0.12);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+  }
+
+  [data-period='monthly'] .price-yearly,
+  [data-period='yearly'] .price-monthly {
+    display: none;
+  }
+
+  /* Cards */
+  .plans-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  @media (min-width: 700px) {
+    .plans-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1100px) {
+    .plans-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  .plan-card > * {
+    position: relative;
+    z-index: 2;
+  }
+
+  .plan-featured {
+    border-color: rgba(245, 158, 11, 0.45);
+    background: linear-gradient(180deg, rgba(28, 22, 10, 0.85) 0%, rgba(12, 16, 24, 0.75) 100%);
+    box-shadow: 0 0 40px -12px rgba(245, 158, 11, 0.3);
+  }
+
+  .plan-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem 0.75rem;
+    min-height: 2.25rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .plan-name {
+    font-size: 1.45rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--text-primary);
+  }
+
+  .plan-badge {
+    font-size: 0.72rem;
+    padding: 0.2rem 0.65rem;
+  }
+
+  .plan-tagline {
+    font-size: 0.92rem;
+    line-height: 1.5;
+    color: var(--text-secondary);
+    min-height: 2.8em;
+    margin-bottom: 1.25rem;
+  }
+
+  .plan-price {
+    margin-bottom: 1.5rem;
+  }
+
+  .price-line {
+    display: flex;
+    align-items: baseline;
+    gap: 0.4rem;
+    min-height: 2.7rem;
+  }
+
+  .price-amount {
+    font-size: 2.4rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: var(--text-primary);
+    line-height: 1.1;
+  }
+
+  .price-unit {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+  }
+
+  .price-note {
+    margin-top: 0.3rem;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+  }
+
+  .plan-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .plan-actions .btn {
+    width: 100%;
+  }
+
+  .plan-features {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+    border-top: 1px solid var(--border-subtle);
+    padding-top: 1.25rem;
+  }
+
+  .plan-features li {
+    position: relative;
+    padding-left: 1.4rem;
+    font-size: 0.88rem;
+    line-height: 1.5;
+    color: var(--text-secondary);
+  }
+
+  .plan-features li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--accent-amber);
+    font-weight: 700;
+  }
+
+  /* Apiary: one wide card under the others */
+  .apiary-card {
+    margin-top: 1.5rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    align-items: center;
+  }
+
+  .apiary-card .plan-tagline,
+  .apiary-card .plan-price,
+  .apiary-card .plan-actions {
+    min-height: 0;
+    margin-bottom: 0;
+  }
+
+  .apiary-card .plan-tagline {
+    margin-bottom: 1rem;
+  }
+
+  .apiary-features {
+    border-top: 1px solid var(--border-subtle);
+  }
+
+  .apiary-email {
+    text-align: center;
+    font-size: 0.8rem;
+    font-family: var(--font-mono);
+    color: var(--text-muted);
+  }
+
+  @media (min-width: 900px) {
+    .apiary-card {
+      grid-template-columns: 1.2fr 1fr 0.8fr;
+      gap: 2.5rem;
+    }
+
+    .apiary-features {
+      border-top: none;
+      border-left: 1px solid var(--border-subtle);
+      padding-top: 0;
+      padding-left: 2rem;
+    }
+  }
+
+  /* Notes under the cards */
+  .plans-notes {
+    max-width: 820px;
+    margin: 2.5rem auto 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    text-align: center;
+    font-size: 0.92rem;
+    line-height: 1.65;
+    color: var(--text-secondary);
+  }
+
+  .plans-notes strong {
+    color: var(--text-primary);
+  }
+
+  .plans-notes a {
+    color: var(--accent-amber-light);
+  }
+
+  .ui-path {
+    font-family: var(--font-mono);
+    font-size: 0.85em;
+    color: var(--text-primary);
+    white-space: nowrap;
+  }
+</style>
+
+<script>
+  const root = document.querySelector<HTMLElement>('[data-plans]');
+
+  if (root) {
+    const buttons = root.querySelectorAll<HTMLButtonElement>('[data-set-period]');
+    const links = root.querySelectorAll<HTMLAnchorElement>('[data-href-monthly]');
+
+    const setPeriod = (period: string) => {
+      root.dataset.period = period;
+      buttons.forEach(button => {
+        button.setAttribute('aria-pressed', String(button.dataset.setPeriod === period));
+      });
+      links.forEach(link => {
+        const href = period === 'yearly' ? link.dataset.hrefYearly : link.dataset.hrefMonthly;
+        if (href) link.href = href;
+      });
+    };
+
+    buttons.forEach(button => {
+      button.addEventListener('click', () => setPeriod(button.dataset.setPeriod ?? 'monthly'));
+    });
+
+    // /pricing?period=yearly opens on yearly prices.
+    if (new URLSearchParams(window.location.search).get('period') === 'yearly') {
+      setPeriod('yearly');
+    }
+  }
+</script>

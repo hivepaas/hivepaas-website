@@ -1,13 +1,20 @@
 ---
-// FAQ.astro - the questions people ask before installing
-import { faq } from '../data/faq';
+// FAQ.astro - the questions people ask before installing, or before buying
+import { faq, type FaqItem } from '../data/faq';
+
+interface Props {
+  items?: FaqItem[];
+  title?: string;
+}
+
+const { items = faq, title = 'Questions, answered' } = Astro.props;
 ---
 
 <section class="section faq-section" id="faq">
   <div class="container">
     <div class="section-header">
       <span class="section-tag">FAQ</span>
-      <h2 class="section-title">Questions, answered</h2>
+      <h2 class="section-title">{title}</h2>
       <p class="section-desc">
         Something else on your mind?
         Ask on <a href="https://discord.com/invite/2TgD3zDb2e" target="_blank" rel="noopener noreferrer">Discord</a>{' '}
@@ -16,10 +23,17 @@ import { faq } from '../data/faq';
     </div>
 
     <div class="faq-list">
-      {faq.map((item, i) => (
+      {items.map((item, i) => (
         <details class="faq-item" open={i === 0}>
           <summary class="faq-question">{item.question}</summary>
-          <p class="faq-answer">{item.answer}</p>
+          <p class="faq-answer">
+            {item.answer}{item.link && ' '}
+            {item.link && (
+              item.link.href.startsWith('http')
+                ? <a class="faq-link" href={item.link.href} target="_blank" rel="noopener noreferrer">{item.link.label} →</a>
+                : <a class="faq-link" href={item.link.href}>{item.link.label} →</a>
+            )}
+          </p>
         </details>
       ))}
     </div>
@@ -86,5 +100,16 @@ import { faq } from '../data/faq';
     font-size: 0.96rem;
     line-height: 1.7;
     color: var(--text-secondary);
+  }
+
+  .faq-link {
+    display: inline-block;
+    font-weight: 600;
+    color: var(--accent-amber-light);
+    text-decoration: none;
+  }
+
+  .faq-link:hover {
+    text-decoration: underline;
   }
 </style>

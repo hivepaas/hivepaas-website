@@ -1,0 +1,56 @@
+---
+// Promises.astro - what no plan, limit or expiry ever does
+import { GRACE_DAYS } from '../../data/plans';
+
+const promises = [
+  {
+    tag: 'Nothing stops',
+    tone: 'pill-glow-emerald',
+    title: 'A limit only stops creating',
+    text: `Nothing that runs is ever stopped, scaled down or deleted: not over a limit, not on a downgrade, not when a license expires. A paid key keeps working ${GRACE_DAYS} days past its period, and then only creating more stops.`,
+  },
+  {
+    tag: 'Offline',
+    tone: 'pill-glow-purple',
+    title: 'Keys work offline',
+    text: 'A key is checked against public keys built into HivePaaS, so a server with no internet access is licensed like any other. Renewed keys come by email; fetching them online is optional, and sends only the key and the installation ID.',
+  },
+  {
+    tag: 'Apache 2.0',
+    tone: 'pill-glow-amber',
+    title: 'Open source stays open source',
+    text: 'HivePaaS is Apache 2.0, the code of its limits included. A license is a key that lifts the free plan’s limits for one installation, and it pays for the work on HivePaaS.',
+  },
+];
+---
+
+<section class="section promises-section" id="promises">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">Our Promises</span>
+      <h2 class="section-title">A plan never holds your apps hostage</h2>
+    </div>
+
+    <div class="bento-grid">
+      {promises.map(p => (
+        <div class="bento-card">
+          <div class="bento-badge-row">
+            <span class={`linear-pill ${p.tone}`}>{p.tag}</span>
+          </div>
+          <h3 class="bento-title">{p.title}</h3>
+          <p class="bento-text">{p.text}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .promises-section {
+    padding-top: 2rem;
+  }
+
+  .promises-section .bento-text {
+    margin-bottom: 0;
+  }
+</style>

@@ -1,8 +1,14 @@
 // The landing page's questions and answers: the FAQ section shows them, and
 // the page's FAQPage structured data repeats them for search engines.
+import { formatUsd, getPlan, lowestMonthly } from './plans';
+
+const bee = getPlan('bee').limits;
+
 export interface FaqItem {
   question: string;
   answer: string;
+  /** A page to read more on, shown after the answer. */
+  link?: { href: string; label: string };
 }
 
 export const faq: FaqItem[] = [
@@ -28,13 +34,13 @@ export const faq: FaqItem[] = [
   },
   {
     question: 'Is HivePaaS free?',
-    answer:
-      'Yes, you can install it and use it for free today. Paid plans with wider limits, and an edition for larger organizations, are on the way — they will be announced on this page.',
+    answer: `Yes. HivePaaS is open source under the Apache 2.0 license, and Bee, its free plan, has no time limit: ${bee.nodes} nodes, ${bee.users} users, ${bee.apps} apps, ${bee.functions} functions and ${bee.previews} pull request previews at a time. Paid plans, from ${formatUsd(lowestMonthly)} a month, lift those limits for one installation. A limit only ever stops creating: nothing that runs is stopped.`,
+    link: { href: '/pricing', label: 'See the plans' },
   },
   {
     question: 'Where does my data live?',
     answer:
-      'On your servers, and nowhere else. HivePaaS sends no telemetry. Backups go where you send them: a bucket on S3-compatible storage of your choice, or a volume on one of your nodes, encrypted with the repository’s password.',
+      'On your servers, and nowhere else. HivePaaS sends no telemetry. With a license key installed, a daily check for a renewed key sends only the key and the installation ID to portal.hivepaas.com, and it can be turned off. Backups go where you send them: a bucket on S3-compatible storage of your choice, or a volume on one of your nodes, encrypted with the repository’s password.',
   },
   {
     question: 'Can I try it before installing?',

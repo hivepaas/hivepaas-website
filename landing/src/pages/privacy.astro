@@ -1,0 +1,157 @@
+---
+// privacy.astro - Privacy Policy: a DRAFT for the owner's review. What it
+// says of HivePaaS and the portal follows their code: no telemetry; the
+// license refresh sends the key and the installation ID only, and the portal
+// keeps only rate-limit counters of it (hivepaas-portal licenseuc/refresh.go).
+// The legal details come from src/data/legal.ts.
+import LegalLayout from '../layouts/LegalLayout.astro';
+import LegalValue from '../components/legal/LegalValue.astro';
+import { DOCS_PLANS_URL, PORTAL_URL } from '../data/site';
+---
+
+<LegalLayout
+  title="Privacy Policy"
+  description="What the HivePaaS website and portal collect, and what HivePaaS installations send: no telemetry, and with a license key only a daily renewal check that can be turned off."
+  path="/privacy"
+>
+  <p>
+    This policy explains what personal data <LegalValue field="entityName" />, <LegalValue field="address" /> (“we”,
+    “us”) collects through this website, hivepaas.com, and the HivePaaS portal,{' '}
+    <a href={PORTAL_URL}>portal.hivepaas.com</a>, and what HivePaaS installations send us. We are the controller of
+    that data. Contact: <LegalValue field="contactEmail" />.
+  </p>
+
+  <h2 id="summary">In short</h2>
+  <ul>
+    <li>This website counts visits without cookies.</li>
+    <li>The portal keeps what it needs to give you trials and licenses, and to renew them.</li>
+    <li>Paddle, our merchant of record, takes payments; we never see your card details.</li>
+    <li>
+      <strong>HivePaaS sends no telemetry.</strong> With a license key installed, a daily check sends only the key and
+      the installation ID, and it can be turned off.
+    </li>
+    <li>We do not sell personal data, and we show no ads.</li>
+  </ul>
+
+  <h2 id="website">This website</h2>
+  <ul>
+    <li>
+      <strong>Visit counts.</strong> We use <a href="https://umami.is">Umami Cloud</a>, which uses no cookies and does
+      not store IP addresses. It records the pages visited, the referring site, and the browser, operating system,
+      device type and country, and shows them to us only as totals.
+    </li>
+    <li>
+      <strong>Fonts.</strong> The site's fonts come from Google Fonts, so your browser fetches them from Google's
+      servers, which see your IP address.
+    </li>
+    <li>
+      <strong>Server logs.</strong> The web server records requests (IP address, page, time and browser) to run and
+      protect the site, and keeps them only for a short time.
+    </li>
+  </ul>
+
+  <h2 id="portal">The portal</h2>
+  <p>When you use portal.hivepaas.com, we keep:</p>
+  <ul>
+    <li>
+      <strong>Your account:</strong> your name, email address, password (only as a secure hash), and your sign-in
+      security settings, such as two-factor authentication and trusted devices.
+    </li>
+    <li>
+      <strong>Your licenses:</strong> the installation IDs you give us, the license keys we issue (each carries your
+      account's name and email address), your trials, and the moves of a license from one installation to another.
+    </li>
+    <li>
+      <strong>Your subscriptions:</strong> what Paddle tells us about them: the plan, the billing period, the status
+      and dates, and Paddle's customer ID for you.
+    </li>
+    <li>
+      <strong>A security log</strong> of sign-ins and changes to your account and licenses, with the IP address and
+      browser they came from.
+    </li>
+  </ul>
+  <p>
+    We email you your keys, renewals and account messages through an email delivery provider. The portal keeps your
+    sign-in session in your browser's local storage, uses no tracking cookies, and has no analytics. Its pricing and
+    checkout pages load Paddle's checkout, which Paddle's own privacy notice covers.
+  </p>
+
+  <h2 id="payments">Payments</h2>
+  <p>
+    Paddle.com is the merchant of record for all our orders. Paddle collects the details needed for the payment, such
+    as your name, email address, country, payment details and tax information, and processes them under{' '}
+    <a href="https://www.paddle.com/legal/privacy">Paddle's privacy notice</a>. We receive the order and subscription
+    details, never your payment details.
+  </p>
+
+  <h2 id="installations">HivePaaS installations</h2>
+  <p>
+    HivePaaS runs on your servers, and your apps, data and secrets stay there. <strong>It sends us no telemetry:</strong>{' '}
+    no usage data, counts, host names or versions.
+  </p>
+  <ul>
+    <li>
+      <strong>Without a license key</strong>, an installation sends us nothing.
+    </li>
+    <li>
+      <strong>With a license key</strong>, it checks once a day for a renewed key, and again when someone clicks
+      “Check for a newer key”. The check sends only the license key and the installation ID to portal.hivepaas.com.
+      Our server sees the address the request comes from. The portal keeps no record of these checks beyond the
+      counters that limit how often they may be made: the address's for a minute, and the key's, as a hash, for a day.
+    </li>
+    <li>
+      <strong>The check can be turned off</strong> in the installation's configuration, and keys keep working: they are
+      checked offline, and renewed keys also arrive by email. See the <a href={DOCS_PLANS_URL}>documentation</a>.
+    </li>
+  </ul>
+  <p>
+    An installation also contacts the services you set it up to use, such as Git hosts, container registries and
+    backup storage. None of that reaches us.
+  </p>
+
+  <h2 id="processors">Who processes data for us</h2>
+  <ul>
+    <li><strong>Paddle</strong>: payments, tax, invoices and refunds, as merchant of record.</li>
+    <li><strong>Our hosting provider</strong>: the servers that run this website and the portal.</li>
+    <li><strong>Our email delivery provider</strong>: the portal's emails.</li>
+    <li><strong>Umami</strong>: this website's visit counts.</li>
+    <li><strong>Google Fonts</strong>: this website's fonts.</li>
+  </ul>
+  <p>
+    Some of them may process data outside your country. Where the law requires it, such transfers are covered by
+    safeguards such as the European Commission's standard contractual clauses.
+  </p>
+
+  <h2 id="basis">Why we may use your data</h2>
+  <ul>
+    <li><strong>To perform our contract with you:</strong> your account, trials, licenses, keys and their renewal.</li>
+    <li>
+      <strong>Our legitimate interests:</strong> keeping the portal and website secure, and counting visits without
+      identifying you.
+    </li>
+    <li><strong>Legal obligations:</strong> the records that tax and accounting law requires us to keep.</li>
+  </ul>
+
+  <h2 id="retention">How long we keep it</h2>
+  <ul>
+    <li>Your account, licenses and keys: while your account exists. Close it and we delete them, except as below.</li>
+    <li>Records of orders and licenses: as long as tax and accounting law requires.</li>
+    <li>The security log: for a limited time, to investigate abuse.</li>
+    <li>License checks: only the rate-limit counters, for a minute and for a day.</li>
+  </ul>
+
+  <h2 id="rights">Your rights</h2>
+  <p>
+    You can ask for a copy of your data, and to correct, delete, restrict or move it, or object to how we use it.
+    Write to <LegalValue field="contactEmail" />. You can also complain to your data protection authority.
+  </p>
+
+  <h2 id="children">Children</h2>
+  <p>The portal is not meant for anyone under 16, and we do not knowingly collect their data.</p>
+
+  <h2 id="changes">Changes</h2>
+  <p>
+    We will post any change to this policy here, with a new date, and tell account holders by email about a change
+    that matters.
+  </p>
+</LegalLayout>

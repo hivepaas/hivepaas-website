@@ -22,6 +22,8 @@ module.exports = {
     {
       files: ['*.astro'],
       parser: 'astro-eslint-parser',
+      // A component's <script> is TypeScript: lint it as such.
+      processor: 'astro/client-side-ts',
       parserOptions: {
         parser: '@typescript-eslint/parser',
         extraFileExtensions: ['.astro'],

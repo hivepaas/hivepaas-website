@@ -1,0 +1,184 @@
+---
+// pricing.astro - the plans: Bee is free, Comb, Hive and Colony are bought
+// through the portal (Paddle's checkout), Apiary by contact.
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PlanCards from '../components/pricing/PlanCards.astro';
+import PlanTable from '../components/pricing/PlanTable.astro';
+import Promises from '../components/pricing/Promises.astro';
+import FAQ from '../components/FAQ.astro';
+import CTA from '../components/CTA.astro';
+import { pricingFaq } from '../data/pricing-faq';
+import {
+  TRIAL_DAYS,
+  formatUsd,
+  getPlan,
+  lowestMonthly,
+  paidPlans,
+  subscribeUrl,
+  type Period,
+} from '../data/plans';
+import { SITE_URL } from '../data/site';
+
+const bee = getPlan('bee').limits;
+const hive = getPlan('hive');
+const pageUrl = `${SITE_URL}/pricing`;
+
+const pageTitle = `HivePaaS Pricing — Free plan, paid plans from ${formatUsd(lowestMonthly)}/month`;
+const pageDescription = `HivePaaS is free and open source. Bee, the free plan, runs ${bee.nodes} nodes, ${bee.users} users and ${bee.apps} apps with no time limit; Comb, Hive and Colony lift the limits from ${formatUsd(lowestMonthly)} a month. ${TRIAL_DAYS}-day ${hive.name} trial, no card.`;
+
+const billingDuration: Record<Period, string> = { monthly: 'P1M', yearly: 'P1Y' };
+
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'HivePaaS',
+  url: `${SITE_URL}/`,
+  applicationCategory: 'DeveloperApplication',
+  operatingSystem: 'Linux',
+  license: 'https://www.apache.org/licenses/LICENSE-2.0',
+  offers: [
+    { '@type': 'Offer', name: 'Bee', price: '0', priceCurrency: 'USD', url: pageUrl },
+    ...paidPlans.flatMap(plan =>
+      (['monthly', 'yearly'] as const).map(period => ({
+        '@type': 'Offer',
+        name: `${plan.name}, ${period}`,
+        price: plan.prices?.[period].toFixed(2),
+        priceCurrency: 'USD',
+        url: subscribeUrl(period),
+        priceSpecification: {
+          '@type': 'UnitPriceSpecification',
+          price: plan.prices?.[period].toFixed(2),
+          priceCurrency: 'USD',
+          billingDuration: billingDuration[period],
+          valueAddedTaxIncluded: false,
+        },
+      }))
+    ),
+  ],
+};
+
+const faqData = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: pricingFaq.map(item => ({
+    '@type': 'Question',
+    name: item.question,
+    acceptedAnswer: { '@type': 'Answer', text: item.answer },
+  })),
+};
+---
+
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+  path="/pricing"
+  jsonLd={[structuredData, faqData]}
+>
+  <section class="pricing-hero">
+    <div class="hero-spotlight"></div>
+    <div class="container">
+      <div class="pricing-hero-content">
+        <div class="hero-badge-row">
+          <span class="linear-pill pill-glow-amber">
+            <span class="pulse-beacon"></span>
+            <span>Open source, Apache 2.0</span>
+          </span>
+          <span class="linear-pill pill-glow-purple">{TRIAL_DAYS}-day {hive.name} trial, no card</span>
+        </div>
+
+        <h1 class="pricing-title">
+          Start free. <br />
+          <span class="text-gradient-neon">Grow when you need to.</span>
+        </h1>
+
+        <p class="pricing-subtitle">
+          HivePaaS is free and open source, and Bee, its free plan, never runs out. A license key lifts Bee's
+          limits for one installation — and no plan, limit or expiry ever stops what runs.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <PlanCards />
+  <PlanTable />
+  <Promises />
+  <FAQ items={pricingFaq} title="Plans and billing, answered" />
+  <CTA />
+</BaseLayout>
+
+<style>
+  .pricing-hero {
+    position: relative;
+    padding-top: calc(var(--header-height) + 4.5rem);
+    padding-bottom: 2.5rem;
+    overflow: hidden;
+  }
+
+  .hero-spotlight {
+    position: absolute;
+    top: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 900px;
+    max-width: 100%;
+    height: 400px;
+    background: radial-gradient(circle at 50% 30%, rgba(245, 158, 11, 0.15), rgba(139, 92, 246, 0.08) 50%, transparent 70%);
+    filter: blur(70px);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .pricing-hero-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  .hero-badge-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .pulse-beacon {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--accent-amber);
+    box-shadow: 0 0 10px var(--accent-amber);
+    animation: beacon 2s infinite ease-in-out;
+  }
+
+  @keyframes beacon {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.3; transform: scale(0.8); }
+  }
+
+  .pricing-title {
+    font-size: 2.6rem;
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.04em;
+    margin-bottom: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .pricing-title {
+      font-size: 4rem;
+    }
+  }
+
+  .pricing-subtitle {
+    font-size: 1.15rem;
+    line-height: 1.65;
+    color: var(--text-secondary);
+    max-width: 680px;
+  }
+</style>

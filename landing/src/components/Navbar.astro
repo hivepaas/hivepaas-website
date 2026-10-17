@@ -1,5 +1,20 @@
 ---
 // Navbar.astro - Linear / Raycast Style
+// Links to the home page's sections are absolute (/#features), so they work
+// from every page.
+import { DOCS_URL } from '../data/site';
+
+const links = [
+  { href: '/#demo', label: 'Live Demo' },
+  { href: '/#features', label: 'Features' },
+  { href: '/#comparison', label: 'Comparison' },
+  { href: '/#how-it-works', label: 'How It Works' },
+  { href: '/pricing', label: 'Pricing' },
+  { href: '/#faq', label: 'FAQ' },
+];
+
+// The page being shown, to mark its link: "/pricing", with or without a slash.
+const current = Astro.url.pathname.replace(/\/$/, '') || '/';
 ---
 
 <header class="navbar-wrapper">
@@ -13,12 +28,10 @@
       </a>
 
       <div class="nav-links">
-        <a href="#demo" class="nav-link">Live Demo</a>
-        <a href="#features" class="nav-link">Features</a>
-        <a href="#comparison" class="nav-link">Comparison</a>
-        <a href="#how-it-works" class="nav-link">How It Works</a>
-        <a href="#faq" class="nav-link">FAQ</a>
-        <a href="https://docs.hivepaas.com" target="_blank" rel="noopener noreferrer" class="nav-link">Docs</a>
+        {links.map(link => (
+          <a href={link.href} class="nav-link" aria-current={link.href === current ? 'page' : undefined}>{link.label}</a>
+        ))}
+        <a href={DOCS_URL} target="_blank" rel="noopener noreferrer" class="nav-link">Docs</a>
       </div>
 
       <div class="nav-actions">
@@ -50,7 +63,7 @@
           <span class="social-label">Discord</span>
         </a>
 
-        <a href="#quickstart" class="btn btn-primary btn-sm">Deploy Free</a>
+        <a href="/#quickstart" class="btn btn-primary btn-sm">Deploy Free</a>
       </div>
 
       <!-- Mobile Menu Toggle Button -->
@@ -66,13 +79,11 @@
 
   <!-- Mobile Menu Dropdown -->
   <div class="mobile-menu" id="mobileMenu">
-    <a href="#demo" class="mobile-link">Live Demo</a>
-    <a href="#features" class="mobile-link">Features</a>
-    <a href="#comparison" class="mobile-link">Comparison</a>
-    <a href="#how-it-works" class="mobile-link">How It Works</a>
-    <a href="#faq" class="mobile-link">FAQ</a>
-    <a href="https://docs.hivepaas.com" target="_blank" rel="noopener noreferrer" class="mobile-link">Docs</a>
-    <a href="#quickstart" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">Deploy Free</a>
+    {links.map(link => (
+      <a href={link.href} class="mobile-link" aria-current={link.href === current ? 'page' : undefined}>{link.label}</a>
+    ))}
+    <a href={DOCS_URL} target="_blank" rel="noopener noreferrer" class="mobile-link">Docs</a>
+    <a href="/#quickstart" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">Deploy Free</a>
   </div>
 </header>
 
@@ -137,11 +148,17 @@
     text-decoration: none;
     font-size: 0.9rem;
     font-weight: 500;
+    white-space: nowrap;
     transition: color 0.2s ease;
   }
 
-  .nav-link:hover {
+  .nav-link:hover,
+  .nav-link[aria-current='page'] {
     color: var(--text-primary);
+  }
+
+  .nav-link[aria-current='page'] {
+    box-shadow: 0 2px 0 var(--accent-amber);
   }
 
   .nav-actions {
@@ -189,6 +206,26 @@
     padding: 0.45rem 1.15rem;
     font-size: 0.85rem;
     border-radius: 9999px;
+    white-space: nowrap;
+  }
+
+  /* Between the phone menu and a wide screen, the links come first: the
+     GitHub and Discord buttons lose their labels, then go (the footer has
+     them). */
+  @media (min-width: 900px) and (max-width: 1199px) {
+    .nav-links {
+      gap: 1.35rem;
+    }
+
+    .social-label {
+      display: none;
+    }
+  }
+
+  @media (min-width: 900px) and (max-width: 1023px) {
+    .nav-social-btn {
+      display: none;
+    }
   }
 
   .mobile-toggle {
@@ -229,6 +266,10 @@
     font-size: 1.05rem;
     font-weight: 500;
     padding: 0.5rem 0;
+  }
+
+  .mobile-link[aria-current='page'] {
+    color: var(--accent-amber-light);
   }
 </style>
 

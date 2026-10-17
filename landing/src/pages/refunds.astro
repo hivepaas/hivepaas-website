@@ -1,0 +1,70 @@
+---
+// refunds.astro - Refund Policy: a DRAFT for the owner's review. Refunds go
+// through Paddle, never by email to us: nothing may depend on a person
+// answering mail. The legal details come from src/data/legal.ts.
+import LegalLayout from '../layouts/LegalLayout.astro';
+import LegalValue from '../components/legal/LegalValue.astro';
+import { REFUND_DAYS, getPlan } from '../data/plans';
+import { PORTAL_URL } from '../data/site';
+
+const bee = getPlan('bee');
+---
+
+<LegalLayout
+  title="Refund Policy"
+  description={`A full refund of any HivePaaS license payment on request within ${REFUND_DAYS} days, through Paddle, our merchant of record.`}
+  path="/refunds"
+>
+  <h2 id="policy">A full refund within {REFUND_DAYS} days</h2>
+  <p>
+    If HivePaaS is not right for you, any payment for a license is refunded in full on request within{' '}
+    {REFUND_DAYS} days of the payment. That holds for the first payment and for every renewal, monthly or yearly. You
+    do not need to give a reason.
+  </p>
+
+  <h2 id="how">How to ask for a refund</h2>
+  <p>
+    Paddle.com is our merchant of record: it sold you the license, and it handles refunds. Ask through Paddle, not by
+    email to us:
+  </p>
+  <ol>
+    <li>Go to <a href="https://paddle.net">paddle.net</a>.</li>
+    <li>Find your order with the email address you paid with.</li>
+    <li>Ask for a refund of the payment.</li>
+  </ol>
+  <p>
+    The money goes back to the payment method you used. How long it takes to arrive depends on your bank or card
+    provider.
+  </p>
+
+  <h2 id="after">What happens after a refund</h2>
+  <ul>
+    <li>
+      <strong>The license is revoked.</strong> Once the payment is refunded in full, the portal issues no more keys for
+      the license: no renewals, plan changes or moves.
+    </li>
+    <li>
+      <strong>The key you have runs out on its own.</strong> Keys are checked offline and cannot be recalled, so the
+      key already installed keeps working until it runs out. The installation is then on {bee.name}, the free plan.
+    </li>
+    <li>
+      <strong>Nothing that runs is stopped.</strong> As at any expiry, apps, functions, users and nodes stay; only
+      creating more beyond {bee.name}'s limits stops.
+    </li>
+    <li>
+      <strong>To stop future payments, cancel the subscription</strong> as well, from the portal's{' '}
+      <a href={PORTAL_URL}>billing page</a> or on paddle.net.
+    </li>
+  </ul>
+
+  <h2 id="other">Partial refunds and credits</h2>
+  <p>
+    A partial refund or a credit, for example after a plan change, does not revoke the license.
+  </p>
+
+  <h2 id="contact">Questions</h2>
+  <p>
+    For a payment or a refund, contact Paddle at <a href="https://paddle.net">paddle.net</a>. For anything else:{' '}
+    <LegalValue field="contactEmail" />.
+  </p>
+</LegalLayout>

@@ -1,0 +1,113 @@
+---
+// BaseLayout.astro - every page's <head>, background, navbar and footer
+import '../styles/global.css';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_URL } from '../data/site';
+
+interface Props {
+  /** The <title>, and the social cards' title. */
+  title: string;
+  description: string;
+  /** The page's path, such as "/pricing": its canonical URL. */
+  path: string;
+  /** schema.org objects, one <script type="application/ld+json"> each. */
+  jsonLd?: object[];
+  keywords?: string;
+  ogImageAlt?: string;
+}
+
+const {
+  title,
+  description,
+  path,
+  jsonLd = [],
+  keywords,
+  ogImageAlt = 'HivePaaS — Your own Heroku, on your servers.',
+} = Astro.props;
+
+const site = Astro.site ?? new URL(SITE_URL);
+const pageUrl = new URL(path, site).href;
+const ogImage = new URL('/og-image.png', site).href;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- SEO Meta Tags -->
+    <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+    {keywords && <meta name="keywords" content={keywords} />}
+    <meta name="author" content="HivePaaS" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href={pageUrl} />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="HivePaaS" />
+    <meta property="og:url" content={pageUrl} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={ogImageAlt} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={pageUrl} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={ogImage} />
+
+    <!-- What search engines read about the page -->
+    {jsonLd.map(data => <script type="application/ld+json" set:html={JSON.stringify(data)} />)}
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="sitemap" href="/sitemap.xml" />
+
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Analytics: Umami Cloud, no cookies -->
+    <script defer src="https://cloud.umami.is/script.js" data-website-id="4269eacc-43fa-4312-b218-9a555fec4c72"></script>
+  </head>
+
+  <body>
+    <!-- Subtle Background Grid Overlay -->
+    <div class="bg-grid-overlay"></div>
+
+    <!-- Main Navigation Bar -->
+    <Navbar />
+
+    <!-- Main Content Flow -->
+    <main>
+      <slot />
+    </main>
+
+    <!-- Global Footer -->
+    <Footer />
+
+    <!-- Linear Mouse-Tracking Spotlight Script for Bento Cards -->
+    <script>
+      const cards = document.querySelectorAll<HTMLElement>('.bento-card');
+
+      document.addEventListener('mousemove', (e) => {
+        cards.forEach((card) => {
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          card.style.setProperty('--mouse-x', `${x}px`);
+          card.style.setProperty('--mouse-y', `${y}px`);
+        });
+      });
+    </script>
+  </body>
+</html>

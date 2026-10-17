@@ -1,5 +1,8 @@
 ---
 // Footer.astro
+// Links to the home page's sections are absolute (/#features), so they work
+// from every page.
+import { DOCS_URL, GITHUB_URL } from '../data/site';
 ---
 
 <footer class="footer">
@@ -18,7 +21,7 @@
           Open source, zero vendor lock-in, and full data sovereignty.
         </p>
         <div class="footer-license">
-          <span>Released under the Open Source License</span>
+          <span>Released under the <a href={`${GITHUB_URL}/blob/main/LICENSE`} target="_blank" rel="noopener noreferrer">Apache 2.0 License</a></span>
         </div>
       </div>
 
@@ -26,12 +29,13 @@
       <div class="footer-col">
         <h4 class="footer-heading">Product</h4>
         <ul class="footer-links">
-          <li><a href="#features">Features</a></li>
-          <li><a href="#zero-lockin">Zero Vendor Lock-in</a></li>
-          <li><a href="#comparison">Comparison</a></li>
-          <li><a href="#faq">FAQ</a></li>
-          <li><a href="#audience">Who It's For</a></li>
-          <li><a href="#how-it-works">How It Works</a></li>
+          <li><a href="/#features">Features</a></li>
+          <li><a href="/#zero-lockin">Zero Vendor Lock-in</a></li>
+          <li><a href="/#comparison">Comparison</a></li>
+          <li><a href="/pricing">Pricing</a></li>
+          <li><a href="/#faq">FAQ</a></li>
+          <li><a href="/#audience">Who It's For</a></li>
+          <li><a href="/#how-it-works">How It Works</a></li>
         </ul>
       </div>
 
@@ -39,7 +43,7 @@
       <div class="footer-col">
         <h4 class="footer-heading">Resources</h4>
         <ul class="footer-links">
-          <li><a href="https://docs.hivepaas.com" target="_blank" rel="noopener noreferrer">Documentation</a></li>
+          <li><a href={DOCS_URL} target="_blank" rel="noopener noreferrer">Documentation</a></li>
           <li><a href="https://github.com/hivepaas/hivepaas" target="_blank" rel="noopener noreferrer">GitHub Repository</a></li>
           <li><a href="https://github.com/hivepaas/hivepaas/releases" target="_blank" rel="noopener noreferrer">Release Notes</a></li>
           <li><a href="https://github.com/hivepaas/hivepaas/issues" target="_blank" rel="noopener noreferrer">Issue Tracker</a></li>
@@ -55,13 +59,26 @@
           <li><a href="https://discord.com/invite/2TgD3zDb2e" target="_blank" rel="noopener noreferrer">Discord Community</a></li>
         </ul>
       </div>
+
+      <!-- Links: Legal -->
+      <div class="footer-col">
+        <h4 class="footer-heading">Legal</h4>
+        <ul class="footer-links">
+          <li><a href="/terms">Terms of Service</a></li>
+          <li><a href="/privacy">Privacy Policy</a></li>
+          <li><a href="/refunds">Refund Policy</a></li>
+        </ul>
+      </div>
     </div>
 
     <!-- Bottom Bar -->
     <div class="footer-bottom">
       <p>© {new Date().getFullYear()} HivePaaS.</p>
       <div class="footer-bottom-links">
-        <span>HivePaaS sends no telemetry • 100% Self-Hosted • This site counts visits with Umami, without cookies</span>
+        <span>
+          HivePaaS sends no telemetry. With a license key, a daily check sends only the key and the installation ID,
+          and can be turned off • This site counts visits with Umami, without cookies
+        </span>
       </div>
     </div>
   </div>
@@ -84,9 +101,23 @@
     margin-bottom: 3.5rem;
   }
 
-  @media (min-width: 768px) {
+  @media (min-width: 640px) {
     .footer-grid {
-      grid-template-columns: 2fr 1fr 1fr 1fr;
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .footer-brand {
+      grid-column: 1 / -1;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .footer-grid {
+      grid-template-columns: 2fr repeat(4, 1fr);
+    }
+
+    .footer-brand {
+      grid-column: auto;
     }
   }
 
@@ -122,6 +153,14 @@
     font-size: 0.78rem;
     color: var(--text-muted);
     font-family: var(--font-mono);
+  }
+
+  .footer-license a {
+    color: var(--text-secondary);
+  }
+
+  .footer-license a:hover {
+    color: var(--accent-amber-light);
   }
 
   .footer-heading {
@@ -163,9 +202,19 @@
     color: var(--text-muted);
   }
 
+  .footer-bottom-links {
+    max-width: 720px;
+    text-align: center;
+    line-height: 1.6;
+  }
+
   @media (min-width: 768px) {
     .footer-bottom {
       flex-direction: row;
+    }
+
+    .footer-bottom-links {
+      text-align: right;
     }
   }
 </style>

@@ -1,0 +1,217 @@
+---
+// LegalLayout.astro - the Terms, Privacy and Refunds pages: a title, the date,
+// a notice while they are drafts (src/data/legal.ts), and the text.
+import BaseLayout from './BaseLayout.astro';
+import { legal } from '../data/legal';
+
+interface Props {
+  title: string;
+  description: string;
+  path: '/terms' | '/privacy' | '/refunds';
+}
+
+const { title, description, path } = Astro.props;
+
+const pages = [
+  { href: '/terms', label: 'Terms of Service' },
+  { href: '/privacy', label: 'Privacy Policy' },
+  { href: '/refunds', label: 'Refund Policy' },
+];
+---
+
+<BaseLayout title={`${title} — HivePaaS`} description={description} path={path}>
+  <section class="legal-section">
+    <div class="container">
+      <article class="legal-article">
+        <header class="legal-header">
+          <span class="section-tag">Legal</span>
+          <h1 class="legal-title">{title}</h1>
+          <p class="legal-updated">Last updated: {legal.updated}</p>
+        </header>
+
+        {legal.draft && (
+          <aside class="legal-draft" role="note">
+            <strong>Draft for review.</strong> This page is a draft and not yet in force. Details in brackets, such as{' '}
+            <mark>[LEGAL ENTITY NAME]</mark>, are still to be filled in.
+          </aside>
+        )}
+
+        <div class="legal-prose">
+          <slot />
+        </div>
+
+        <nav class="legal-nav" aria-label="Legal pages">
+          {pages.map(page => (
+            <a href={page.href} aria-current={page.href === path ? 'page' : undefined}>{page.label}</a>
+          ))}
+        </nav>
+      </article>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .legal-section {
+    position: relative;
+    z-index: 1;
+    padding-top: calc(var(--header-height) + 3.5rem);
+    padding-bottom: 6rem;
+  }
+
+  .legal-article {
+    max-width: 780px;
+    margin: 0 auto;
+  }
+
+  .legal-header {
+    margin-bottom: 2rem;
+  }
+
+  .section-tag {
+    display: inline-block;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent-amber);
+    margin-bottom: 0.85rem;
+  }
+
+  .legal-title {
+    font-size: 2.4rem;
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -0.03em;
+    color: var(--text-primary);
+    margin-bottom: 0.75rem;
+  }
+
+  @media (min-width: 768px) {
+    .legal-title {
+      font-size: 3rem;
+    }
+  }
+
+  .legal-updated {
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    color: var(--text-muted);
+  }
+
+  .legal-draft {
+    margin-bottom: 2.5rem;
+    padding: 1rem 1.25rem;
+    border-radius: 14px;
+    font-size: 0.92rem;
+    line-height: 1.6;
+    color: #fde68a;
+    background: rgba(245, 158, 11, 0.08);
+    border: 1px solid rgba(245, 158, 11, 0.4);
+  }
+
+  .legal-draft strong {
+    color: var(--accent-amber-light);
+  }
+
+  .legal-draft mark {
+    padding: 0 0.3rem;
+    border-radius: 4px;
+    font-family: var(--font-mono);
+    font-size: 0.88em;
+    color: #fde68a;
+    background: rgba(245, 158, 11, 0.16);
+  }
+
+  /* The pages' own text */
+  .legal-prose {
+    font-size: 1rem;
+    line-height: 1.75;
+    color: var(--text-secondary);
+  }
+
+  .legal-prose :global(h2) {
+    font-size: 1.45rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.3;
+    color: var(--text-primary);
+    margin: 2.75rem 0 0.85rem;
+    scroll-margin-top: calc(var(--header-height) + 1rem);
+  }
+
+  .legal-prose :global(h3) {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 1.75rem 0 0.6rem;
+  }
+
+  .legal-prose :global(p),
+  .legal-prose :global(ul),
+  .legal-prose :global(ol) {
+    margin-bottom: 1rem;
+  }
+
+  .legal-prose :global(ul),
+  .legal-prose :global(ol) {
+    padding-left: 1.4rem;
+  }
+
+  .legal-prose :global(li) {
+    margin-bottom: 0.45rem;
+  }
+
+  .legal-prose :global(li::marker) {
+    color: var(--accent-amber);
+  }
+
+  .legal-prose :global(strong) {
+    color: var(--text-primary);
+    font-weight: 600;
+  }
+
+  .legal-prose :global(a) {
+    color: var(--accent-amber-light);
+    text-underline-offset: 2px;
+  }
+
+  .legal-prose :global(code) {
+    font-family: var(--font-mono);
+    font-size: 0.88em;
+    padding: 0.1rem 0.35rem;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-primary);
+    overflow-wrap: anywhere;
+  }
+
+  .legal-prose :global(blockquote) {
+    margin: 0 0 1rem;
+    padding: 0.85rem 1.15rem;
+    border-left: 3px solid var(--accent-amber);
+    border-radius: 0 10px 10px 0;
+    background: var(--bg-card);
+    color: var(--text-primary);
+  }
+
+  .legal-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.5rem;
+    margin-top: 3.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-subtle);
+    font-size: 0.9rem;
+  }
+
+  .legal-nav a {
+    color: var(--text-secondary);
+    text-decoration: none;
+  }
+
+  .legal-nav a:hover,
+  .legal-nav a[aria-current='page'] {
+    color: var(--accent-amber-light);
+  }
+</style>

@@ -1,0 +1,181 @@
+---
+// terms.astro - Terms of Service: a DRAFT for the owner's review. The legal
+// details come from src/data/legal.ts.
+import LegalLayout from '../layouts/LegalLayout.astro';
+import LegalValue from '../components/legal/LegalValue.astro';
+import { GRACE_DAYS, MOVES_PER_YEAR, REFUND_DAYS, TRIAL_DAYS, getPlan } from '../data/plans';
+import { DISCORD_URL, DOCS_PLANS_URL, GITHUB_URL, PORTAL_URL } from '../data/site';
+
+const bee = getPlan('bee');
+const hive = getPlan('hive');
+const apiary = getPlan('apiary');
+---
+
+<LegalLayout
+  title="Terms of Service"
+  description="The terms for buying and using a HivePaaS license and the HivePaaS portal. Paddle.com is the merchant of record for all orders."
+  path="/terms"
+>
+  <p>
+    These terms apply when you buy or use a HivePaaS license, and when you use the HivePaaS portal at{' '}
+    <a href={PORTAL_URL}>portal.hivepaas.com</a>. HivePaaS licenses are sold by <LegalValue field="entityName" />,{' '}
+    <LegalValue field="address" /> (“we”, “us”). By creating a portal account, starting a trial or buying a license,
+    you agree to them.
+  </p>
+
+  <h2 id="software">1. HivePaaS and licenses</h2>
+  <ul>
+    <li>
+      <strong>The software is open source.</strong> HivePaaS is released under the{' '}
+      <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache License 2.0</a>. These terms do not limit any right
+      that license gives you.
+    </li>
+    <li>
+      <strong>{bee.name} is free.</strong> Without a license key, an installation runs on {bee.name}, the free plan,
+      with its limits and no time limit.
+    </li>
+    <li>
+      <strong>A license is a key.</strong> A license key lifts {bee.name}'s limits, to those of the plan you chose, for
+      one installation, named by its installation ID, for the period you paid for. {apiary.name} licenses may cover
+      several installations, as agreed with you.
+    </li>
+    <li>
+      <strong>The limits are a fair-use gate.</strong> They are part of HivePaaS's Apache 2.0 code. A license is how
+      you lift them in the code we publish, and how you pay for the work on HivePaaS.
+    </li>
+    <li>
+      <strong>A limit only stops creating.</strong> No plan, limit, downgrade or expiry stops, scales down or deletes
+      anything that runs. At a limit, HivePaaS refuses only to create more of that kind.
+    </li>
+  </ul>
+
+  <h2 id="orders">2. Orders and payment</h2>
+  <blockquote>
+    Our order process is conducted by our online reseller Paddle.com. Paddle.com is the Merchant of Record for all our
+    orders. Paddle provides all customer service inquiries and handles returns.
+  </blockquote>
+  <ul>
+    <li>
+      When you buy a license, you buy it from Paddle, under{' '}
+      <a href="https://www.paddle.com/legal/checkout-buyer-terms">Paddle's buyer terms</a>. Paddle takes the payment,
+      charges and remits sales tax, issues invoices and receipts, and handles refunds and payment questions.
+    </li>
+    <li>
+      Prices on our website are in US dollars, before tax. Tax is calculated at checkout from your location, and the
+      checkout may show the price in your currency.
+    </li>
+    <li>We never see or store your card or other payment details.</li>
+  </ul>
+
+  <h2 id="subscriptions">3. Subscriptions, renewal and cancellation</h2>
+  <ul>
+    <li>
+      Paid plans are subscriptions, billed monthly or yearly. A subscription renews at the end of each period, at the
+      price then in force, until you cancel it.
+    </li>
+    <li>
+      You can cancel at any time, from the portal's billing page. Your license then lasts to the end of the period
+      you paid for, and is not renewed.
+    </li>
+    <li>
+      An upgrade takes effect at once, and the rest of the period is charged pro rata. A downgrade takes effect at the
+      next period. Either way, the new key is issued at once.
+    </li>
+    <li>
+      If a renewal payment fails, Paddle retries it for a while; if it is still not paid, the subscription is
+      cancelled.
+    </li>
+  </ul>
+
+  <h2 id="trial">4. The free trial</h2>
+  <p>
+    The {TRIAL_DAYS}-day {hive.name} trial needs no card and is not a subscription: nothing is charged, and when it
+    ends the installation is on {bee.name} again unless you buy a plan. There is one trial per installation and one
+    per account, and a trial cannot be moved to another installation.
+  </p>
+
+  <h2 id="keys">5. License keys</h2>
+  <ul>
+    <li>
+      The portal shows your keys and emails each one to you, including each renewal. HivePaaS checks a key offline,
+      so it works without internet access.
+    </li>
+    <li>
+      If the installation can reach the internet, it fetches renewed keys by itself, once a day, sending only the key
+      and the installation ID. You can turn this off; see the <a href={DOCS_PLANS_URL}>documentation</a>.
+    </li>
+    <li>
+      A paid key keeps working for {GRACE_DAYS} days after the period it was paid for. A trial key has no grace
+      period. The installation is then on {bee.name}.
+    </li>
+    <li>
+      A key carries your account's name and email address. Keep it private, and do not publish it or share it beyond
+      the installation it is for.
+    </li>
+    <li>
+      You can move a license to another installation in the portal, up to {MOVES_PER_YEAR} times in any 365 days.
+    </li>
+  </ul>
+
+  <h2 id="refunds">6. Refunds</h2>
+  <p>
+    Any payment is refunded in full on request within {REFUND_DAYS} days, through Paddle. See our{' '}
+    <a href="/refunds">Refund Policy</a>.
+  </p>
+
+  <h2 id="account">7. Your portal account</h2>
+  <ul>
+    <li>Give accurate details, keep your password safe, and tell us if someone else uses your account.</li>
+    <li>
+      We may suspend or close an account that is used for fraud, to abuse the trial, or to attack the portal, and
+      revoke its licenses.
+    </li>
+    <li>You can ask us to close your account at any time.</li>
+  </ul>
+
+  <h2 id="availability">8. Availability and support</h2>
+  <ul>
+    <li>
+      We try to keep the portal available, but do not promise that it always will be. HivePaaS installations do not
+      depend on it: keys are checked offline, and renewed keys also arrive by email.
+    </li>
+    <li>
+      Help with HivePaaS itself is given by the community, in{' '}
+      <a href={`${GITHUB_URL}/discussions`}>GitHub Discussions</a> and on <a href={DISCORD_URL}>Discord</a>. An{' '}
+      {apiary.name} agreement may include support terms of its own.
+    </li>
+  </ul>
+
+  <h2 id="warranty">9. Disclaimer</h2>
+  <p>
+    HivePaaS is provided “as is”, as the Apache License 2.0 says, and licenses and the portal are provided “as is”
+    too, without warranties of any kind, to the extent the law allows. This does not affect rights that you have as a
+    consumer and that cannot be excluded.
+  </p>
+
+  <h2 id="liability">10. Limitation of liability</h2>
+  <p>
+    To the extent the law allows, we are not liable for indirect or consequential loss, or for loss of data, profit
+    or business, and our total liability for any claim is limited to what you paid for your license in the 12 months
+    before it. Nothing in these terms limits liability that cannot be limited by law.
+  </p>
+
+  <h2 id="changes">11. Changes to these terms</h2>
+  <p>
+    We may change these terms. We will post the new version here and, for a change that matters, tell account holders
+    by email before it applies. A change does not apply to a period you have already paid for.
+  </p>
+
+  <h2 id="law">12. Governing law</h2>
+  <p>
+    These terms are governed by <LegalValue field="governingLaw" />. If you are a consumer, you also keep the
+    protection of the mandatory laws of the country where you live.
+  </p>
+
+  <h2 id="contact">13. Contact</h2>
+  <p>
+    <LegalValue field="entityName" />, <LegalValue field="address" />. Email:{' '}
+    <LegalValue field="contactEmail" />. For an order, a payment or a refund, contact Paddle at{' '}
+    <a href="https://paddle.net">paddle.net</a>.
+  </p>
+</LegalLayout>

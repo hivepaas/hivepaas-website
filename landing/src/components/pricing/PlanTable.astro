@@ -1,0 +1,207 @@
+---
+// PlanTable.astro - every plan side by side, as the licensing spec's table
+import {
+  BEE_SIGN_IN,
+  YEARLY_DISCOUNT_PERCENT,
+  formatUsd,
+  plans,
+  type Limit,
+  type Plan,
+} from '../../data/plans';
+
+type Cell = { text: string; tone?: 'pass' | 'muted' };
+
+const limit = (value: Limit): Cell =>
+  value === 'none'
+    ? { text: 'Unlimited', tone: 'pass' }
+    : value === 'per-key'
+      ? { text: 'Set per key' }
+      : { text: String(value) };
+
+const price = (plan: Plan, period: 'monthly' | 'yearly'): Cell => {
+  if (plan.prices) return { text: formatUsd(plan.prices[period]) };
+  if (plan.id === 'apiary') return { text: 'Quoted' };
+  return period === 'monthly' ? { text: 'Free', tone: 'pass' } : { text: '—', tone: 'muted' };
+};
+
+const check: Cell = { text: '✓', tone: 'pass' };
+const dash: Cell = { text: '—', tone: 'muted' };
+
+// Each row: its name, a hint under it, and a plan's cell.
+const rows = [
+  { label: 'Monthly', sub: 'USD, before tax', cell: (p: Plan) => price(p, 'monthly') },
+  { label: 'Yearly', sub: `${YEARLY_DISCOUNT_PERCENT}% off`, cell: (p: Plan) => price(p, 'yearly') },
+  { label: 'Nodes', sub: 'Servers in the swarm', cell: (p: Plan) => limit(p.limits.nodes) },
+  { label: 'Users', sub: 'Active or invited', cell: (p: Plan) => limit(p.limits.users) },
+  { label: 'Apps', sub: 'Previews and system apps not counted', cell: (p: Plan) => limit(p.limits.apps) },
+  { label: 'Functions', cell: (p: Plan) => limit(p.limits.functions) },
+  { label: 'Previews at once', sub: 'Pull request previews', cell: (p: Plan) => limit(p.limits.previews) },
+  {
+    label: 'Sign-in providers',
+    sub: 'For the dashboard',
+    cell: (p: Plan): Cell => (p.allSignIn ? { text: 'All', tone: 'pass' } : { text: BEE_SIGN_IN.join(', ') }),
+  },
+  { label: 'Installations per key', cell: (p: Plan) => limit(p.limits.installations) },
+  {
+    label: 'Free trial',
+    cell: (p: Plan): Cell => (p.trialDays ? { text: `${p.trialDays} days, no card`, tone: 'pass' } : dash),
+  },
+  { label: 'Works offline', sub: 'The key is checked locally', cell: (): Cell => check },
+  {
+    label: 'Online renewal',
+    sub: 'Optional; sends the key and installation ID',
+    cell: (p: Plan): Cell => (p.prices || p.id === 'apiary' ? check : dash),
+  },
+];
+---
+
+<section class="section plan-table-section" id="compare">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">Compare</span>
+      <h2 class="section-title">Every plan, side by side</h2>
+      <p class="section-desc">
+        Every plan has every feature. A plan sets how many nodes, users, apps, functions and previews one installation
+        may have, and which sign-in providers it may add.
+      </p>
+    </div>
+
+    <div class="table-container bento-card">
+      <table class="plan-table">
+        <thead>
+          <tr>
+            <th scope="col" class="th-feature">Plan</th>
+            {plans.map(plan => (
+              <th scope="col" class:list={['th-plan', { 'col-featured': plan.trialDays }]}>{plan.name}</th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map(row => (
+            <tr>
+              <th scope="row" class="td-feature">
+                <span class="feat-name">{row.label}</span>{row.sub && ' '}
+                {row.sub && <span class="feat-sub">{row.sub}</span>}
+              </th>
+              {plans.map(plan => {
+                const cell = row.cell(plan);
+                return (
+                  <td class:list={[{ 'col-featured': plan.trialDays }, cell.tone && `tone-${cell.tone}`]}>
+                    {cell.text}
+                  </td>
+                );
+              })}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<style>
+  .plan-table-section {
+    padding-top: 4rem;
+  }
+
+  .table-container {
+    padding: 0;
+    overflow-x: auto;
+    border-radius: 16px;
+  }
+
+  .plan-table {
+    width: 100%;
+    min-width: 760px;
+    border-collapse: collapse;
+    text-align: left;
+    position: relative;
+    z-index: 2;
+  }
+
+  .plan-table th,
+  .plan-table td {
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid var(--border-subtle);
+    vertical-align: middle;
+  }
+
+  .plan-table tbody tr:last-child th,
+  .plan-table tbody tr:last-child td {
+    border-bottom: none;
+  }
+
+  .plan-table thead th {
+    background: rgba(12, 16, 24, 0.95);
+  }
+
+  .th-feature {
+    width: 26%;
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+  }
+
+  .th-plan {
+    font-size: 1rem;
+    font-weight: 800;
+    color: var(--text-primary);
+  }
+
+  .th-plan.col-featured {
+    color: var(--accent-amber-light);
+  }
+
+  .col-featured {
+    background: rgba(245, 158, 11, 0.05);
+    border-left: 1px solid rgba(245, 158, 11, 0.25);
+    border-right: 1px solid rgba(245, 158, 11, 0.25);
+  }
+
+  thead .col-featured {
+    background: rgba(245, 158, 11, 0.1) !important;
+  }
+
+  /* The row names stay in view while the table scrolls on a phone. */
+  .td-feature,
+  .th-feature {
+    position: sticky;
+    left: 0;
+    z-index: 1;
+    background: #0a0d14;
+  }
+
+  .td-feature {
+    font-weight: 400;
+  }
+
+  .feat-name {
+    display: block;
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--text-primary);
+  }
+
+  .feat-sub {
+    display: block;
+    margin-top: 0.15rem;
+    font-size: 0.76rem;
+    color: var(--text-muted);
+  }
+
+  .plan-table td {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+  }
+
+  .tone-pass {
+    color: #34d399 !important;
+  }
+
+  .tone-muted {
+    color: var(--text-muted) !important;
+  }
+</style>

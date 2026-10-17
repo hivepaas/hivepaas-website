@@ -1,0 +1,32 @@
+---
+// LegalValue.astro - one of the legal details from src/data/legal.ts. A value
+// still in brackets, such as [ADDRESS], is highlighted until it is filled in.
+import { isPlaceholder, legal } from '../../data/legal';
+
+interface Props {
+  field: 'entityName' | 'address' | 'governingLaw' | 'contactEmail';
+}
+
+const { field } = Astro.props;
+const value = legal[field];
+---
+
+{isPlaceholder(value) ? (
+  <mark class="legal-placeholder" title="To be filled in: src/data/legal.ts">{value}</mark>
+) : field === 'contactEmail' ? (
+  <a href={`mailto:${value}`}>{value}</a>
+) : (
+  value
+)}
+
+<style>
+  .legal-placeholder {
+    padding: 0.05rem 0.35rem;
+    border-radius: 5px;
+    font-family: var(--font-mono);
+    font-size: 0.88em;
+    color: #fde68a;
+    background: rgba(245, 158, 11, 0.16);
+    border: 1px dashed rgba(245, 158, 11, 0.55);
+  }
+</style>
