@@ -8,12 +8,16 @@
 export const legal = {
   /** Shows a "draft" notice on the three pages while true. */
   draft: true,
-  /** The business that sells the licenses, as registered. */
-  entityName: '[LEGAL ENTITY NAME]',
-  /** Its registered address. */
-  address: '[ADDRESS]',
-  /** The law the Terms are governed by, e.g. "the laws of …". */
-  governingLaw: '[GOVERNING LAW]',
+  /**
+   * Who sells the licenses: the owner, an individual (sole trader) with no
+   * company, by the name on the ID Paddle verifies.
+   */
+  entityName: 'Đào Công Tiến',
+  /** Where they are: city and country only, no street address. */
+  address: 'Hanoi, Vietnam',
+  /** The law the Terms are governed by, read after "governed by". */
+  governingLaw:
+    'the laws of Vietnam, with the courts of Hanoi deciding any dispute',
   /** General and legal contact. Proposed: support@hivepaas.com. */
   contactEmail: '[CONTACT EMAIL]',
   /** When the pages last changed in substance: update it on publishing. */
