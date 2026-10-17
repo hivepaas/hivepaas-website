@@ -1,13 +1,10 @@
 // What the Terms, Privacy and Refunds pages say about who sells HivePaaS
-// licenses. These pages are DRAFTS for the owner's review: Paddle's website
-// review needs them, naming the legal business and a contact.
-//
-// TODO(owner): review the three pages (src/pages/terms.astro, privacy.astro,
-// refunds.astro), then set `draft` to false. A value in brackets would be
-// highlighted on the pages as a placeholder still to fill in.
+// licenses. Paddle's website review needs them, naming the seller and a
+// contact. A value in brackets is highlighted on the pages as a placeholder
+// still to fill in; set `draft` back to true while a change is under review.
 export const legal = {
   /** Shows a "draft" notice on the three pages while true. */
-  draft: true,
+  draft: false,
   /**
    * Who sells the licenses: the owner, an individual (sole trader) with no
    * company, by the name on the ID Paddle verifies.
