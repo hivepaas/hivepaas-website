@@ -28,7 +28,8 @@ Add two DNS records, both to the server's public IP address:
 On the server:
 
 ```bash
-curl -fsSL https://get.hivepaas.com | sudo bash
+curl -fsSL https://get.hivepaas.com -o install.sh
+sudo bash install.sh
 ```
 
 Answer its questions: your email and a password for the admin, and

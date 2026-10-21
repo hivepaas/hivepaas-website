@@ -18,6 +18,24 @@ This page is being written. It will cover:
 
 :::
 
+## The installer prints nothing after sudo's password
+
+`curl -fsSL https://get.hivepaas.com | sudo bash` asks for your password, then
+shows nothing and never ends; Ctrl+C does not stop it.
+
+`sudo` on that server is a sudo-rs older than 0.2.14, such as the `sudo` of
+Ubuntu 25.10 and 26.04. Piped into it, the installer stops as it starts, before
+it has installed anything. A newer installer refuses to run this way, and says
+so.
+
+Close the terminal or the SSH session, which ends the installer, open another,
+and run the installer from a file:
+
+```bash
+curl -fsSL https://get.hivepaas.com -o install.sh
+sudo bash install.sh
+```
+
 ## A network cannot start: "Pool overlaps"
 
 Some apps never start, often the logging backend and its collector, and their

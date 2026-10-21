@@ -16,8 +16,18 @@ questions, such as from a script, see [Silent install](./silent-install.md).
 On the server:
 
 ```bash
-curl -fsSL https://get.hivepaas.com | sudo bash
+curl -fsSL https://get.hivepaas.com -o install.sh
+sudo bash install.sh
 ```
+
+:::note[Why not `curl … | sudo bash`]
+
+Piping the installer into sudo works too, except where `sudo` is a sudo-rs
+older than 0.2.14, such as the `sudo` of Ubuntu 25.10 and 26.04: piped into it,
+the installer [stops as it starts](../troubleshooting/common-issues.md#the-installer-prints-nothing-after-sudos-password).
+A newer installer refuses to run that way, and says to run the two lines above.
+
+:::
 
 ## Answer its questions
 
@@ -126,7 +136,8 @@ Running the installer again is safe:
   dashboard's routing - go back to the stack file's.
 
 ```bash
-curl -fsSL https://get.hivepaas.com | sudo bash -s -- --redeploy
+curl -fsSL https://get.hivepaas.com -o install.sh
+sudo bash install.sh --redeploy
 ```
 
 ### A database from an earlier install
