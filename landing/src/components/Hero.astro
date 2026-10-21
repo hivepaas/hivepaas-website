@@ -41,7 +41,7 @@
           <div class="command-prefix">
             <span class="terminal-symbol">$</span>
           </div>
-          <code id="heroInstallCmd">curl -fsSL https://get.hivepaas.com | sudo bash</code>
+          <code id="heroInstallCmd">curl -fsSL https://get.hivepaas.com -o install.sh &amp;&amp; sudo bash install.sh</code>
           <button class="command-copy-btn" id="heroCopyBtn" aria-label="Copy install script">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
@@ -176,7 +176,7 @@
   /* Raycast Command Bar */
   .hero-command-box {
     width: 100%;
-    max-width: 650px;
+    max-width: 860px;
     margin-bottom: 2.25rem;
     display: flex;
     flex-direction: column;
