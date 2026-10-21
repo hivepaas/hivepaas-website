@@ -69,6 +69,8 @@ Flags:
 
 Delete an app, and the apps that go with it: its previews, and what a template created for it. Its data on the volumes stays unless --remove-storage.
 
+A managed database a replica was promoted over holds its cluster, the primary among its members: it is deleted only with all of it, with --delete-cluster.
+
 At a terminal it asks for the app's name to be typed; elsewhere it needs --yes.
 
 ```text
@@ -79,6 +81,7 @@ Flags:
 
 | Flag | Description |
 | --- | --- |
+| `--delete-cluster` | delete a promoted-over database with its whole cluster, the primary among its members |
 | `--remove-storage` | delete the data the apps keep on volumes too |
 | `-y, --yes` | do not ask: for a script |
 
@@ -173,8 +176,6 @@ Stop an app: it keeps its settings and data, and runs nothing until started
 hivepaas app stop [APP]
 ```
 
-The [global flags](./index.md#global-flags) apply to every command.
-
 ## hivepaas app vulns
 
 List what the images the app runs carry, as the server's image scanning found it when it last scanned them: each image with its counts by severity, fixable/all, then the findings, the worst first - those a fixed version is out for, unless --all. Findings an ignore sets aside are left out of the counts and the list; --ignored lists them too, with why.
@@ -201,3 +202,5 @@ Flags:
 | `--fail-on string` | exit 11 when the app runs a fixable finding of this severity or worse that no ignore sets aside: critical, high, medium or low |
 | `--ignored` | list the findings an ignore sets aside too, with why |
 | `--severity strings` | only these severities: critical,high,medium,low,unknown |
+
+The [global flags](./index.md#global-flags) apply to every command.

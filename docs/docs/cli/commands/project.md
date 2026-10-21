@@ -1,6 +1,6 @@
 ---
 sidebar_label: project
-sidebar_position: 22
+sidebar_position: 23
 description: 'Projects and their environments'
 ---
 

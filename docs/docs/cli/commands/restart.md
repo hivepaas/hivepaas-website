@@ -1,6 +1,6 @@
 ---
 sidebar_label: restart
-sidebar_position: 24
+sidebar_position: 25
 description: 'Restart an app'
 ---
 

@@ -1,6 +1,6 @@
 ---
 sidebar_label: version
-sidebar_position: 31
+sidebar_position: 32
 description: 'The CLI''s version and API level, and the current installation''s'
 ---
 

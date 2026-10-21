@@ -1,6 +1,6 @@
 ---
 sidebar_label: exec
-sidebar_position: 13
+sidebar_position: 14
 description: 'Open a shell in an app''s container'
 ---
 

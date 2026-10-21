@@ -1,6 +1,6 @@
 ---
 sidebar_label: whoami
-sidebar_position: 32
+sidebar_position: 33
 description: 'Who the key acts as, on which installation'
 ---
 

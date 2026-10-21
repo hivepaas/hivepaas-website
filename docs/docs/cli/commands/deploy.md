@@ -1,6 +1,6 @@
 ---
 sidebar_label: deploy
-sidebar_position: 10
+sidebar_position: 11
 description: 'Deploy an app, and wait for the result while following its logs'
 ---
 

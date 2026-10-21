@@ -1,6 +1,6 @@
 ---
 sidebar_label: logs
-sidebar_position: 19
+sidebar_position: 20
 description: 'Show an app''s logs, a deployment''s or a task''s'
 ---
 

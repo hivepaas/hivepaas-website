@@ -23,7 +23,7 @@ jobs:
     steps:
       - name: Install the HivePaaS CLI
         run: |
-          v=1.0.0-beta1
+          v=1.0.0-beta2
           base=https://github.com/hivepaas/hivepaas-cli/releases/download/v$v
           curl -fsSLO "$base/hivepaas_${v}_linux_amd64.tar.gz"
           curl -fsSLO "$base/checksums.txt"

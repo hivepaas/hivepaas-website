@@ -1,6 +1,6 @@
 ---
 sidebar_label: function
-sidebar_position: 14
+sidebar_position: 15
 description: 'Functions: code HivePaaS runs on a runtime, a handler answering one request'
 ---
 

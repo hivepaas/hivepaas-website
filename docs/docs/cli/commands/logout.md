@@ -1,6 +1,6 @@
 ---
 sidebar_label: logout
-sidebar_position: 18
+sidebar_position: 19
 description: 'Forget the current context, or the one --context names, and its key''s secret'
 ---
 

@@ -1,6 +1,6 @@
 ---
 sidebar_label: ps
-sidebar_position: 23
+sidebar_position: 24
 description: 'List an app''s replicas: where each runs, its state, and why one failed'
 ---
 

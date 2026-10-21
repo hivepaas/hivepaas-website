@@ -1,6 +1,6 @@
 ---
 sidebar_label: preview
-sidebar_position: 21
+sidebar_position: 22
 description: 'An app''s previews: copies of it for a branch or a pull request'
 ---
 
