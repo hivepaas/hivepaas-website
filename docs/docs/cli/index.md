@@ -10,7 +10,7 @@ deployment, read its logs, change its environment variables and secrets, run a
 job, open a shell in a container - from your terminal or from a CI pipeline. It
 acts through the [REST API](../integrations/rest-api.md), with an API key.
 
-CLI v1.0.0-beta1 is made for HivePaaS v1.0.0-beta4.
+CLI v1.0.0-beta2 is made for HivePaaS v1.0.0-beta5.
 
 ## Start
 

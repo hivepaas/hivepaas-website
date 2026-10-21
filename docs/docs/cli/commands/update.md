@@ -1,6 +1,6 @@
 ---
 sidebar_label: update
-sidebar_position: 30
+sidebar_position: 31
 description: 'Install a newer release of this CLI'
 ---
 

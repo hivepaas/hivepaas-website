@@ -1,6 +1,6 @@
 ---
 sidebar_label: login
-sidebar_position: 17
+sidebar_position: 18
 description: 'Log in to an installation with an API key'
 ---
 

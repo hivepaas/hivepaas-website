@@ -1,6 +1,6 @@
 ---
 sidebar_label: domain
-sidebar_position: 11
+sidebar_position: 12
 description: 'An app''s domains'
 ---
 

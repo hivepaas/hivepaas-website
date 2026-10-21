@@ -1,6 +1,6 @@
 ---
 sidebar_label: open
-sidebar_position: 20
+sidebar_position: 21
 description: 'Open an app''s address in the browser'
 ---
 

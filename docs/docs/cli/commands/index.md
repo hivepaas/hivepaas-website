@@ -19,6 +19,7 @@ Every command of `hivepaas`, from its own help: `hivepaas <command> --help` says
 | [`hivepaas config-file`](./config-file.md) | Config files: files HivePaaS keeps, mounted into apps' containers |
 | [`hivepaas context`](./context.md) | The installations the CLI is logged in to |
 | [`hivepaas cp`](./cp.md) | Copy a file or a directory into an app's container, or out of it |
+| [`hivepaas db`](./db.md) | A managed database: the moments it can be restored to |
 | [`hivepaas deploy`](./deploy.md) | Deploy an app, and wait for the result while following its logs |
 | [`hivepaas domain`](./domain.md) | An app's domains |
 | [`hivepaas env`](./env.md) | An app's environment variables |

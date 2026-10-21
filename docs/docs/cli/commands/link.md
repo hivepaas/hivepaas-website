@@ -1,6 +1,6 @@
 ---
 sidebar_label: link
-sidebar_position: 16
+sidebar_position: 17
 description: 'Tie this directory to an app, so commands run in it need no flags'
 ---
 

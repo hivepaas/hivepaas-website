@@ -21,7 +21,7 @@ On Linux or macOS, download the archive and `checksums.txt`, check the archive,
 and put `hivepaas` on your `PATH`:
 
 ```bash
-v=1.0.0-beta1 os=linux arch=amd64   # os: linux or darwin; arch: amd64 or arm64
+v=1.0.0-beta2 os=linux arch=amd64   # os: linux or darwin; arch: amd64 or arm64
 base=https://github.com/hivepaas/hivepaas-cli/releases/download/v$v
 curl -fsSLO "$base/hivepaas_${v}_${os}_${arch}.tar.gz"
 curl -fsSLO "$base/checksums.txt"

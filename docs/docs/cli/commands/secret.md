@@ -1,6 +1,6 @@
 ---
 sidebar_label: secret
-sidebar_position: 25
+sidebar_position: 26
 description: 'Secrets: values kept hidden, given to apps as ${secrets.KEY} or as files'
 ---
 
