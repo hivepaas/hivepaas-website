@@ -28,6 +28,12 @@ HivePaaS needs **Docker 29 or newer**.
 - **Docker is missing:** the installer offers to install it.
 - **Docker is older than 29:** the installer offers to upgrade it. Upgrading
   restarts the containers already running.
+- **Amazon Linux:** its own Docker is too old, so the installer installs
+  Docker's, from Docker's RHEL 9 repository, in its place.
+- **Docker labels its containers for SELinux**, as openSUSE's does: HivePaaS's
+  services cannot run so. The installer turns it off and restarts Docker:
+  `"selinux-enabled": false` in `/etc/docker/daemon.json`. SELinux still guards
+  the rest of the server, as with Docker's own packages, which leave it off.
 - **The server is already in a swarm:** it must be a manager, not a worker.
 - **Docker's address pools stay out of 10.0.0.0/8:** a swarm takes its
   networks' addresses from 10.0.0.0/8. If `default-address-pools` in
