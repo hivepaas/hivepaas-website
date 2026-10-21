@@ -13,7 +13,7 @@ workers, to run more apps.
 
 The new server needs:
 
-- **Docker 29.5 or newer**, as the first server;
+- **Docker 29 or newer**, as the first server;
 - **these ports open between every node of the cluster**:
 
 | Port                   | For                                         |

@@ -30,7 +30,7 @@ export const faq: FaqItem[] = [
   {
     question: 'Which Linux distributions does it support?',
     answer:
-      'Debian, Ubuntu and their derivatives; Fedora, RHEL, CentOS, Rocky Linux, AlmaLinux, Oracle Linux and Amazon Linux; SLES and openSUSE; Arch and Manjaro; and Alpine. The installer sets up Docker itself when it is missing.',
+      'Debian, Ubuntu and their derivatives; Fedora, RHEL, CentOS, Rocky Linux, AlmaLinux, Oracle Linux and Amazon Linux; SLES and openSUSE; and Arch and Manjaro. The installer sets up Docker itself when it is missing.',
   },
   {
     question: 'Is HivePaaS free?',

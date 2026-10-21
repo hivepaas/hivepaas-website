@@ -15,8 +15,7 @@ Swarm. More servers can join it later, as workers.
   - Debian, Ubuntu, and their derivatives;
   - Fedora, RHEL, CentOS, Rocky Linux, AlmaLinux, Oracle Linux and Amazon Linux;
   - SLES and openSUSE;
-  - Arch and Manjaro;
-  - Alpine.
+  - Arch and Manjaro.
 - **4 CPUs, 8 GB of memory and a 100 GB disk are recommended.** HivePaaS runs on
   less, with less room left for your apps: the installer warns and goes on.
 
@@ -24,10 +23,10 @@ A fresh server is best. The installer installs what is missing itself.
 
 ## Docker
 
-HivePaaS needs **Docker 29.5 or newer**.
+HivePaaS needs **Docker 29 or newer**.
 
 - **Docker is missing:** the installer offers to install it.
-- **Docker is older than 29.5:** the installer offers to upgrade it. Upgrading
+- **Docker is older than 29:** the installer offers to upgrade it. Upgrading
   restarts the containers already running.
 - **The server is already in a swarm:** it must be a manager, not a worker.
 - **Docker's address pools stay out of 10.0.0.0/8:** a swarm takes its
