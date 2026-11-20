@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+  <!-- shellwing's app icon: the window design's filled wing, in the light
+       mode's blue, on a pale tile with a gray rim. -->
+  <defs>
+    <linearGradient id="tile" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fbfcfe"/>
+      <stop offset="1" stop-color="#e3e8ee"/>
+    </linearGradient>
+  </defs>
+  <rect x="16" y="16" width="224" height="224" rx="54" fill="url(#tile)" stroke="#b9c3cf" stroke-width="6"/>
+  <path d="M3 17c4-1 7-4 9-9 1 4 4 7 9 8-5 1-8 2-9 5-1-3-4-4-9-4z" transform="translate(38 19) scale(7.5)" fill="#0284c7"/>
+</svg>
