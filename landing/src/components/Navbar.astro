@@ -2,13 +2,10 @@
 // Navbar.astro - Linear / Raycast Style
 // Links to the home page's sections are absolute (/#features), so they work
 // from every page.
-import { DOCS_URL } from '../data/site';
+import { DOCS_URL, PRODUCTS } from '../data/site';
 
 const links = [
-  { href: '/#demo', label: 'Live Demo' },
   { href: '/#features', label: 'Features' },
-  { href: '/#comparison', label: 'Comparison' },
-  { href: '/#how-it-works', label: 'How It Works' },
   { href: '/pricing', label: 'Pricing' },
   { href: '/#faq', label: 'FAQ' },
 ];
@@ -28,6 +25,30 @@ const current = Astro.url.pathname.replace(/\/$/, '') || '/';
       </a>
 
       <div class="nav-links">
+        <div class="nav-dropdown" id="productsMenu">
+          <button type="button" class="nav-link nav-trigger" id="productsBtn" aria-expanded="false" aria-controls="productsPanel" aria-haspopup="true">
+            Products
+            <svg class="chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+              <path d="M6 9l6 6 6-6"></path>
+            </svg>
+          </button>
+
+          <div class="dropdown-panel" id="productsPanel" role="menu" aria-labelledby="productsBtn">
+            {PRODUCTS.map(product => (
+              <a href={product.href} target="_blank" rel="noopener noreferrer" class="product-item" role="menuitem">
+                <img src={product.icon} width="34" height="34" alt="" class="product-icon" />
+                <span class="product-text">
+                  <span class="product-name">
+                    {product.name}
+                    <span class="product-tagline">{product.tagline}</span>
+                  </span>
+                  <span class="product-desc">{product.description}</span>
+                </span>
+              </a>
+            ))}
+          </div>
+        </div>
+
         {links.map(link => (
           <a href={link.href} class="nav-link" aria-current={link.href === current ? 'page' : undefined}>{link.label}</a>
         ))}
@@ -79,6 +100,21 @@ const current = Astro.url.pathname.replace(/\/$/, '') || '/';
 
   <!-- Mobile Menu Dropdown -->
   <div class="mobile-menu" id="mobileMenu">
+    <span class="mobile-heading">Products</span>
+    {PRODUCTS.map(product => (
+      <a href={product.href} target="_blank" rel="noopener noreferrer" class="mobile-product">
+        <img src={product.icon} width="30" height="30" alt="" class="product-icon" />
+        <span class="product-text">
+          <span class="product-name">
+            {product.name}
+            <span class="product-tagline">{product.tagline}</span>
+          </span>
+          <span class="product-desc">{product.description}</span>
+        </span>
+      </a>
+    ))}
+
+    <span class="mobile-heading">HivePaaS</span>
     {links.map(link => (
       <a href={link.href} class="mobile-link" aria-current={link.href === current ? 'page' : undefined}>{link.label}</a>
     ))}
@@ -271,9 +307,197 @@ const current = Astro.url.pathname.replace(/\/$/, '') || '/';
   .mobile-link[aria-current='page'] {
     color: var(--accent-amber-light);
   }
+
+  /* Products menu ------------------------------------------------------- */
+
+  .nav-dropdown {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  .nav-trigger {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    background: none;
+    border: none;
+    padding: 0;
+    font-family: inherit;
+    cursor: pointer;
+  }
+
+  .chevron {
+    transition: transform 0.2s ease;
+  }
+
+  .nav-dropdown.open .nav-trigger {
+    color: var(--text-primary);
+  }
+
+  .nav-dropdown.open .chevron {
+    transform: rotate(180deg);
+  }
+
+  .dropdown-panel {
+    position: absolute;
+    top: calc(100% + 1.35rem);
+    left: -1.1rem;
+    width: 27rem;
+    max-width: calc(100vw - 2 * var(--container-gutter));
+    padding: 0.6rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    background: rgba(8, 10, 15, 0.97);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--border-card);
+    border-radius: 16px;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.65);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-6px);
+    transition:
+      opacity 0.18s ease,
+      transform 0.18s ease,
+      visibility 0.18s;
+  }
+
+  /* Bridges the gap under the trigger, so the pointer can cross into the
+     panel without it closing on the way. */
+  .dropdown-panel::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 100%;
+    height: 1.35rem;
+  }
+
+  .nav-dropdown.open .dropdown-panel {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .product-item {
+    display: flex;
+    gap: 0.85rem;
+    padding: 0.75rem;
+    border-radius: 12px;
+    text-decoration: none;
+    border: 1px solid transparent;
+    transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .product-item:hover,
+  .product-item:focus-visible {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: var(--border-hover);
+    outline: none;
+  }
+
+  .product-icon {
+    flex-shrink: 0;
+    border-radius: 9px;
+    margin-top: 0.1rem;
+  }
+
+  .product-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    min-width: 0;
+  }
+
+  .product-name {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    color: var(--text-primary);
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+
+  .product-tagline {
+    color: var(--text-accent);
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .product-desc {
+    color: var(--text-secondary);
+    font-size: 0.82rem;
+    line-height: 1.5;
+  }
+
+  /* The phone menu's two groups */
+  .mobile-heading {
+    color: var(--text-muted);
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .mobile-heading + .mobile-product,
+  .mobile-heading + .mobile-link {
+    margin-top: -0.4rem;
+  }
+
+  .mobile-product {
+    display: flex;
+    gap: 0.75rem;
+    text-decoration: none;
+  }
+
 </style>
 
 <script>
+  // The Products menu: a click opens and closes it, a pointer opens it on the
+  // way past, and Escape or a click outside closes it again.
+  const productsMenu = document.getElementById('productsMenu');
+  const productsBtn = document.getElementById('productsBtn');
+
+  if (productsMenu && productsBtn) {
+    const setOpen = (open: boolean) => {
+      productsMenu.classList.toggle('open', open);
+      productsBtn.setAttribute('aria-expanded', String(open));
+    };
+
+    productsBtn.addEventListener('click', event => {
+      event.stopPropagation();
+      setOpen(!productsMenu.classList.contains('open'));
+    });
+
+    // Only where there is a real pointer: on a touch screen the click above
+    // does the work, and a hover would open the menu on the tap that follows.
+    if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+      productsMenu.addEventListener('mouseenter', () => setOpen(true));
+      productsMenu.addEventListener('mouseleave', () => setOpen(false));
+    }
+
+    productsMenu.addEventListener('focusout', event => {
+      if (!productsMenu.contains(event.relatedTarget as Node)) setOpen(false);
+    });
+
+    document.addEventListener('click', event => {
+      if (!productsMenu.contains(event.target as Node)) setOpen(false);
+    });
+
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape' && productsMenu.classList.contains('open')) {
+        setOpen(false);
+        productsBtn.focus();
+      }
+    });
+  }
+
   const toggleBtn = document.getElementById('mobileMenuBtn');
   const mobileMenu = document.getElementById('mobileMenu');
 

@@ -2,7 +2,7 @@
 // Footer.astro
 // Links to the home page's sections are absolute (/#features), so they work
 // from every page.
-import { DOCS_URL, GITHUB_URL } from '../data/site';
+import { DOCS_URL, GITHUB_URL, PRODUCTS } from '../data/site';
 ---
 
 <footer class="footer">
@@ -25,9 +25,9 @@ import { DOCS_URL, GITHUB_URL } from '../data/site';
         </div>
       </div>
 
-      <!-- Links: Product -->
+      <!-- Links: HivePaaS itself -->
       <div class="footer-col">
-        <h4 class="footer-heading">Product</h4>
+        <h4 class="footer-heading">HivePaaS</h4>
         <ul class="footer-links">
           <li><a href="/#features">Features</a></li>
           <li><a href="/#zero-lockin">Zero Vendor Lock-in</a></li>
@@ -36,6 +36,21 @@ import { DOCS_URL, GITHUB_URL } from '../data/site';
           <li><a href="/#faq">FAQ</a></li>
           <li><a href="/#audience">Who It's For</a></li>
           <li><a href="/#how-it-works">How It Works</a></li>
+        </ul>
+      </div>
+
+      <!-- Links: the other apps, each on its own site -->
+      <div class="footer-col">
+        <h4 class="footer-heading">Products</h4>
+        <ul class="footer-links">
+          {PRODUCTS.map(product => (
+            <li>
+              <a href={product.href} target="_blank" rel="noopener noreferrer" class="footer-product">
+                {product.name}
+                <span class="footer-sub">{product.tagline}</span>
+              </a>
+            </li>
+          ))}
         </ul>
       </div>
 
@@ -113,7 +128,8 @@ import { DOCS_URL, GITHUB_URL } from '../data/site';
 
   @media (min-width: 1024px) {
     .footer-grid {
-      grid-template-columns: 2fr repeat(4, 1fr);
+      grid-template-columns: 1.7fr repeat(5, 1fr);
+      gap: 2.25rem;
     }
 
     .footer-brand {
@@ -188,6 +204,20 @@ import { DOCS_URL, GITHUB_URL } from '../data/site';
 
   .footer-links a:hover {
     color: var(--accent-amber-light);
+  }
+
+  /* An app's name with what it is under it */
+  .footer-product {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    font-weight: 600;
+  }
+
+  .footer-sub {
+    color: var(--text-muted);
+    font-size: 0.78rem;
+    font-weight: 400;
   }
 
   .footer-bottom {

@@ -14,3 +14,45 @@ export const DOCS_PLANS_URL = `${DOCS_URL}/plans-and-licenses`;
 // portal-web's CONTACT_SALES_URL uses the same address.
 export const SALES_EMAIL = 'sales@hivepaas.com';
 export const SALES_MAILTO = `mailto:${SALES_EMAIL}?subject=HivePaaS%20Apiary`;
+
+// The other apps from the same hive, for the navbar's Products menu and the
+// footer. Each has its own landing site; the icons are their app icons,
+// copied into public/products/.
+export const SHELLWING_URL = 'https://shellwing.app';
+export const TRACEWING_URL = 'https://tracewing.app';
+export const PACKWING_URL = 'https://packwing.app';
+
+export interface Product {
+  name: string;
+  href: string;
+  icon: string;
+  tagline: string;
+  description: string;
+}
+
+export const PRODUCTS: Product[] = [
+  {
+    name: 'shellwing',
+    href: SHELLWING_URL,
+    icon: '/products/shellwing.svg',
+    tagline: 'SSH client',
+    description:
+      'Tabs, split panes, SFTP and port forwarding in a GPU-rendered terminal, with an encrypted vault that syncs between your devices.',
+  },
+  {
+    name: 'tracewing',
+    href: TRACEWING_URL,
+    icon: '/products/tracewing.svg',
+    tagline: 'HTTP debugging proxy',
+    description:
+      'See, pause and change every request your mobile apps, desktop apps, servers and AI agents make — what DevTools cannot reach.',
+  },
+  {
+    name: 'packwing',
+    href: PACKWING_URL,
+    icon: '/products/packwing.svg',
+    tagline: 'File archiver',
+    description:
+      'ZIP, 7z, tar.xz and tar.zst made and opened on all of your cores at once. RAR, disc images and age files, opened safely.',
+  },
+];
